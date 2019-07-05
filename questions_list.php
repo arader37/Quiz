@@ -20,15 +20,33 @@ $GLOBALS['image_name'] = mysqli_query($db, $query);
 
 ?>
 
-<?php $page_title = 'Training Table'; ?>
+<?php $page_title = 'Questions List'; ?>
 <?php include('header.php'); ?>
 
 <!-- Page Content -->
 <div class="container-fluid">
     <?php
-            if(isset($_GET['updatedRoster'])){
-                if($_GET["updatedRoster"] == "Success"){
-                    echo '<br><h3>Success! The Training Schedule has been updated!</h3>';
+            if(isset($_GET['createQuestion'])){
+                if($_GET["createQuestion"] == "Success"){
+                    echo '<br><h3>Success! Your question has been added!</h3>';
+                }
+            }
+
+            if(isset($_GET['questionUpdated'])){
+                if($_GET["questionUpdated"] == "Success"){
+                    echo '<br><h3>Success! Your question has been modified!</h3>';
+                }
+            }
+
+            if(isset($_GET['questionDeleted'])){
+                if($_GET["questionDeleted"] == "Success"){
+                    echo '<br><h3>Success! Your question has been deleted!</h3>';
+                }
+            }
+
+            if(isset($_GET['createTopic'])){
+                if($_GET["createTopic"] == "Success"){
+                    echo '<br><h3>Success! Your topic has been added!</h3>';
                 }
             }
 
@@ -43,7 +61,8 @@ $GLOBALS['image_name'] = mysqli_query($db, $query);
     </h1>
     
     <div id="customerTableView">
-        <button><a class="btn btn-sm" href="create_question.php">Create Question</a></button>
+        <button><a class="btn btn-sm" href="createQuestion.php">Create a Question</a></button>
+        <button><a class="btn btn-sm" href="createTopic.php">Create a Topic</a></button>
         <table class="table table-striped" id="ceremoniesTable">
             <div class="table responsive">
                 <thead>
@@ -57,6 +76,8 @@ $GLOBALS['image_name'] = mysqli_query($db, $query);
                     <th>Choice 4</th>
                     <th>Answer</th>
                     <th>Image Name</th>
+                    <th>Modify</th>
+                    <th>Delete</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -75,6 +96,8 @@ $GLOBALS['image_name'] = mysqli_query($db, $query);
                                     <td>'.$row["choice_4"].'</td>
                                     <td>'.$row["answer"].' </span> </td>
                                     <td>'.$row["image_name"].'</td>
+                                    <td><a class="btn btn-warning btn-sm" href="modifyQuestion.php?id='.$row["id"].'">Modify</a></td>                                  
+                                    <td><a class="btn btn-danger btn-sm" href="deleteQuestion.php?id='.$row["id"].'">Delete</a></td> 
                                 </tr>';
                     }//end while
                 }//end if
