@@ -43,8 +43,8 @@ if(!isset($page_title)) { $page_title = 'Quiz Master'; }
             <button class="btn btn-outline-light my-2 my-sm-0" type="submit" name="submit-search">Search</button>
         </form>-->
         <ul class="navbar-nav mr-right">
-        <li class="nav-item active"><a class="nav-link" href="about.html">About<span class="sr-only">(current)</span></a></li>
-            <li class="nav-item active"><a class="nav-link" href="help.html">Help<span class="sr-only">(current)</span></a></li>
+        <li class="nav-item active"><a class="nav-link" href="about.php">About<span class="sr-only">(current)</span></a></li>
+            <li class="nav-item active"><a class="nav-link" href="help.php">Help<span class="sr-only">(current)</span></a></li>
             <li class="nav-item">
                 <?php
                 if (isset($_SESSION['role'])){
