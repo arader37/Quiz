@@ -1,7 +1,6 @@
 <?php
 
 include_once 'db_configuration.php';
-include_once 'updateTheRoster.php';
 
 if (isset($_POST['topic'])){
 
@@ -24,10 +23,10 @@ if (isset($_POST['topic'])){
                 ";
 
                 mysqli_query($db, $sql);
-                header('location: questions_list.php?updatedRoster=Success');
+                header('location: questions_list.php?createQuestion=Success');
                 }     
         else{
-            header('location: create_question.php?updatedRoster=answerFailed');
+            header('location: create_question.php?createQuestion=answerFailed');
         }
        
 
