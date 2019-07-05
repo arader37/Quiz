@@ -24,6 +24,7 @@ $GLOBALS['image_name'] = mysqli_query($db, $query);
 <?php include('header.php'); ?>
 
 <!-- Page Content -->
+<br><br>
 <div class="container-fluid">
     <?php
             if(isset($_GET['createQuestion'])){
