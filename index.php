@@ -1,4 +1,9 @@
-<?php include('header.php'); ?>
+<?php 
+require 'bin/functions.php';
+require 'db_configuration.php';
+include('header.php'); 
+
+?>
 
 <html>
     <head>
@@ -43,117 +48,64 @@
     <br><br><br><br><br>
     <h1 id = "welcome">Welcome to QuizMaster</h1>
     <h2 id = "directions">Select a topic to test your knowledge about India</h2>
-    <table id = "table_2">
-        <!--Links to quizzes can be put inside the href = ""-->
-        <tr>
-            <td>
-                <a href = "dresses_quiz.html" title = "Dresses">
-                    <image class = "image" src = "Images/index_images/dresses_and_costumes.png"></image>
-                    <div id = "title">Dresses</div>
-                </a>
-            </td>
+    
+    <?php
 
-            <td>
-                <a href = "dances_quiz.html" title = "Dances">
-                    <image class = "image" src = "Images/index_images/dances.jpg"></image>
-                    <div id = "title">Dances</div>
-                </a>
-            </td>
+    $sql1 = "SELECT `value` FROM `preferences` WHERE `name`= 'NO_OF_TOPICS_PER_ROW'";
+    $sql2 = "SELECT `topic` FROM `topics`";
+    $sql3 = "SELECT `image_name` FROM `topics`";
 
-            <td>
-                <a href = "festivals_quiz.html" title = "Festivals">
-                    <image class = "image" src = "Images/index_images/festivals.png"></image>
-                    <div id = "title">Festivals</div>
-                </a> 
-            </td>   
+    $results = mysqli_query($db,$sql1);
+    $results2 = mysqli_query($db,$sql2);
+    $results3 = mysqli_query($db,$sql3);
 
-            <td>
-                <a href = "food_quiz.html" title = "Foods">
-                    <image class = "image" src = "Images/index_images/foods.png"></image>
-                    <div id = "title">Foods</div>
-                </a>
-            </td>
+    if(mysqli_num_rows($results)>0){
+        while($row = mysqli_fetch_assoc($results)){
+            $column[] = $row;
+        }
+    }
+    $columns = $column[0]['value'];
+    
+    if(mysqli_num_rows($results2)>0){
+        while($row = mysqli_fetch_assoc($results2)){
+            $topics[] = $row;
+        }
+    }
 
-            <td>
-                <a href = "" title = "Geography">
-                    <image class = "image" src = "Images/index_images/geography.png"></image>
-                    <div id = "title" style="color:red" >Geography</div>
-                </a>
-            </td>
-        </tr>
+    if(mysqli_num_rows($results3)>0){
+        while($row = mysqli_fetch_assoc($results3)){
+            $pics[] = $row;
+        }
+    }
 
-        <tr>
-            <td>
-                <a href = "leaders_n_scientists_quiz.html"  title = "Leaders and Scientists">
-                    <image class = "image" src = "Images/index_images/leaders_and_scientists.png"></image>
-                    <div id = "title">Scientists</div>
-                </a>
-            </td>
+    $columns = $column[0]['value'];
 
-            <td>
-                <a href = "movies_quiz.html"  title = "Movies">
-                    <image class = "image" src = "Images/index_images/movies.png"></image>
-                    <div id = "title">Movies</div>
+    $count= count($topics);
+    
+    echo "<table id = 'table_2'>
+    <!--Links to quizzes can be put inside the href = -->";
+    echo "<tr>";
+    for($a=0;$a<$count;$a){
+        for($b=0;$b<$columns;$b++){
+            if($a>=$count){
+                break;
+            }else{
+        $topic = $topics[$a]['topic'];
+        $pic = $pics[$a]['image_name'];
+        echo "
+        <td>
+                <a href = '' title = $topic>
+                    <image class = 'image' src = Images/index_images/$pic></image>
+                    <div id = 'title'>$topic</div>
                 </a>
-            </td>
-
-            <td>
-                <a href = "instruments_quiz.html"  title = "Musical Instruments">
-                    <image class = "image" src = "Images/index_images/musical_instruments.png"></image>
-                    <div id = "title">Instruments</div>
-                </a>
-            </td> 
-
-            <td>
-                <a href = "nris_quiz.html"  title = "NRI's">
-                    <image class = "image" src = "Images/index_images/NRI's.jpg"></image>
-                    <div id = "title">NRI's</div>
-                </a>
-            </td>
-
-            <td>
-                <a href = "monuments_quiz.html"  title = "Places and Monuments">
-                    <image class = "image" src = "Images/index_images/places_and_monuments.png"></image>
-                    <div id = "title">Monuments</div>
-                </a>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <a href = "sports_quiz.html"  title = "Sports">
-                    <image class = "image" src = "Images/index_images/sports.png"></image>
-                    <div id = "title">Sports</div>
-                </a>
-            </td>
-
-            <td>
-                <a href = "states_quiz.html"  title = "States">
-                    <image class = "image" src = "Images/index_images/states.png"></image>
-                    <div id = "title">States</div>
-                </a>
-            </td>
-
-            <td>
-                <a href = "symbols_quiz.html"  title = "Symbols">
-                    <image class = "image" src = "Images/index_images/symbols_of_india.png"></image>
-                    <div id = "title">Symbols</div>
-                </a>
-            </td>
-            <td>
-                <a href = "embroidery_quiz.html"  title = "Traditional Games">
-                    <image class = "image" src = "Images/index_images/embroidery.png"></image>
-                    <div id = "title">Embroidery</div>
-                </a>
-            </td>
-
-            <td>
-                <a href = ""  title = "Yoga">
-                    <image class = "image" src = "Images/index_images/yoga.png"></image>
-                    <div id = "title"  style="color:red">Yoga</div>
-                </a>
-            </td>
-        </tr>
-    </table>
+        </td>";
+        $a++;
+            }
+        }
+    echo "</tr>";
+    }   
+    echo"</table>";
+    ?>
+    
     </body>
 </html>
