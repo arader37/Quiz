@@ -83,22 +83,22 @@ var s1 = new Student(
       "https://www.linkedin.com/in/alex-rader-68653b16a/",
       "Alex Rader",
       "Images/about_images/alex.png",
-      "Alex Rader is a currently senior at Metro State University. He works full time as a PC/Analyst for a small company in Saint Paul. He lives in Saint Paul with his girlfriend and two dogs."
+      "Alex is a currently senior at Metro State University. He works full time as a PC/Analyst for a small company in Saint Paul. He lives in Saint Paul with his girlfriend and two dogs."
       );
 
 
     var s2 = new Student(
-      "",
+      "https://www.linkedin.com/in/david-jaqua-98b9a0156/",
       "David Jaqua",
-      "",
-      ""
+      "Images/about_images/david.png",
+      "This is a filler statement that will completed at a later time. This is a filler statement that will completed at a later time. This is a filler statement that will completed at a later time."
       );
 
       var s3 = new Student(
-      "",
+      "https://www.linkedin.com/in/sip-xayaxang-746430179/",
       "Sip Xayaxang",
-      "",
-      ""
+      "Images/about_images/sip.png",
+      "This is a filler statement that will completed at a later time.This is a filler statement that will completed at a later time.This is a filler statement that will completed at a later time."
       );
 
       var s4 = new Student(
