@@ -91,7 +91,7 @@ var s1 = new Student(
       "https://www.linkedin.com/in/david-jaqua-98b9a0156/",
       "David Jaqua",
       "Images/about_images/david.png",
-      "This is a filler statement that will completed at a later time. This is a filler statement that will completed at a later time. This is a filler statement that will completed at a later time."
+      "David is currently a senoir at MetroState University completing his last course to gradudate with a BS in Computer Science. He's working full-time at Target Headquarters as a software Engineer. He lives in Forest Lake MN with his mother and sister."
       );
 
       var s3 = new Student(
@@ -108,31 +108,13 @@ var s1 = new Student(
       "Dr. Jasthi is the primary instrutor for CS2 (JavaScript) class. He has been working in the software industry in different capacities for the last 25 years. He is currently working as a Consultant in Siemens PLM Software Inc. For the last 18 years, he is serving as adjunct faculty in the Department of Computer Sciences and Cyber Security at Metropolitan State University (MN, USA). For the last 12 years, he has been an active volunteer at School of India for Languages and Culture (SILC) and offered his services as a Telugu Teacher, Webmaster, Principal, and President. He is currently serving on the SILC board of directors as Director of Technology. He is building a five-level Digital Literacy program for middle and high school students at SILC."
       );
 
-      
-      
 
-
-
-
-    function toStringi() {
+    function printoutStudents() {
         return s1.toString() + 
                s2.toString() + 
                s3.toString() + 
-               s4.toString() +
-               s5.toString() +
-               s6.toString() +
-               s7.toString() +
-               s8.toString() +
-               s9.toString() +
-               s10.toString() +
-               s11.toString() +
-               s12.toString() + 
-               s13.toString() + 
-               s14.toString() +
-               s15.toString() +
-               s16.toString() +
-               s17.toString();
+               s4.toString();
     }
 
-    toStringi();
+    printoutStudents();
 </script>
