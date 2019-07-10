@@ -45,6 +45,13 @@ include('header.php');
         }
     </style>
     <body>
+    <?php
+            if(isset($_GET['preferencesUpdated'])){
+                if($_GET["preferencesUpdated"] == "Success"){
+                    echo '<br><h3 align=center>Success! The Preferences have been updated!</h3>';
+                }
+            }
+    ?>
     <h1 id = "welcome">Welcome to QuizMaster</h1>
     <h2 id = "directions">Select a topic to test your knowledge about India</h2>
     
