@@ -22,6 +22,10 @@ SET time_zone = "+00:00";
 -- Database: `quiz_master`
 --
 
+-- Drop the tables if they already exist in this database as they will
+-- now be populated with updated info
+DROP TABLE preferences, questions, topics, users;
+
 -- --------------------------------------------------------
 
 --

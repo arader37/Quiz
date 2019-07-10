@@ -45,7 +45,6 @@ include('header.php');
         }
     </style>
     <body>
-    <br><br><br><br><br>
     <h1 id = "welcome">Welcome to QuizMaster</h1>
     <h2 id = "directions">Select a topic to test your knowledge about India</h2>
     
