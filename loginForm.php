@@ -1,7 +1,8 @@
 <?php
 /* Main page with two forms: sign up and log in */
 require 'db_configuration.php';
-session_start();
+include('header.php'); 
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -53,8 +54,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
             </label>
             <input type="password" required autocomplete="off" name="password"/>
           </div>
-
-          <p class="forgot"><a href="forgot.php">Forgot Password?</a></p>
 
           <button class="button button-block" name="login" />Log In</button>
 
