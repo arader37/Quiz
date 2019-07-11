@@ -61,7 +61,7 @@
 
         <div align="center" class="form-group col-md-8">
                 <label for="safe_link">Image Path</label>
-                <input type="text"  name="image_name" maxlength="50" size="50" required title="Please enter the Image Name.">
+                <input type="text"  name="image_name" maxlength="50" size="50" title="Please enter the Image Name.">
         </div>
 
         <br>

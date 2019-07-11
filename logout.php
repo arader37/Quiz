@@ -1,6 +1,7 @@
 <?php
 /* Log out process, unsets and destroys session variables */
-session_start();
+include('header.php'); 
+
 session_unset();
 session_destroy();
 ?>

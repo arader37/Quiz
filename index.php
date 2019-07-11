@@ -70,7 +70,7 @@ include('header.php');
             $column[] = $row;
         }
     }
-    $columns = $column[0]['value'];
+    
     
     if(mysqli_num_rows($results2)>0){
         while($row = mysqli_fetch_assoc($results2)){
