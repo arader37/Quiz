@@ -20,7 +20,7 @@ session_start();
     endif;
     ?>
     </p>     
-    <a href="loginForm.php"><button class="button button-block"/>Home</button></a>
+    <a href="loginForm.php"><button class="button button-block"/>Back</button></a>
 </div>
 </body>
 </html>
