@@ -28,8 +28,7 @@ else { // User exists
         header("location: index.php");
     }
     else {
-        
-        
-        echo $_POST['password'];
+        $_SESSION['message'] = "You have entered wrong password, try again!";
+        header("location: error.php");
     }
 }
