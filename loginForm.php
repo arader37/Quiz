@@ -1,8 +1,7 @@
 <?php
 /* Main page with two forms: sign up and log in */
 require 'db_configuration.php';
-include('header.php'); 
-
+include('header.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -106,8 +105,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
 </div> <!-- /form -->
   <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-
-    <script src="js/loginForm.js"></script>
-
+  <script src="js/loginForm.js"></script>
 </body>
 </html>
