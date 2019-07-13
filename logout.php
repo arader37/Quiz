@@ -1,18 +1,17 @@
 <?php
+include('header.php');
 /* Log out process, unsets and destroys session variables */
 // echo "session_status(): " . session_status();
-$session_existed = false;
+$was_logged_in = false;
 if (session_status() == 2) {
   // session_status() value of 2 means a session is active
-  $session_existed = true;
+  if (isset($_SESSION['role']) == true) {
+    $was_logged_in = true; // session value "role" is set when the user is logged in
+  }
   session_unset();
   session_destroy();
 }
 
-// TODO: by including the header.php file, a session is automatically generated each time it's included.
-// this means after logging out, the home page still thinks the user is logged in, giving them access to 
-// admin functionality. This needs to be fixed later, somehow.
-//include('header.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -26,7 +25,7 @@ if (session_status() == 2) {
   <div class="form">
     <h1>Thanks for stopping by</h1>
     <?php 
-      if ($session_existed == true){
+      if ($was_logged_in == true){
         echo "<p>You have been logged out!</p>";
       } else{
         echo "<p>Error: You are not logged in!</p>";
