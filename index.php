@@ -46,11 +46,11 @@ include('header.php');
     </style>
     <body>
     <?php
-            if(isset($_GET['preferencesUpdated'])){
-                if($_GET["preferencesUpdated"] == "Success"){
-                    echo '<br><h3 align=center>Success! The Preferences have been updated!</h3>';
-                }
+        if(isset($_GET['preferencesUpdated'])){
+            if($_GET["preferencesUpdated"] == "Success"){
+                echo '<br><h3 align=center>Success! The Preferences have been updated!</h3>';
             }
+        }
     ?>
     <h1 id = "welcome">Welcome to QuizMaster</h1>
     <h2 id = "directions">Select a topic to test your knowledge about India</h2>
@@ -61,12 +61,12 @@ include('header.php');
     $sql2 = "SELECT `topic` FROM `topics`";
     $sql3 = "SELECT `image_name` FROM `topics`";
 
-    $results = mysqli_query($db,$sql1);
+    $results1 = mysqli_query($db,$sql1);
     $results2 = mysqli_query($db,$sql2);
     $results3 = mysqli_query($db,$sql3);
 
-    if(mysqli_num_rows($results)>0){
-        while($row = mysqli_fetch_assoc($results)){
+    if(mysqli_num_rows($results1)>0){
+        while($row = mysqli_fetch_assoc($results1)){
             $column[] = $row;
         }
     }
@@ -100,10 +100,10 @@ include('header.php');
         $pic = $pics[$a]['image_name'];
         echo "
         <td>
-                <a href = '' title = $topic>
-                    <image class = 'image' src = Images/index_images/$pic></image>
-                    <div id = 'title'>$topic</div>
-                </a>
+            <a href = 'display_quiz.php?topic=$topic' title = $topic>
+                <image class = 'image' src = Images/index_images/$pic></image>
+                <div id = 'title'>$topic</div>
+            </a>
         </td>";
         $a++;
             }
