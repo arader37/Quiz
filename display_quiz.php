@@ -4,9 +4,9 @@ require 'db_configuration.php';
 include('header.php');
 
 // functions
-function getNumQuestionsForThisQuiz($quiz_name){
+function getNumQuestionsForThisQuiz($quiz_topic){
     global $db; // tell the function to use to global variable $db
-    $sql = "select count(topic) as c from questions where topic = '$quiz_name'";
+    $sql = "select count(topic) as c from questions where topic = '$quiz_topic'";
     $results = mysqli_query($db,$sql);
 
     $num_questions_found = 0;
@@ -17,8 +17,79 @@ function getNumQuestionsForThisQuiz($quiz_name){
         $num_questions_found = $rows[0]['c']; // get the value of c for this first row that returned from the query
     }
 
-    //echo "Found $num_questions_found questions for the quiz on topic $quiz_name";
+    //echo "Found $num_questions_found questions for the quiz on topic $quiz_topic";
     return $num_questions_found;
+}
+
+function getNumQuestionsToShow(){
+    global $db; // tell the function to use to global variable $db
+    $sql = "select value from preferences where name = 'NO_OF_QUESTIONS_TO_SHOW'";
+    $results = mysqli_query($db,$sql);
+
+    $value = 0;
+    if(mysqli_num_rows($results)>0){
+        while($row = mysqli_fetch_assoc($results)){
+            $rows[] = $row;
+        }
+        $value = $rows[0]['value'];
+    }
+    return $value;
+}
+
+function getQuestion($quiz_topic, $question_num){
+    global $db; // tell the function to use to global variable $db
+    $sql = "select id, question from questions where topic = '$quiz_topic' order by id ASC";
+    $results = mysqli_query($db,$sql);
+
+    $question = "Error";
+    if(mysqli_num_rows($results)>0 && mysqli_num_rows($results)>=$question_num){
+        while($row = mysqli_fetch_assoc($results)){
+            $rows[] = $row;
+        }
+        $question = $rows[$question_num-1]['question'];
+    }
+    return $question;
+}
+
+function getAnswers($quiz_topic, $question){
+    global $db; // tell the function to use to global variable $db
+    $sql = "select question, choice_1, choice_2, choice_3, choice_4 from questions where "
+        . "topic = '$quiz_topic' and question = '$question'";
+    $results = mysqli_query($db,$sql);
+
+    $answers = array();
+    if(mysqli_num_rows($results)>0){
+        while($row = mysqli_fetch_assoc($results)){
+            $rows[] = $row;
+        }
+        $answers[0] = $rows[0]['choice_1'];
+        $answers[1] = $rows[0]['choice_2'];
+        $answers[2] = $rows[0]['choice_3'];
+        $answers[3] = $rows[0]['choice_4'];
+    }
+    return $answers;
+}
+
+function getImageAddress($quiz_topic, $question){
+    global $db; // tell the function to use to global variable $db
+    $sql = "select image_name from questions where topic = '$quiz_topic' and question = '$question'";
+    $results = mysqli_query($db,$sql);
+
+    $image_address = "Error";
+    if(mysqli_num_rows($results)>0){
+        while($row = mysqli_fetch_assoc($results)){
+            $rows[] = $row;
+        }
+        $image_address = $rows[0]['image_name'];
+    }
+    return $image_address;
+}
+
+function resetUserQuizAnswers($quiz_topic, $num_questions){
+    for ($i = 1; $i <= $num_questions; $i++){
+        $question_ID = $quiz_topic . "Q" . $i;
+        $_SESSION[$question_ID] = '0';
+    }
 }
 ?>
 
@@ -68,19 +139,144 @@ function getNumQuestionsForThisQuiz($quiz_name){
     <div id="quiz_content">
     <?php
         if(isset($_GET['topic']) == false){
-            echo "<h2 style='color:red;'>Missing/Invalid Quiz Topic</h2>";
-        } else{
-            $quiz_topic = $_GET['topic'];
-            $current_page = 1;
-            if (isset($_GET['page']) == true){
-                $current_page = $_GET['page'];
-            }
-            $num_questions = getNumQuestionsForThisQuiz($quiz_topic);
-
-            echo "<h2>Quiz: $quiz_topic</h2>";
-            echo "<h6>Page: $current_page of $num_questions</h6>";
+            echo "<h4 style='color:red;'>Error: Missing/Invalid Quiz Topic</h4>";
+            exit();
         }
+        $quiz_topic = $_GET['topic'];
+        $current_page = 1;
+        if (isset($_GET['page']) == true){
+            $current_page = $_GET['page'];
+        }
+        $next_page = $current_page+1;
+        $previous_page = $current_page-1;
+        $num_questions = getNumQuestionsForThisQuiz($quiz_topic);
+        $num_questions_to_show = getNumQuestionsToShow();
+
+        echo "<h2>Quiz: $quiz_topic</h2>";
+        echo "<h6>Page: $current_page of $num_questions</h6>";
+        echo "<br>";
+
+        if ($num_questions < $num_questions_to_show){
+            echo "<h4 style='color:red;'>Error: This quiz currently has under the minimum "
+                . "number of required questions ($num_questions_to_show)</h4>";
+            exit();
+        }
+
+        $question_ID = $quiz_topic . "Q" . $current_page;
+        if ($current_page == 1 && 
+            (isset($_SESSION[$question_ID]) == false || $_SESSION[$question_ID] == '0')){
+            // it doesn't appear as though the user has already answered this question
+            // this means they are likely starting the quiz for the first time
+            // so we should reset all of their answers to the questions in this quiz to '0'
+            resetUserQuizAnswers($quiz_topic, $num_questions);
+            echo "Reset the user's question answers";
+        }
+
+        // generate quiz question
+        $question = getQuestion($quiz_topic, $current_page);
+        if ($question == "Error"){
+            // unexpected error occurred while looking up this question in the quiz
+            echo "<h4 style='color:red'>Error occurred while looking up question #$current_page</h4>";
+            exit();
+        }
+        $answers = getAnswers($quiz_topic, $question);
+        if (count($answers) <= 1){
+            echo "<h4 style='color:red'>Error occurred while looking up answers for question #$current_page</h4>";
+            exit();
+        }
+        $image_address = getImageAddress($quiz_topic, $question);
+
+        // create html code for the image
+        $a_checked = ($_SESSION[$question_ID]=='A') ? 'checked' : '';
+        $b_checked = ($_SESSION[$question_ID]=='B') ? 'checked' : '';
+        $c_checked = ($_SESSION[$question_ID]=='C') ? 'checked' : '';
+        $d_checked = ($_SESSION[$question_ID]=='D') ? 'checked' : '';
+        echo "
+        <p><img id='q_image' src='$image_address' style='max-height:250px;width:auto;' alt='img not found'></p>
+        <p id='question'>$question</p>
+        <form>
+        <input type ='radio' name='choices' id='choice_1' value='A' $a_checked>
+        <label for='choice_1' id='choice_1_label'>$answers[0]</label>
+        <br>
+        <input type ='radio' name='choices' id='choice_2' value='B' $b_checked>
+        <label for='choice_2' id='choice_2_label'>$answers[1]</label>
+        <br>
+        <input type ='radio' name='choices' id='choice_3' value='C' $c_checked>
+        <label for='choice_3' id='choice_3_label'>$answers[2]</label>
+        <br>
+        <input type ='radio' name='choices' id='choice_4' value='D' $d_checked>
+        <label for='choice_4' id='choice_4_label'>$answers[3]</label>
+        <br>
+        </form>";
     ?>
+
+    <button id="previousBtn" type="button">Previous</button>
+    <button id="submitBtn" type="button">Submit</button>
+    <button id="nextBtn" type="button">Next</button>
+
+    <script>
+    //**********************************************
+    // STEP 1:  Assign the Event Listeners to the three buttons
+    //          Also attach the Event Listern to the radio buttons
+    //**********************************************
+    var next_btn = document.getElementById("nextBtn");
+    if (next_btn) {
+        next_btn.addEventListener("click", nextQuestion);
+    }
+
+    var previous_btn = document.getElementById("previousBtn");
+    if (previous_btn) {
+        previous_btn.addEventListener("click", previousQuestion);
+    }
+
+    var submit_btn = document.getElementById("submitBtn");
+    if (submit_btn) {
+        submit_btn.addEventListener("click", showResults);
+    }
+
+    // checking if any of the buttons should be disabled (ie previous button on first page of the quiz)
+    <?php
+    if ($current_page == 1){
+        echo "document.getElementById('previousBtn').disabled = true;";
+    }
+    if ($current_page == $num_questions){
+        echo "document.getElementById('nextBtn').disabled = true;";
+    }
+    ?>
+
+    // functions for performing operations based on which buttons are clicked
+
+    function saveSelection(){
+        if (document.getElementById("choice_1").checked == true){
+            alert("choice 1 is selected!");
+        }
+        else if (document.getElementById("choice_2").checked == true){
+            alert("choice 2 is selected!");
+        }
+        else if (document.getElementById("choice_3").checked == true){
+            alert("choice 3 is selected!");
+        }
+        else if (document.getElementById("choice_4").checked == true){
+            alert("choice 4 is selected!");
+        }
+    }
+
+    function nextQuestion(){
+        alert("next pressed");
+        saveSelection();
+        window.location.href = "<?php echo "/display_quiz.php?topic=$quiz_topic,page=$next_page" ?>";
+    }
+
+    function previousQuestion(){
+        saveSelection();
+        window.location.href = "<?php echo "/display_quiz.php?topic=$quiz_topic,page=$previous_page" ?>";
+    }
+
+    function showResults(){
+
+    }
+    </script>
+
     </div>
     </body>
 </html>

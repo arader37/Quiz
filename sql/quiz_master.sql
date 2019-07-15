@@ -44,7 +44,7 @@ CREATE TABLE `preferences` (
 --
 
 INSERT INTO `preferences` (`id`, `name`, `value`, `comments`) VALUES
-(1, 'NO_OF_TOPICS_PER_ROW', 3, 'This is the number of topics, per row, on home page'),
+(1, 'NO_OF_TOPICS_PER_ROW', 5, 'This is the number of topics, per row, on home page'),
 (2, 'NO_OF_QUESTIONS_TO_SHOW', 10, 'The number of Question per quiz');
 
 -- --------------------------------------------------------
@@ -304,7 +304,7 @@ INSERT INTO `topics` (`topic`, `image_name`, `order`) VALUES
 ('Embroidery', 'embroidery.png', 3),
 ('Festivals', 'festivals.png', 4),
 ('Foods', 'foods.png', 5),
-('Intruments', 'musical_instruments.png', 6),
+('Instruments', 'musical_instruments.png', 6),
 ('Leaders', 'leaders_and_scientists.png', 7),
 ('Monuments', 'places_and_monuments.png', 8),
 ('Movies', 'movies.png', 9),
