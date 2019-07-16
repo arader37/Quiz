@@ -53,10 +53,13 @@ function getQuestion($quiz_topic, $question_num){
     return $question;
 }
 
-function getAnswers($quiz_topic, $question){
+function getAnswers($quiz_topic, $question_ID){
     global $db; // tell the function to use to global variable $db
-    $sql = "select question, choice_1, choice_2, choice_3, choice_4 from questions where "
-        . "topic = '$quiz_topic' and question = '$question'";
+    // use the quiz_topic and question_id to identify the correct question
+    // this fixes a bug where the same question answers would be selected when multiple questions had
+    // the same text/string (ie dances quiz)
+    $sql = "select choice_1, choice_2, choice_3, choice_4 from questions where "
+        . "topic = '$quiz_topic' and id = '$question_ID'";
     $results = mysqli_query($db,$sql);
 
     $answers = array();
@@ -72,9 +75,25 @@ function getAnswers($quiz_topic, $question){
     return $answers;
 }
 
-function getImageAddress($quiz_topic, $question){
+function getQuestionID($quiz_topic, $current_page){
     global $db; // tell the function to use to global variable $db
-    $sql = "select image_name from questions where topic = '$quiz_topic' and question = '$question'";
+    $sql = "select id from questions where topic = '$quiz_topic'";
+    $results = mysqli_query($db,$sql);
+
+    if ($current_page < 1)
+        return 0;
+    if(mysqli_num_rows($results)>0){
+        while($row = mysqli_fetch_assoc($results)){
+            $rows[] = $row;
+        }
+        $id = $rows[$current_page-1]['id'];
+    }
+    return $id;
+}
+
+function getImageAddress($quiz_topic, $question_ID){
+    global $db; // tell the function to use to global variable $db
+    $sql = "select image_name from questions where topic = '$quiz_topic' and id = '$question_ID'";
     $results = mysqli_query($db,$sql);
 
     $image_address = "Error";
@@ -153,7 +172,7 @@ function resetUserQuizAnswers($quiz_topic, $num_questions){
         $previous_page = $current_page-1;
         $num_questions = getNumQuestionsForThisQuiz($quiz_topic);
         $num_questions_to_show = getNumQuestionsToShow();
-        $question_ID = $quiz_topic . "Q" . $current_page;
+        $question_session_ID = $quiz_topic . "Q" . $current_page;
 
         echo "<h2 style='display:inline;'>Quiz: $quiz_topic</h2>
             <pre style='display:inline;'>               </pre><button id='resetQuizBtn'>Reset Quiz</button><br>";
@@ -168,13 +187,13 @@ function resetUserQuizAnswers($quiz_topic, $num_questions){
         // check if a previous page's selection needs to be updated in the user's session data
         if (isset($_GET['previous_selection']) && isset($_GET['previous_page'])){
             $previous_selection = $_GET['previous_selection'];
-            $previous_question_ID = $quiz_topic . "Q" . $_GET['previous_page'];
-            $_SESSION[$previous_question_ID] = $previous_selection;
+            $previous_question_session_ID = $quiz_topic . "Q" . $_GET['previous_page'];
+            $_SESSION[$previous_question_session_ID] = $previous_selection;
         }
 
         // check if we need to reset the user's session saved answers if they have just started this quiz
         if ($current_page == 1 && 
-            (isset($_SESSION[$question_ID]) == false || $_SESSION[$question_ID] == '0')){
+            (isset($_SESSION[$question_session_ID]) == false || $_SESSION[$question_session_ID] == '0')){
             // it doesn't appear as though the user has already answered this question
             // this means they are likely starting the quiz for the first time
             // so we should reset all of their answers to the questions in this quiz to '0'
@@ -193,18 +212,19 @@ function resetUserQuizAnswers($quiz_topic, $num_questions){
             echo "<h4 style='color:red'>Error occurred while looking up question #$current_page</h4>";
             exit();
         }
-        $answers = getAnswers($quiz_topic, $question);
+        $question_ID = getQuestionID($quiz_topic, $current_page);
+        $answers = getAnswers($quiz_topic, $question_ID);
         if (count($answers) <= 1){
             echo "<h4 style='color:red'>Error occurred while looking up answers for question #$current_page</h4>";
             exit();
         }
-        $image_address = getImageAddress($quiz_topic, $question);
+        $image_address = getImageAddress($quiz_topic, $question_ID);
 
         // create html code for the image
-        $a_checked = ($_SESSION[$question_ID]=='A') ? 'checked' : '';
-        $b_checked = ($_SESSION[$question_ID]=='B') ? 'checked' : '';
-        $c_checked = ($_SESSION[$question_ID]=='C') ? 'checked' : '';
-        $d_checked = ($_SESSION[$question_ID]=='D') ? 'checked' : '';
+        $a_checked = ($_SESSION[$question_session_ID]=='A') ? 'checked' : '';
+        $b_checked = ($_SESSION[$question_session_ID]=='B') ? 'checked' : '';
+        $c_checked = ($_SESSION[$question_session_ID]=='C') ? 'checked' : '';
+        $d_checked = ($_SESSION[$question_session_ID]=='D') ? 'checked' : '';
         echo "
         <p><img id='q_image' src='$image_address' style='max-height:250px;width:auto;' alt='img not found'></p>
         <p id='question'>Q$current_page. $question</p>
