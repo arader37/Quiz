@@ -42,6 +42,8 @@ function getQuestion($quiz_topic, $question_num){
     $results = mysqli_query($db,$sql);
 
     $question = "Error";
+    if ($question_num == 0)
+        return $question; // return error as we cannot get the question 0-1 or -1 as it doesn't exist
     if(mysqli_num_rows($results)>0 && mysqli_num_rows($results)>=$question_num){
         while($row = mysqli_fetch_assoc($results)){
             $rows[] = $row;
@@ -151,10 +153,11 @@ function resetUserQuizAnswers($quiz_topic, $num_questions){
         $previous_page = $current_page-1;
         $num_questions = getNumQuestionsForThisQuiz($quiz_topic);
         $num_questions_to_show = getNumQuestionsToShow();
+        $question_ID = $quiz_topic . "Q" . $current_page;
 
-        echo "<h2>Quiz: $quiz_topic</h2>";
+        echo "<h2 style='display:inline;'>Quiz: $quiz_topic</h2>
+            <pre style='display:inline;'>               </pre><button id='resetQuizBtn'>Reset Quiz</button><br>";
         echo "<h6>Page: $current_page of $num_questions</h6>";
-        echo "<br>";
 
         if ($num_questions < $num_questions_to_show){
             echo "<h4 style='color:red;'>Error: This quiz currently has under the minimum "
@@ -162,14 +165,25 @@ function resetUserQuizAnswers($quiz_topic, $num_questions){
             exit();
         }
 
-        $question_ID = $quiz_topic . "Q" . $current_page;
+        // check if a previous page's selection needs to be updated in the user's session data
+        if (isset($_GET['previous_selection']) && isset($_GET['previous_page'])){
+            $previous_selection = $_GET['previous_selection'];
+            $previous_question_ID = $quiz_topic . "Q" . $_GET['previous_page'];
+            $_SESSION[$previous_question_ID] = $previous_selection;
+        }
+
+        // check if we need to reset the user's session saved answers if they have just started this quiz
         if ($current_page == 1 && 
             (isset($_SESSION[$question_ID]) == false || $_SESSION[$question_ID] == '0')){
             // it doesn't appear as though the user has already answered this question
             // this means they are likely starting the quiz for the first time
             // so we should reset all of their answers to the questions in this quiz to '0'
             resetUserQuizAnswers($quiz_topic, $num_questions);
-            echo "Reset the user's question answers";
+            echo "**Reset the user's question answers**";
+        }
+        else if (isset($_GET['reset_quiz'])){
+            // user has pressed button to reset the quiz manually
+            resetUserQuizAnswers($quiz_topic, $num_questions);
         }
 
         // generate quiz question
@@ -193,7 +207,7 @@ function resetUserQuizAnswers($quiz_topic, $num_questions){
         $d_checked = ($_SESSION[$question_ID]=='D') ? 'checked' : '';
         echo "
         <p><img id='q_image' src='$image_address' style='max-height:250px;width:auto;' alt='img not found'></p>
-        <p id='question'>$question</p>
+        <p id='question'>Q$current_page. $question</p>
         <form>
         <input type ='radio' name='choices' id='choice_1' value='A' $a_checked>
         <label for='choice_1' id='choice_1_label'>$answers[0]</label>
@@ -215,10 +229,7 @@ function resetUserQuizAnswers($quiz_topic, $num_questions){
     <button id="nextBtn" type="button">Next</button>
 
     <script>
-    //**********************************************
-    // STEP 1:  Assign the Event Listeners to the three buttons
-    //          Also attach the Event Listern to the radio buttons
-    //**********************************************
+    // assign event listeners to the three buttons so our functions are triggered when they are clicked
     var next_btn = document.getElementById("nextBtn");
     if (next_btn) {
         next_btn.addEventListener("click", nextQuestion);
@@ -234,7 +245,13 @@ function resetUserQuizAnswers($quiz_topic, $num_questions){
         submit_btn.addEventListener("click", showResults);
     }
 
+    var reset_quiz_btn = document.getElementById("resetQuizBtn");
+    if (reset_quiz_btn) {
+        reset_quiz_btn.addEventListener("click", resetQuiz);
+    }
+
     // checking if any of the buttons should be disabled (ie previous button on first page of the quiz)
+    // this code will execute and disable these buttons in that case
     <?php
     if ($current_page == 1){
         echo "document.getElementById('previousBtn').disabled = true;";
@@ -245,35 +262,51 @@ function resetUserQuizAnswers($quiz_topic, $num_questions){
     ?>
 
     // functions for performing operations based on which buttons are clicked
-
-    function saveSelection(){
+    function getSelection(){
         if (document.getElementById("choice_1").checked == true){
-            alert("choice 1 is selected!");
+            return "A";
         }
         else if (document.getElementById("choice_2").checked == true){
-            alert("choice 2 is selected!");
+            return "B";
         }
         else if (document.getElementById("choice_3").checked == true){
-            alert("choice 3 is selected!");
+            return "C";
         }
         else if (document.getElementById("choice_4").checked == true){
-            alert("choice 4 is selected!");
+            return "D";
         }
+        return "0";
     }
 
     function nextQuestion(){
-        alert("next pressed");
-        saveSelection();
-        window.location.href = "<?php echo "/display_quiz.php?topic=$quiz_topic,page=$next_page" ?>";
+        var selection = getSelection();
+        if (selection != "0"){
+            var nextPage = "<?php echo "./display_quiz.php?topic=$quiz_topic&page=$next_page&previous_page=$current_page&previous_selection=" ?>";
+            nextPage = nextPage + selection;
+            window.location.href = nextPage;
+        } else{
+            window.location.href = "<?php echo "./display_quiz.php?topic=$quiz_topic&page=$next_page" ?>";
+        }
     }
 
     function previousQuestion(){
-        saveSelection();
-        window.location.href = "<?php echo "/display_quiz.php?topic=$quiz_topic,page=$previous_page" ?>";
+        var selection = getSelection();
+        if (selection != "0"){
+            var nextPage = "<?php echo "./display_quiz.php?topic=$quiz_topic&page=$previous_page&previous_page=$current_page&previous_selection=" ?>";
+            nextPage = nextPage + selection;
+            window.location.href = nextPage;
+        } else{
+            window.location.href = "<?php echo "./display_quiz.php?topic=$quiz_topic&page=$previous_page" ?>";
+        }
     }
 
     function showResults(){
 
+    }
+
+    function resetQuiz(){
+        // reloads the page and specifies the parameter to manually reset the quiz
+        window.location.href = "<?php echo "./display_quiz.php?topic=$quiz_topic&page=$current_page&reset_quiz=true" ?>";
     }
     </script>
 
