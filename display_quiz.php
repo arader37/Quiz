@@ -75,6 +75,31 @@ function getAnswers($quiz_topic, $question_ID){
     return $answers;
 }
 
+function getNumCorrectAnswers($quiz_topic, $users_answers_array){
+    global $db; // tell the function to use to global variable $db
+
+    $sql = "select answer from questions where topic = '$quiz_topic' order by id ASC";
+    $results = mysqli_query($db,$sql);
+    if(mysqli_num_rows($results)>0){
+        while($row = mysqli_fetch_assoc($results)){
+            $answers[] = $row;
+        }
+    }
+
+    $question_ID = 0;
+    for ($i = 0; $i < count($users_answers_array); $i++){
+        $question_ID = getQuestionID($quiz_topic, $i);
+        $sql = "select choice_1, choice_2, choice_3, choice_4 from questions where topic = '$quiz_topic' "
+            . "and id = '$question_ID'";
+        //
+        //
+        // TODO finish up here!!
+        //
+        //
+    }
+
+}
+
 function getQuestionID($quiz_topic, $current_page){
     global $db; // tell the function to use to global variable $db
     $sql = "select id from questions where topic = '$quiz_topic'";
@@ -173,23 +198,30 @@ function resetUserQuizAnswers($quiz_topic, $num_questions){
         $num_questions = getNumQuestionsForThisQuiz($quiz_topic);
         $num_questions_to_show = getNumQuestionsToShow();
         $question_session_ID = $quiz_topic . "Q" . $current_page;
+        // calculate the number of questions to display (based on NO_OF_QUESTIONS_TO_SHOW database attribute value)
+        // this value is placed at the top ie (Page 1 of 20)
+        $displayed_num_questions = $num_questions_to_show < $num_questions ? $num_questions_to_show : $num_questions;
 
         echo "<h2 style='display:inline;'>Quiz: $quiz_topic</h2>
             <pre style='display:inline;'>               </pre><button id='resetQuizBtn'>Reset Quiz</button><br>";
         echo "<h6>Page: $current_page of $num_questions</h6>";
 
-        if ($num_questions < $num_questions_to_show){
-            echo "<h4 style='color:red;'>Error: This quiz currently has under the minimum "
-                . "number of required questions ($num_questions_to_show)</h4>";
-            exit();
-        }
+        // not needed for now (as per professor's recommendation)
+        // if ($num_questions < $num_questions_to_show){
+        //     echo "<h4 style='color:red;'>Error: This quiz currently has under the minimum "
+        //         . "number of required questions ($num_questions_to_show)</h4>";
+        //     exit();
+        // }
+
 
         // check if a previous page's selection needs to be updated in the user's session data
+        // this is how the quiz saves the user's answered questions
         if (isset($_GET['previous_selection']) && isset($_GET['previous_page'])){
             $previous_selection = $_GET['previous_selection'];
             $previous_question_session_ID = $quiz_topic . "Q" . $_GET['previous_page'];
             $_SESSION[$previous_question_session_ID] = $previous_selection;
         }
+
 
         // check if we need to reset the user's session saved answers if they have just started this quiz
         if ($current_page == 1 && 
@@ -205,6 +237,19 @@ function resetUserQuizAnswers($quiz_topic, $num_questions){
             resetUserQuizAnswers($quiz_topic, $num_questions);
         }
 
+
+        // check if the user has finished the quiz (current page number > num of questions to display)
+        if (isset($_GET['quiz_finished'])){
+            // tally up correct and incorrect answers
+            $num_right = 0;
+            $num_wrong = 0;
+            for ($i = 1; $i <= $num_questions_to_show; $i++){
+
+            }
+            exit();
+        }
+
+
         // generate quiz question
         $question = getQuestion($quiz_topic, $current_page);
         if ($question == "Error"){
@@ -219,6 +264,7 @@ function resetUserQuizAnswers($quiz_topic, $num_questions){
             exit();
         }
         $image_address = getImageAddress($quiz_topic, $question_ID);
+
 
         // create html code for the image
         $a_checked = ($_SESSION[$question_session_ID]=='A') ? 'checked' : '';
@@ -270,6 +316,7 @@ function resetUserQuizAnswers($quiz_topic, $num_questions){
         reset_quiz_btn.addEventListener("click", resetQuiz);
     }
 
+
     // checking if any of the buttons should be disabled (ie previous button on first page of the quiz)
     // this code will execute and disable these buttons in that case
     <?php
@@ -280,6 +327,7 @@ function resetUserQuizAnswers($quiz_topic, $num_questions){
         echo "document.getElementById('nextBtn').disabled = true;";
     }
     ?>
+
 
     // functions for performing operations based on which buttons are clicked
     function getSelection(){
@@ -298,6 +346,7 @@ function resetUserQuizAnswers($quiz_topic, $num_questions){
         return "0";
     }
 
+    // responsible for redirecting user to next question page
     function nextQuestion(){
         var selection = getSelection();
         if (selection != "0"){
@@ -309,6 +358,7 @@ function resetUserQuizAnswers($quiz_topic, $num_questions){
         }
     }
 
+    // responsible for redirecting user to previous question page
     function previousQuestion(){
         var selection = getSelection();
         if (selection != "0"){
@@ -320,10 +370,12 @@ function resetUserQuizAnswers($quiz_topic, $num_questions){
         }
     }
 
+    // responsible for loading the quiz results
     function showResults(){
 
     }
 
+    // responsible for resetting the quiz's saved answers
     function resetQuiz(){
         // reloads the page and specifies the parameter to manually reset the quiz
         window.location.href = "<?php echo "./display_quiz.php?topic=$quiz_topic&page=$current_page&reset_quiz=true" ?>";
