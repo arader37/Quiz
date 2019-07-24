@@ -11,17 +11,17 @@
     }
 
     ?>
-    <form action="createTheTopic.php" method="POST">
+    <form action="createTheTopic.php" method="POST" enctype="multipart/form-data">
         <br>
         <h3 text-align="center">Create A Topic</h3> <br>
         <div align="left" class="text-left">
-                <label for="safe_link">Topic</label>
-                <input type="text"  name="topic" maxlength="50" size="50" required title="Please enter the question topic.">
+                <label for="safe_link">Topic Name</label>
+                <input type="text"  name="topic" maxlength="50" size="45" required title="Please enter the question topic.">
         </div>
 
         <div align="left" class="text-left">
-                <label for="safe_link">Image Path</label>
-                <input type="text"  name="image_name" maxlength="50" size="44" required title="Please enter the Image Name.">
+                <label for="safe_link">Image Name</label>
+                <input type="file" name="fileToUpload" id="fileToUpload" maxlength="50" size="44" required title="Please enter the Image Name.">
         </div>
 
         <br>

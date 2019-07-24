@@ -54,7 +54,7 @@ if (isset($_POST['topic'])){
         // if everything is ok, try to upload file
         } else {
             if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-                mysqli_query($db, $update);
+                
                 $sql = "INSERT INTO questions(topic,question,choice_1,choice_2,choice_3,choice_4,answer,image_name)
                 VALUES ('$topic','$question','$choice1','$choice2','$choice3','$choice4','$answer','$target_file')
                 ";
