@@ -310,6 +310,7 @@ function resetUserQuizAnswers($quiz_topic, $num_questions){
             $num_incorrect = $num_questions_to_show - $num_correct;
             echo "<h3 style='color:green'>Congratulations!</h3>";
             echo "<h4>You got $num_correct out of $num_questions_to_show questions correct!</h4>";
+            echo "<image id = 'congratsi' src='Images/about_images/thumbsup.jpg'></image>";
             exit();
         }
 
@@ -449,7 +450,7 @@ function resetUserQuizAnswers($quiz_topic, $num_questions){
     // responsible for resetting the quiz's saved answers
     function resetQuiz(){
         // reloads the page and specifies the parameter to manually reset the quiz
-        window.location.href = "<?php echo "./display_quiz.php?topic=$quiz_topic&page=1&reset_quiz=true" ?>";
+        window.location.href = "<?php echo "./display_quiz.php?topic=$quiz_topic" ?>";
     }
     </script>
 
