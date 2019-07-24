@@ -176,7 +176,7 @@ function resetUserQuizAnswers($quiz_topic, $num_questions){
 
         echo "<h2 style='display:inline;'>Quiz: $quiz_topic</h2>
             <pre style='display:inline;'>               </pre><button id='resetQuizBtn'>Reset Quiz</button><br>";
-        echo "<h6>Page: $current_page of $num_questions</h6>";
+        echo "<h6>Page: $current_page of $num_questions_to_show</h6>";
 
         if ($num_questions < $num_questions_to_show){
             echo "<h4 style='color:red;'>Error: This quiz currently has under the minimum "
@@ -279,6 +279,7 @@ function resetUserQuizAnswers($quiz_topic, $num_questions){
     if ($current_page == $num_questions){
         echo "document.getElementById('nextBtn').disabled = true;";
     }
+    
     ?>
 
     // functions for performing operations based on which buttons are clicked
