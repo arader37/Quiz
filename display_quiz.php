@@ -266,8 +266,9 @@ function resetUserQuizAnswers($quiz_topic, $num_questions){
         // this value is placed at the top ie (Page 1 of 20)
         $displayed_num_questions = $num_questions_to_show < $num_questions ? $num_questions_to_show : $num_questions;
 
-        echo "<h2 style='display:inline;'>Quiz: $quiz_topic</h2>
-            <pre style='display:inline;'>               </pre><button id='resetQuizBtn'>Reset Quiz</button><br>";
+        echo "<h2 style='display:inline;'>Quiz: $quiz_topic</h2>";
+        if (isset($_GET['quiz_finished']) == false)
+            echo "<pre style='display:inline;'>               </pre><button id='resetQuizBtn'>Reset Quiz</button><br>";
         echo "<h6>Page: $current_page of $num_questions_to_show</h6>";
 
         // not needed for now (as per professor's recommendation)
@@ -308,9 +309,9 @@ function resetUserQuizAnswers($quiz_topic, $num_questions){
             // tally up correct and incorrect answers
             $num_correct = checkQuiz($quiz_topic, $num_questions_to_show);
             $num_incorrect = $num_questions_to_show - $num_correct;
-            echo "<h3 style='color:green'>Congratulations!</h3>";
+            echo "<div style='text-align:center'><h3 style='color:green'>Congratulations!</h3>";
             echo "<h4>You got $num_correct out of $num_questions_to_show questions correct!</h4>";
-            echo "<image id = 'congratsi' src='Images/about_images/thumbsup.jpg'></image>";
+            echo "<img id='congratsi' style='width:200px; height:200px;' src='Images/about_images/thumbsup.jpg'></div>";
             exit();
         }
 
