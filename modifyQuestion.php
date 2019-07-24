@@ -77,7 +77,7 @@ if ($result->num_rows > 0) {
     <br> <br>
     
     </form>';
-
+    $_SESSION["image"] = "$row["image_name"]";
     }//end while
 }//end if
 else {

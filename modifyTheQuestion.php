@@ -79,6 +79,7 @@ if (isset($_POST['id'])){
                 choice_3 = '$choice_3',
                 choice_4 = '$choice_4',
                 answer = '$answer',
+                image_name = '$_SESSION["image"]'
                            
             
             WHERE id = '$id'";
