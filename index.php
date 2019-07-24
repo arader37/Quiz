@@ -48,7 +48,7 @@ include('header.php');
     <?php
         if(isset($_GET['preferencesUpdated'])){
             if($_GET["preferencesUpdated"] == "Success"){
-                echo '<br><h3 align=center>Success! The Preferences have been updated!</h3>';
+                echo "<br><h3 align=center style='color:green'>Success! The Preferences have been updated!</h3>";
             }
         }
     ?>

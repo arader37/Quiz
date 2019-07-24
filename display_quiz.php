@@ -75,6 +75,9 @@ function getAnswers($quiz_topic, $question_ID){
     return $answers;
 }
 
+// decided against this method of correcting quiz
+// commented out for now incase I decide to reuse it. It's unfinished.
+/*
 function getNumCorrectAnswers($quiz_topic, $users_answers_array){
     global $db; // tell the function to use to global variable $db
 
@@ -86,18 +89,77 @@ function getNumCorrectAnswers($quiz_topic, $users_answers_array){
         }
     }
 
-    $question_ID = 0;
-    for ($i = 0; $i < count($users_answers_array); $i++){
+    for ($i = 1; $i <= count($users_answers_array); $i++){
         $question_ID = getQuestionID($quiz_topic, $i);
         $sql = "select choice_1, choice_2, choice_3, choice_4 from questions where topic = '$quiz_topic' "
             . "and id = '$question_ID'";
-        //
-        //
-        // TODO finish up here!!
-        //
-        //
-    }
+        $results = mysqli_query($db,$sql);
+        if(mysqli_num_rows($results) > 0
+            && isset($_SESSION[$question_ID]) == true){
+            if (getIdFromQuizABCD($_SESSION[$question_ID])){
 
+            }
+    }
+}
+*/
+
+function isAnswerRight($quiz_topic, $question_num, $user_answer){
+    global $db; // tell the function to use to global variable $db
+    $question_ID = getQuestionID($quiz_topic, $question_num); // returns the id for this particular question
+    $user_answer_ID = getIdFromQuizABCD($user_answer); // converts a,b,c,d to 1,2,3,4 or 5
+    $sql = "select choice_1, choice_2, choice_3, choice_4, answer from questions where topic = '$quiz_topic' "
+        . "and id = '$question_ID'";
+    $results = mysqli_query($db,$sql);
+    $correct_answer_ID = 0;
+    if(mysqli_num_rows($results) > 0){
+        while($row = mysqli_fetch_assoc($results)){
+            $rows[] = $row;
+        }
+        if ($rows[0]['answer'] == $rows[0]['choice_1'])
+            $correct_answer_ID =  1;
+        else if ($rows[0]['answer'] == $rows[0]['choice_2'])
+            $correct_answer_ID =  2;
+        else if ($rows[0]['answer'] == $rows[0]['choice_3'])
+            $correct_answer_ID =  3;
+        else if ($rows[0]['answer'] == $rows[0]['choice_4'])
+            $correct_answer_ID =  4;
+        else $correct_answer_ID = 5;
+        
+
+        if ($user_answer_ID == $correct_answer_ID)
+            return true;
+        else
+            return false;
+    }
+    return false;
+}
+
+function checkQuiz($quiz_topic, $num_questions_to_show){
+    // returns the number of questions the user got correct in this quiz
+    $num_correct = 0;
+    $num_incorrect = 0;
+    for ($i = 1; $i <= $num_questions_to_show; $i++){
+        $question_ID = $quiz_topic . "Q" . $i;
+        if (isset($_SESSION[$question_ID]) 
+            && isAnswerRight($quiz_topic, $i, $_SESSION[$question_ID]) == true){
+            $num_correct++;
+        } else{
+            $num_incorrect++;
+        }
+    }
+    return $num_correct;
+}
+
+function getIdFromQuizABCD($abcd_string){
+    if ($abcd_string == "A")
+        return 1;
+    else if ($abcd_string == "B")
+        return 2;
+    else if ($abcd_string == "C")
+        return 3;
+    else if ($abcd_string == "D")
+        return 4;
+    else return 5;
 }
 
 function getQuestionID($quiz_topic, $current_page){
@@ -197,6 +259,8 @@ function resetUserQuizAnswers($quiz_topic, $num_questions){
         $previous_page = $current_page-1;
         $num_questions = getNumQuestionsForThisQuiz($quiz_topic);
         $num_questions_to_show = getNumQuestionsToShow();
+        if ($num_questions_to_show > $num_questions)
+            $num_questions_to_show = $num_questions; // be sure that num_questions_to_show is not greater than num questions in the quiz
         $question_session_ID = $quiz_topic . "Q" . $current_page;
         // calculate the number of questions to display (based on NO_OF_QUESTIONS_TO_SHOW database attribute value)
         // this value is placed at the top ie (Page 1 of 20)
@@ -235,17 +299,17 @@ function resetUserQuizAnswers($quiz_topic, $num_questions){
         else if (isset($_GET['reset_quiz'])){
             // user has pressed button to reset the quiz manually
             resetUserQuizAnswers($quiz_topic, $num_questions);
+            echo "**Reset the user's question answers by request**";
         }
 
 
-        // check if the user has finished the quiz (current page number > num of questions to display)
+        // check if the user has finished the quiz
         if (isset($_GET['quiz_finished'])){
             // tally up correct and incorrect answers
-            $num_right = 0;
-            $num_wrong = 0;
-            for ($i = 1; $i <= $num_questions_to_show; $i++){
-
-            }
+            $num_correct = checkQuiz($quiz_topic, $num_questions_to_show);
+            $num_incorrect = $num_questions_to_show - $num_correct;
+            echo "<h3 style='color:green'>Congratulations!</h3>";
+            echo "<h4>You got $num_correct out of $num_questions_to_show questions correct!</h4>";
             exit();
         }
 
@@ -323,10 +387,9 @@ function resetUserQuizAnswers($quiz_topic, $num_questions){
     if ($current_page == 1){
         echo "document.getElementById('previousBtn').disabled = true;";
     }
-    if ($current_page == $num_questions){
+    if ($current_page == $num_questions_to_show){
         echo "document.getElementById('nextBtn').disabled = true;";
     }
-    
     ?>
 
 
@@ -373,13 +436,20 @@ function resetUserQuizAnswers($quiz_topic, $num_questions){
 
     // responsible for loading the quiz results
     function showResults(){
-
+        var selection = getSelection();
+        if (selection != "0"){
+            var nextPage = "<?php echo "./display_quiz.php?topic=$quiz_topic&page=$current_page&quiz_finished=true&previous_page=$current_page&previous_selection=" ?>";
+            nextPage = nextPage + selection;
+            window.location.href = nextPage;
+        } else{
+            window.location.href = "<?php echo "./display_quiz.php?topic=$quiz_topic&page=$current_page&quiz_finished=true" ?>";
+        }
     }
 
     // responsible for resetting the quiz's saved answers
     function resetQuiz(){
         // reloads the page and specifies the parameter to manually reset the quiz
-        window.location.href = "<?php echo "./display_quiz.php?topic=$quiz_topic&page=$current_page&reset_quiz=true" ?>";
+        window.location.href = "<?php echo "./display_quiz.php?topic=$quiz_topic&page=1&reset_quiz=true" ?>";
     }
     </script>
 
