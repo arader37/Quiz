@@ -30,7 +30,7 @@ if ($result->num_rows > 0) {
       <input type="text" class="form-control" name="id" value="'.$row["id"].'"  maxlength="5" readonly>
     </div>
     
-    <div class="form-group col-md-8">
+    <div class="form-group col-md-4">
       <label for="name">Topic</label>
       <input type="text" class="form-control" name="topic" value="'.$row["topic"].'"  maxlength="255" required>
     </div>
@@ -50,17 +50,17 @@ if ($result->num_rows > 0) {
       <input type="text" class="form-control" name="choice_2" value="'.$row["choice_2"].'"  maxlength="255" required>
     </div>
 
-    <div class="form-group col-md-12">
+    <div class="form-group col-md-4">
       <label for="description">Choice 3</label>
       <input type="text" class="form-control" name="choice_3" value="'.$row["choice_3"].'"  maxlength="255" required>
     </div>
 
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-4">
       <label for="required">Choice 4</label>
       <input type="text" class="form-control" name="choice_4" value="'.$row["choice_4"].'"  maxlength="255" required>
     </div>
     
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-4">
       <label for="optional">Answer</label>
       <input type="text" class="form-control" name="answer" value="'.$row["answer"].'"  maxlength="255" required>
     </div>

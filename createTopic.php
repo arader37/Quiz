@@ -14,18 +14,18 @@
     <form action="createTheTopic.php" method="POST">
         <br>
         <h3 text-align="center">Create A Topic</h3> <br>
-        <div align="center" class="form-group col-md-8">
+        <div align="left" class="text-left">
                 <label for="safe_link">Topic</label>
                 <input type="text"  name="topic" maxlength="50" size="50" required title="Please enter the question topic.">
         </div>
 
-        <div align="center" class="form-group col-md-8">
+        <div align="left" class="text-left">
                 <label for="safe_link">Image Path</label>
-                <input type="text"  name="image_name" maxlength="50" size="50" required title="Please enter the Image Name.">
+                <input type="text"  name="image_name" maxlength="50" size="44" required title="Please enter the Image Name.">
         </div>
 
         <br>
-        <div align="center" class="text-left">
+        <div align="left" class="text-left">
             <button type="submit" name="submit" class="btn btn-primary btn-md align-items-center">Create Topic</button>
         </div>
         <br> <br>
