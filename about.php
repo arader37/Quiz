@@ -98,7 +98,7 @@ var s1 = new Student(
       "https://www.linkedin.com/in/sip-xayaxang-746430179/",
       "Sip Xayaxang",
       "Images/about_images/sip.png",
-      "This is a filler statement that will completed at a later time.This is a filler statement that will completed at a later time.This is a filler statement that will completed at a later time."
+      "Sip is a senoir at Metrostate University. He has one more semester to complete BS degree in Computer Information Technology. He is working fulltime at District 916 schools as a Database Administrator. He lives in Saint Paul with his wife and three kids."
       );
 
       var s4 = new Student(
