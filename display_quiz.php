@@ -450,7 +450,7 @@ function resetUserQuizAnswers($quiz_topic, $num_questions){
     // responsible for resetting the quiz's saved answers
     function resetQuiz(){
         // reloads the page and specifies the parameter to manually reset the quiz
-        window.location.href = "<?php echo "./display_quiz.php?topic=$quiz_topic" ?>";
+        window.location.href = "<?php echo "./display_quiz.php?topic=$quiz_topic&page=1&reset_quiz=true" ?>";
     }
     </script>
 
