@@ -231,8 +231,10 @@ function resetUserQuizAnswers($quiz_topic, $num_questions){
         $previous_page = $current_page-1;
         $num_questions = getNumQuestionsForThisQuiz($quiz_topic);
         $num_questions_to_show = getNumQuestionsToShow();
-        if ($num_questions_to_show > $num_questions)
-            $num_questions_to_show = $num_questions; // be sure that num_questions_to_show is not greater than num questions in the quiz
+        if ($num_questions_to_show > $num_questions){
+            echo "<h4 style='color:red'>Error: Quiz has $num_questions questions which is under the minimum of $num_questions_to_show!</h4>";
+            exit();
+        }
         $question_session_ID = $quiz_topic . "Q" . $current_page;
         // calculate the number of questions to display (based on NO_OF_QUESTIONS_TO_SHOW database attribute value)
         // this value is placed at the top ie (Page 1 of 20)
