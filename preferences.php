@@ -22,40 +22,44 @@ if(mysqli_num_rows($results2)>0){
     }
 }
 $questions = $question[0]['value'];
-
 ?>
 
-<div class="container">
-    <!--Check the CeremonyCreated and if Failed, display the error message-->
-    
-    <form action="modifyThePreferences.php" method="POST">
-        <br>
-        <h3 text-align="center">Modify the Preferences</h3> <br>
+<html>
+    <head>
+        <title>QuizMaster Quiz</title>
+        <style>
+        input {
+            text-align: center;
+        }
+        </style>
+    </head>
+    <body>
+
+    </body>
+    <div class="container">
+        <!--Check the CeremonyCreated and if Failed, display the error message-->
         
-        <div class="form-group col-md-8">
-            <?php echo "<label>Current Number of Topics Per Row: &nbsp;&nbsp; $rows</label>"; ?>
-        </div>
-
-        <div class="form-group col-md-8">
-            <?php echo "<label>Current Number of Questions Per Quiz: &nbsp;&nbsp; $questions</label>"; ?>
-        </div>
-
-        <div class="form-group col-md-8">
-                <label for="safe_link">New Number of Topics Per Row</label>
-                <input type="int"  name="new_rows" maxlength="2" size="10" required title="Please enter number.">
-        </div>
-
-        <div class="form-group col-md-8">
-                <label for="safe_link">New Number of Questions Per Quiz</label>
-                <input type="int"  name="new_questions" maxlength="2" size="10" required title="Please enter number.">
-        </div>
-
-        <br>
-        <div class="text-left">
-            <button type="submit" name="submit" class="btn btn-primary btn-md align-items-center">Modify Preferences</button>
-        </div>
-        <br> <br>
-
-    </form>
-</div>
+        <form action="modifyThePreferences.php" method="POST">
+        <table style="width:500px">
+        <tr>
+            <th style="width:200px"></th>
+            <th>Current Value</th> 
+            <th>Update Value</th>
+        </tr>
+        <tr>
+            <td style="width:200px">Number of Topics Per Row:</td>
+            <td><input disabled type="int" maxlength="2" size="10" value="<?php echo $rows; ?>" title="Current value"></td> 
+            <td><input required type="int" name="new_rows" maxlength="2" size="10" title="Enter a number"></td>
+        </tr>
+        <tr>
+            <td style="width200px">Number of questions to show:</td>
+            <td><input disabled type="int" maxlength="2" size="10" value="<?php echo $questions; ?>" title="Current value"></td> 
+            <td><input required type="int" name="new_questions" maxlength="2" size="10" title="Enter a number"></td>
+        </tr>
+        </table>
+        <button type="submit" name="submit" class="btn btn-primary btn-md align-items-center">Modify Preferences</button>
+        </form>
+    </div>
+    </body>
+</html>
 
