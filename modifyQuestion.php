@@ -67,9 +67,9 @@ if ($result->num_rows > 0) {
 
     <div class="form-group col-md-4">
       <label for="cadence">New Image Path (Not Required)</label>
-      <input type="file" name="fileToUpload" id="fileToUpload" value="'.$row["image_name"].'"  maxlength="255">
+      <input type="file" name="fileToUpload" id="fileToUpload" maxlength="255">
     </div>
-           
+    <input type="hidden" class="form-control" name="oldimage" value="'.$row["image_name"].'" maxlength="255" required>
     <br>
     <div class="text-left">
         <button type="submit" name="submit" class="btn btn-primary btn-md align-items-center">Modify Question</button>
@@ -77,7 +77,7 @@ if ($result->num_rows > 0) {
     <br> <br>
     
     </form>';
-    $_SESSION["image"] = "$row["image_name"]";
+    
     }//end while
 }//end if
 else {

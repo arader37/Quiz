@@ -11,28 +11,6 @@ if (session_status() == 2) {
   session_unset();
   session_destroy();
 }
-
+header('location: index.php');
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>Logged out</title>
-  <?php include 'css/css.html'; ?>
-</head>
 
-<body>
-  <div class="form">
-    <h1>Thanks for stopping by</h1>
-    <?php 
-      if ($was_logged_in == true){
-        echo "<p>You have been logged out!</p>";
-      } else{
-        echo "<p>Error: You are not logged in!</p>";
-      }
-    ?>
-
-    <a href="index.php"><button class="button button-block">Home</button></a>
-  </div>
-</body>
-</html>
