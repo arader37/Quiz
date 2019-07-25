@@ -75,34 +75,6 @@ function getAnswers($quiz_topic, $question_ID){
     return $answers;
 }
 
-// decided against this method of correcting quiz
-// commented out for now incase I decide to reuse it. It's unfinished.
-/*
-function getNumCorrectAnswers($quiz_topic, $users_answers_array){
-    global $db; // tell the function to use to global variable $db
-
-    $sql = "select answer from questions where topic = '$quiz_topic' order by id ASC";
-    $results = mysqli_query($db,$sql);
-    if(mysqli_num_rows($results)>0){
-        while($row = mysqli_fetch_assoc($results)){
-            $answers[] = $row;
-        }
-    }
-
-    for ($i = 1; $i <= count($users_answers_array); $i++){
-        $question_ID = getQuestionID($quiz_topic, $i);
-        $sql = "select choice_1, choice_2, choice_3, choice_4 from questions where topic = '$quiz_topic' "
-            . "and id = '$question_ID'";
-        $results = mysqli_query($db,$sql);
-        if(mysqli_num_rows($results) > 0
-            && isset($_SESSION[$question_ID]) == true){
-            if (getIdFromQuizABCD($_SESSION[$question_ID])){
-
-            }
-    }
-}
-*/
-
 function isAnswerRight($quiz_topic, $question_num, $user_answer){
     global $db; // tell the function to use to global variable $db
     $question_ID = getQuestionID($quiz_topic, $question_num); // returns the id for this particular question
@@ -271,12 +243,11 @@ function resetUserQuizAnswers($quiz_topic, $num_questions){
             echo "<pre style='display:inline;'>               </pre><button id='resetQuizBtn'>Reset Quiz</button><br>";
         echo "<h6>Page: $current_page of $num_questions_to_show</h6>";
 
-        // not needed for now (as per professor's recommendation)
-        // if ($num_questions < $num_questions_to_show){
-        //     echo "<h4 style='color:red;'>Error: This quiz currently has under the minimum "
-        //         . "number of required questions ($num_questions_to_show)</h4>";
-        //     exit();
-        // }
+        if ($num_questions < $num_questions_to_show){
+            echo "<h4 style='color:red;'>Error: This quiz currently has under the minimum "
+                . "number of required questions ($num_questions_to_show)</h4>";
+            exit();
+        }
 
 
         // check if a previous page's selection needs to be updated in the user's session data
@@ -311,14 +282,19 @@ function resetUserQuizAnswers($quiz_topic, $num_questions){
             $num_incorrect = $num_questions_to_show - $num_correct;
             echo "<div style='text-align:center'><h3 style='color:green'>Congratulations!</h3>";
             echo "<h4>You got $num_correct out of $num_questions_to_show questions correct!</h4>";
-            echo "<img id='congratsi' style='width:200px; height:200px;' src='Images/about_images/thumbsup.jpg'></div>";
+            echo "<img id='congratsi' style='width:200px; height:200px;' src='Images/about_images/thumbsup.jpg'><br><br>";
+            echo "<a href='./display_quiz.php?topic=$quiz_topic&page=1&reset_quiz=true'>Reset Quiz</a></div>";
             exit();
         }
 
 
         // generate quiz question
         $question = getQuestion($quiz_topic, $current_page);
-        if ($question == "Error"){
+        if ($question == "Error" && $current_page == 1){
+            // quiz has no questions!
+            echo "<h4 style='color:red'>Error: Quiz has no questions!</h4>";
+            exit();
+        } else if ($question == "Error"){
             // unexpected error occurred while looking up this question in the quiz
             echo "<h4 style='color:red'>Error occurred while looking up question #$current_page</h4>";
             exit();
@@ -338,7 +314,7 @@ function resetUserQuizAnswers($quiz_topic, $num_questions){
         $c_checked = ($_SESSION[$question_session_ID]=='C') ? 'checked' : '';
         $d_checked = ($_SESSION[$question_session_ID]=='D') ? 'checked' : '';
         echo "
-        <p><img id='q_image' src='$image_address' style='max-height:250px;width:auto;' alt='img not found'></p>
+        <p><img id='q_image' src='$image_address' style='max-height:250px;width:auto;'></p>
         <p id='question'>Q$current_page. $question</p>
         <form>
         <input type ='radio' name='choices' id='choice_1' value='A' $a_checked>
@@ -356,9 +332,9 @@ function resetUserQuizAnswers($quiz_topic, $num_questions){
         </form>";
     ?>
 
-    <button id="previousBtn" type="button">Previous</button>
-    <button id="submitBtn" type="button">Submit</button>
-    <button id="nextBtn" type="button">Next</button>
+    <button id='previousBtn'>Previous</button>
+    <button id='submitBtn'>Submit</button>
+    <button id='nextBtn'>Next</button>
 
     <script>
     // assign event listeners to the three buttons so our functions are triggered when they are clicked
