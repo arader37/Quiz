@@ -12,12 +12,14 @@ if (isset($_POST['id'])){
     $choice_3 = mysqli_real_escape_string($db, $_POST['choice_3']);
     $choice_4 = mysqli_real_escape_string($db, $_POST['choice_4']);
     $answer = mysqli_real_escape_string($db, $_POST['answer']);
+    $oldimage = mysqli_real_escape_string($db, $_POST['oldimage']);
     $imageName = basename($_FILES["fileToUpload"]["name"]);
-
+    
     if($imageName != ""){
         $target_dir = "Images/$topic/";
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
         $uploadOk = 1;
+        unlink($oldimage);
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
         // Check if image file is a actual image or fake image
         if(isset($_POST["submit"])) {
@@ -25,24 +27,20 @@ if (isset($_POST['id'])){
             if($check !== false) {
                 $uploadOk = 1;
             } else {
-                header('location: createQuestion.php?createQuestion=fileRealFailed');
+                header('location: createQuestion.php?modifyQuestion=fileRealFailed');
                 $uploadOk = 0;
             }
         }
         // Check if file already exists
         if (file_exists($target_file)) {
-            header('location: createQuestion.php?createQuestion=fileExistFailed');
+            header('location: createQuestion.php?modifyQuestion=fileExistFailed');
             $uploadOk = 0;
         }
-        // Check file size
-        if ($_FILES["fileToUpload"]["size"] > 500000) {
-            header('location: createQuestion.php?createQuestion=fileSizeFailed');
-            $uploadOk = 0;
-        }
+        
         // Allow certain file formats
         if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
         && $imageFileType != "gif" ) {
-            header('location: createQuestion.php?createQuestion=fileTypeFailed');
+            header('location: createQuestion.php?modifyQuestion=fileTypeFailed');
             $uploadOk = 0;
         }
         // Check if $uploadOk is set to 0 by an error
@@ -70,7 +68,9 @@ if (isset($_POST['id'])){
             }
     }
             else{
-             
+                
+            $image = $_SESSION["image"];
+        
             $sql = "UPDATE questions
             SET topic = '$topic',
                 question = '$question',
@@ -78,10 +78,8 @@ if (isset($_POST['id'])){
                 choice_2 = '$choice_2',
                 choice_3 = '$choice_3',
                 choice_4 = '$choice_4',
-                answer = '$answer',
-                image_name = '$_SESSION["image"]'
-                           
-            
+                answer = '$answer'
+             
             WHERE id = '$id'";
 
             mysqli_query($db, $sql);
