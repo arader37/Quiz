@@ -43,20 +43,23 @@ if(!isset($page_title)) { $page_title = 'Quiz Master'; }
             <button class="btn btn-outline-light my-2 my-sm-0" type="submit" name="submit-search">Search</button>
         </form>-->
         <ul class="navbar-nav mr-right">
-        <li class="nav-item active"><a class="nav-link" href="about.php">About<span class="sr-only">(current)</span></a></li>
-            <li class="nav-item active"><a class="nav-link" href="help.php">Help<span class="sr-only">(current)</span></a></li>
-            <li class="nav-item">
+        <li class="nav-item">
                 <?php
                 if (isset($_SESSION['role'])){
-                    echo '<li class="nav-item active"><a class="nav-link" href="questions_list.php">Lists<span class="sr-only">(current)</span></a></li>';
+                    echo '<li class="nav-item active"><a class="nav-link" href="questions_list.php">Questions<span class="sr-only">(current)</span></a></li>';
+                    echo '<li class="nav-item active"><a class="nav-link" href="topics_list.php">Topics<span class="sr-only">(current)</span></a></li>';
                     echo '<li class="nav-item active"><a class="nav-link" href="preferences.php">Preferences<span class="sr-only">(current)</span></a></li>';
+                    echo '<li class="nav-item active"><a class="nav-link" href="about.php">About<span class="sr-only">(current)</span></a></li>';
+                    echo '<li class="nav-item active"><a class="nav-link" href="help.php">Help<span class="sr-only">(current)</span></a></li>';
                     echo '<li class="nav-item active"><a class="nav-link" href="logout.php">Logout<span class="sr-only">(current)</span></a></li>';
                 }//end if
                 else{
+                    echo '<li class="nav-item active"><a class="nav-link" href="about.php">About<span class="sr-only">(current)</span></a></li>';
+                    echo '<li class="nav-item active"><a class="nav-link" href="help.php">Help<span class="sr-only">(current)</span></a></li>';
                     echo '<li class="nav-item active"><a class="nav-link" href="loginForm.php">Login<span class="sr-only">(current)</span></a></li>';
                 }//end else
                 ?>
-            </li>
+        </li>
         </ul>
     </div>
 </nav>

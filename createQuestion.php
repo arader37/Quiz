@@ -9,11 +9,26 @@
     <!--Check the CeremonyCreated and if Failed, display the error message-->
     <?php
     if(isset($_GET['createQuestion'])){
+        if($_GET["createQuestion"] == "fileRealFailed"){
+            echo '<br><h3 align="center" class="bg-danger">FAILURE - Your image is not real, Please Try Again!</h3>';
+        }
+    }
+    if(isset($_GET['createQuestion'])){
         if($_GET["createQuestion"] == "answerFailed"){
             echo '<br><h3 align="center" class="bg-danger">FAILURE - Your answer was not one of the choices, Please Try Again!</h3>';
         }
     }
-
+    if(isset($_GET['createQuestion'])){
+        if($_GET["createQuestion"] == "fileTypeFailed"){
+            echo '<br><h3 align="center" class="bg-danger">FAILURE - Your image is not a valid image type (jpg,jpeg,png,gif), Please Try Again!</h3>';
+        }
+    }
+    if(isset($_GET['createQuestion'])){
+        if($_GET["createQuestion"] == "fileExistFailed"){
+            echo '<br><h3 align="center" class="bg-danger">FAILURE - Your image does not exist, Please Try Again!</h3>';
+        }
+    }
+  
     ?>
     <form action="createTheQuestion.php" method="POST" enctype="multipart/form-data">
         <br>

@@ -4,6 +4,7 @@ include_once 'db_configuration.php';
 
 if (isset($_POST['topic'])){
 
+    echo "HERE";
     $topic = mysqli_real_escape_string($db, $_POST['topic']);
     $question = mysqli_real_escape_string($db,$_POST['question']);
     $choice1 = mysqli_real_escape_string($db,$_POST['choice_1']);
@@ -11,13 +12,13 @@ if (isset($_POST['topic'])){
     $choice3 = mysqli_real_escape_string($db,$_POST['choice_3']);
     $choice4 = mysqli_real_escape_string($db,$_POST['choice_4']);
     $answer = mysqli_real_escape_string($db,$_POST['answer']);
-    $imageName = mysqli_real_escape_string($db,$_POST['fileToUpload']);
+    $imageName = basename($_FILES["fileToUpload"]["name"]);
     $validate = true;
     $validate = emailValidate($answer);
     
     
     if($validate){
-
+        
         $target_dir = "Images/$topic/";
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
         $uploadOk = 1;
@@ -37,11 +38,7 @@ if (isset($_POST['topic'])){
             header('location: createQuestion.php?createQuestion=fileExistFailed');
             $uploadOk = 0;
         }
-        // Check file size
-        if ($_FILES["fileToUpload"]["size"] > 500000) {
-            header('location: createQuestion.php?createQuestion=fileSizeFailed');
-            $uploadOk = 0;
-        }
+        
         // Allow certain file formats
         if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
         && $imageFileType != "gif" ) {
@@ -61,14 +58,11 @@ if (isset($_POST['topic'])){
 
                 mysqli_query($db, $sql);
                 header('location: questions_list.php?createQuestion=Success');
-                }     
-            else{
-            header('location: create_question.php?createQuestion=answerFailed');
+                }
             }
-        }
-        
-        
-    }          
+        }else{
+            header('location: createQuestion.php?createQuestion=answerFailed'); 
+    }        
 
 }//end if
 

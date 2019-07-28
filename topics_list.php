@@ -4,23 +4,15 @@ require 'bin/functions.php';
 require 'db_configuration.php';
 
 
-$query = "SELECT * FROM questions";
+$query = "SELECT * FROM topics";
 
-$GLOBALS['id'] = mysqli_query($db, $query);
-$GLOBALS['topic'] = mysqli_query($db, $query);
-$GLOBALS['question'] = mysqli_query($db, $query);
-$GLOBALS['choice_1'] = mysqli_query($db, $query);
-$GLOBALS['choice_2'] = mysqli_query($db, $query);
-$GLOBALS['choice_3'] = mysqli_query($db, $query);
-$GLOBALS['choice_4'] = mysqli_query($db, $query);
-$GLOBALS['answer'] = mysqli_query($db, $query);
+$GLOBALS['order'] = mysqli_query($db, $query);
 $GLOBALS['image_name'] = mysqli_query($db, $query);
-
-
+$GLOBALS['topic'] = mysqli_query($db, $query);
 
 ?>
 
-<?php $page_title = 'Questions List'; ?>
+<?php $page_title = 'Topics List'; ?>
 <?php include('header.php'); ?>
 
 <!-- Page Content -->
@@ -62,42 +54,28 @@ $GLOBALS['image_name'] = mysqli_query($db, $query);
     </h1>
     
     <div id="customerTableView">
-        <button><a class="btn btn-sm" href="createQuestion.php">Create a Question</a></button>
+        <button><a class="btn btn-sm" href="createTopic.php">Create a Topic</a></button>
         <table class="table table-striped" id="ceremoniesTable">
             <div class="table responsive">
                 <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Topic</th>
-                    <th>Question</th>
-                    <th>Choice 1</th>
-                    <th>Choice 2</th>
-                    <th>Choice 3</th>
-                    <th>Choice 4</th>
-                    <th>Answer</th>
+                    <th>Order</th>
                     <th>Image Name</th>
-                    <th>Modify</th>
-                    <th>Delete</th>
+                    <th>Topic</th>
                 </tr>
                 </thead>
                 <tbody>
                 <?php
-                if ($id->num_rows > 0) {
+                if ($order->num_rows > 0) {
                     // output data of each row
-                    while($row = $id->fetch_assoc()) {
+                    while($row = $order->fetch_assoc()) {
 
                         echo    '<tr>
-                                    <td>'.$row["id"].'</td>
-                                    <td>'.$row["topic"].' </span> </td>
-                                    <td>'.$row["question"].'</td>
-                                    <td>'.$row["choice_1"].'</td>
-                                    <td>'.$row["choice_2"].' </span> </td>
-                                    <td>'.$row["choice_3"].'</td>
-                                    <td>'.$row["choice_4"].'</td>
-                                    <td>'.$row["answer"].' </span> </td>
-                                    <td>'.$row["image_name"].'</td>
-                                    <td><a class="btn btn-warning btn-sm" href="modifyQuestion.php?id='.$row["id"].'">Modify</a></td>                                  
-                                    <td><a class="btn btn-danger btn-sm" href="deleteQuestion.php?id='.$row["id"].'">Delete</a></td> 
+                                    <td>'.$row["order"].' </span> </td>
+                                    <td>'.$row["image_name"].' </span> </td>
+                                    <td>'.$row["topic"].'</td>
+                                    <td><a class="btn btn-warning btn-sm" href="modifyQuestion.php?id='.$row["order"].'">Modify</a></td>                                  
+                                    <td><a class="btn btn-danger btn-sm" href="deleteQuestion.php?id='.$row["order"].'">Delete</a></td> 
                                 </tr>';
                     }//end while
                 }//end if
