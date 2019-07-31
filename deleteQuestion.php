@@ -1,8 +1,8 @@
 
-<?php $page_title = 'Modify Question'; ?>
+<?php $page_title = 'Quiz Master > Delete Question'; ?>
 <?php include('header.php'); ?>
 <div class="container">
-
+<style>#title {text-align: center; color: darkgoldenrod;}</style>
 <?php
 include_once 'db_configuration.php';
 
@@ -23,7 +23,8 @@ if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
         echo '<form action="deleteTheQuestion.php" method="POST">
     <br>
-    <h3>Delete Question: '.$row["topic"].' - '.$row["question"].' </h3> <br>
+    <h3 id="title">Delete Question</h3><br>
+    <h2>'.$row["topic"].' - '.$row["question"].' </h2> <br>
     
     <div class="form-group col-md-4">
       <label for="id">Id</label>

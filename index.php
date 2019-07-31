@@ -7,7 +7,7 @@ include('header.php');
 
 <html>
     <head>
-        <title>QuizMaster Home Page</title>
+        <title>QuizMaster</title>
     </head>
     <style>
         .image {
@@ -43,6 +43,12 @@ include('header.php');
         a:visited, a:link, a:active {
             text-decoration: none;
         }
+        #title2 {
+        text-align: center;
+        color: darkgoldenrod;
+        }
+
+
     </style>
     <body>
     <?php
@@ -52,8 +58,8 @@ include('header.php');
             }
         }
     ?>
-    <h1 id = "welcome">Welcome to QuizMaster</h1>
-    <h2 id = "directions">Select a topic to test your knowledge about India</h2>
+    <h1 id = "title2">Welcome to QuizMaster</h1>
+    <h2 id = "directions">Select a topic to test your knowledge about India</h2><br>
     
     <?php
 
