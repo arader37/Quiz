@@ -24,13 +24,7 @@ if(mysqli_num_rows($results2)>0){
 }
 $questions = $question[0]['value'];
 ?>
-<style>
-    #title {
-        text-align: center;
-        color: darkgoldenrod;
-    }
-
-</style>
+<style>#title {text-align: center;color: darkgoldenrod;}</style>
 <html>
     <head>
         <title>QuizMaster Quiz</title>

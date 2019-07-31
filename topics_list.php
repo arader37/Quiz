@@ -74,8 +74,8 @@ $GLOBALS['topic'] = mysqli_query($db, $query);
                                     <td>'.$row["order"].' </span> </td>
                                     <td>'.$row["image_name"].' </span> </td>
                                     <td>'.$row["topic"].'</td>
-                                    <td><a class="btn btn-warning btn-sm" href="modifyQuestion.php?id='.$row["order"].'">Modify</a></td>                                  
-                                    <td><a class="btn btn-danger btn-sm" href="deleteQuestion.php?id='.$row["order"].'">Delete</a></td> 
+                                    <td><a class="btn btn-warning btn-sm" href="modifyTopic.php?id='.$row["order"].'">Modify</a></td>                                  
+                                    <td><a class="btn btn-danger btn-sm" href="deleteTopic.php?id='.$row["order"].'">Delete</a></td> 
                                 </tr>';
                     }//end while
                 }//end if
@@ -124,15 +124,9 @@ $GLOBALS['topic'] = mysqli_query($db, $query);
 
 <script type="text/javascript" language="javascript">
     $(document).ready( function () {
-        $('#tableResults').DataTable( {
-            dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'excel', 'csv' , 'pdf'
-                ] }
-        );
-
+        
         $('#ceremoniesTable').DataTable( {
-            dom: 'Bfrtip',
+            dom: 'lfrtBip',
             buttons: [
                 'copy', 'excel', 'csv', 'pdf'
             ] }
