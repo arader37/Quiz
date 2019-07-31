@@ -20,8 +20,16 @@ $GLOBALS['image_name'] = mysqli_query($db, $query);
 
 ?>
 
-<?php $page_title = 'Questions List'; ?>
+<?php $page_title = 'Quiz Master > Questions'; ?>
 <?php include('header.php'); ?>
+
+<style>
+    #title {
+        text-align: center;
+        color: darkgoldenrod;
+    }
+
+</style>
 
 <!-- Page Content -->
 <br><br>
@@ -52,18 +60,12 @@ $GLOBALS['image_name'] = mysqli_query($db, $query);
             }
 
     ?>
-    <!-- Page Heading -->
-    <h1 class="my-4">
-        <?php
-        //Display Admin view if an admin is logged in.
-        //This gives full access to all CRUD functions
-        
-        ?>
-    </h1>
+   
+    <h2 id="title">Question List</h2><br>
     
     <div id="customerTableView">
         <button><a class="btn btn-sm" href="createQuestion.php">Create a Question</a></button>
-        <table class="table table-striped" id="ceremoniesTable">
+        <table class="display" id="ceremoniesTable">
             <div class="table responsive">
                 <thead>
                 <tr>
@@ -106,6 +108,7 @@ $GLOBALS['image_name'] = mysqli_query($db, $query);
                 }//end else
                 ?>
                 </tbody>
+                
             </div>
         </table>
     </div>
@@ -122,10 +125,16 @@ $GLOBALS['image_name'] = mysqli_query($db, $query);
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-<!--jQuery-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
 
 <!--Data Table-->
+<script type="text/javascript" charset="utf8"
+        src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/fixedheader/3.1.5/js/dataTables.fixedHeader.min.js"></script>
 <script type="text/javascript" charset="utf8"
         src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
 <script type="text/javascript" charset="utf8"
@@ -146,20 +155,37 @@ $GLOBALS['image_name'] = mysqli_query($db, $query);
 
 <script type="text/javascript" language="javascript">
     $(document).ready( function () {
-        $('#tableResults').DataTable( {
-            dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'excel', 'csv' , 'pdf'
-                ] }
-        );
-
+        
         $('#ceremoniesTable').DataTable( {
-            dom: 'Bfrtip',
+            dom: 'lfrtipB',
             buttons: [
                 'copy', 'excel', 'csv', 'pdf'
             ] }
+            
         );
+
+        /*$('#ceremoniesTable thead tr').clone(true).appendTo( '#ceremoniesTable thead' );
+        $('#ceremoniesTable thead tr:eq(1) th').each( function (i) {
+            var title = $(this).text();
+            $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+    
+            $( 'input', this ).on( 'keyup change', function () {
+                if ( table.column(i).search() !== this.value ) {
+                    table
+                        .column(i)
+                        .search( this.value )
+                        .draw();
+                }
+            } );
+        } );
+    
+        var table = $('#ceremoniesTable').DataTable( {
+            orderCellsTop: true,
+            fixedHeader: true
+        } );*/
+        
     } );
+
 </script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 24, 2019 at 11:59 PM
+-- Generation Time: Jul 31, 2019 at 08:10 PM
 -- Server version: 10.1.39-MariaDB
 -- PHP Version: 7.1.29
 
@@ -45,7 +45,7 @@ CREATE TABLE `questions` (
 --
 
 INSERT INTO `questions` (`id`, `topic`, `question`, `choice_1`, `choice_2`, `choice_3`, `choice_4`, `answer`, `image_name`) VALUES
-(1, 'Dances', 'Which of the following pairs are correctly matched', 'Kuchipudi ? Madhya Pradesh', 'Kathakali ? Kerala', 'Bharatnatyam ? Andhra Pradesh', 'Kathak ? Tamil Nadu', 'Kathakali ? Kerala', 'Images/dances/kathakali.jpeg'),
+(1, 'Dances', 'Which of the following pairs are correctly matched', 'Kuchipudi ? Madhya Pradesh', 'Kathakali ? Kerala', 'Bharatnatyam ? Andhra Pradesh', 'Kathak ? Tamil Nadu', 'Kathakali ? Kerala', 'Images/Dances/kathakali.jpeg'),
 (2, 'Dances', 'Which among the following is not like others?', 'Kathakali', 'Odissi', 'Bhangra', 'Bharatanatyam', 'Bhangra', 'Images/dances/bhangra.jpeg'),
 (3, 'Dances', 'Which among the following is a folk dance of India', 'Manipuri', 'Bihu', 'Kathakali', 'Bharatanatyam', 'Bihu', 'Images/dances/bihu.jpeg'),
 (4, 'Dances', 'Which of the following originates in Assam?', 'Bharatnatyam', 'Kuchipudi', 'Sattriya', 'Kathak', 'Sattriya', 'Images/dances/sattriya.jpeg'),
@@ -275,7 +275,7 @@ ALTER TABLE `questions`
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=212;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=213;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

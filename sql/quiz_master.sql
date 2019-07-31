@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 10, 2019 at 09:08 PM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.3.3
+-- Generation Time: Jul 31, 2019 at 08:09 PM
+-- Server version: 10.1.39-MariaDB
+-- PHP Version: 7.1.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -21,10 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `quiz_master`
 --
-
--- Drop the tables if they already exist in this database as they will
--- now be populated with updated info
-DROP TABLE preferences, questions, topics, users;
 
 -- --------------------------------------------------------
 
@@ -45,7 +41,7 @@ CREATE TABLE `preferences` (
 
 INSERT INTO `preferences` (`id`, `name`, `value`, `comments`) VALUES
 (1, 'NO_OF_TOPICS_PER_ROW', 5, 'This is the number of topics, per row, on home page'),
-(2, 'NO_OF_QUESTIONS_TO_SHOW', 10, 'The number of Question per quiz');
+(2, 'NO_OF_QUESTIONS_TO_SHOW', 35, 'The number of Question per quiz');
 
 -- --------------------------------------------------------
 
@@ -70,7 +66,7 @@ CREATE TABLE `questions` (
 --
 
 INSERT INTO `questions` (`id`, `topic`, `question`, `choice_1`, `choice_2`, `choice_3`, `choice_4`, `answer`, `image_name`) VALUES
-(1, 'Dances', 'Which of the following pairs are correctly matched', 'Kuchipudi ? Madhya Pradesh', 'Kathakali ? Kerala', 'Bharatnatyam ? Andhra Pradesh', 'Kathak ? Tamil Nadu', 'Kathakali ? Kerala', 'Images/dances/kathakali.jpeg'),
+(1, 'Dances', 'Which of the following pairs are correctly matched', 'Kuchipudi ? Madhya Pradesh', 'Kathakali ? Kerala', 'Bharatnatyam ? Andhra Pradesh', 'Kathak ? Tamil Nadu', 'Kathakali ? Kerala', 'Images/Dances/kathakali.jpeg'),
 (2, 'Dances', 'Which among the following is not like others?', 'Kathakali', 'Odissi', 'Bhangra', 'Bharatanatyam', 'Bhangra', 'Images/dances/bhangra.jpeg'),
 (3, 'Dances', 'Which among the following is a folk dance of India', 'Manipuri', 'Bihu', 'Kathakali', 'Bharatanatyam', 'Bihu', 'Images/dances/bihu.jpeg'),
 (4, 'Dances', 'Which of the following originates in Assam?', 'Bharatnatyam', 'Kuchipudi', 'Sattriya', 'Kathak', 'Sattriya', 'Images/dances/sattriya.jpeg'),
@@ -90,26 +86,26 @@ INSERT INTO `questions` (`id`, `topic`, `question`, `choice_1`, `choice_2`, `cho
 (18, 'Dances', 'What dance is represented by the picture above?', 'Kathakali', 'Odissi', 'Bhangra', 'Dandiya', 'Kathakali', 'Images/dances/kuchipudi.jpeg'),
 (19, 'Dances', 'What dance is represented by the picture above?', 'Kathakali', 'Odissi', 'Bhangra', 'Dandiya', 'Odissi', 'Images/dances/odissi.jpeg'),
 (20, 'Dances', 'What dance is represented by the picture above?', 'Kathakali', 'Odissi', 'Bhangra', 'Dandiya', 'Dandiya', 'Images/dances/dandiya.jpeg'),
-(21, 'Dresses', 'What dress is this?', 'Saree', 'Lehenga Choli', 'Kurta Pajama', 'Salwar Kameez', 'Lehenga Choli', 'Images/dresses/lehenga_choli.jpg'),
-(22, 'Dresses', 'What dress is this?', 'Kurta Pajama', 'Suit', 'Saree', 'Phiran', 'Saree', 'Images/dresses/saree.jpg'),
-(23, 'Dresses', 'Which Indian state is this outfit from?', 'Goa', 'Bihar', 'Jharkhand', 'Meghalaya', 'Meghalaya', 'Images/dresses/meghalaya.jpg'),
-(24, 'Dresses', 'What dress is this?', 'Suit', 'Saree', 'Dhoti', 'Kurta Pajama', 'Dhoti', 'Images/dresses/suit.jpg'),
-(25, 'Dresses', 'What dress is this?', 'Jeans', 'Kurta Pajama', 'Dhoti', 'Saree', 'Kurta Pajama', 'Images/dresses/kurta_pajama.jpg'),
-(26, 'Dresses', 'What dress is this?', 'Saree', 'Ghagra', 'Churidar Suit', 'Dhoti Kurta', 'Churidar Suit', 'Images/dresses/churidar_suit.jpg'),
-(27, 'Dresses', 'A common outfit worn by women in Rajasthan is:', 'Ghagra Choli', 'Saree', 'Kurta', 'Lugda', 'Ghagra Choli', 'Images/dresses/ghagra_choli.jpg'),
-(28, 'Dresses', 'A common outfit worn by men in Andhra Pradesh and ', 'Salwar Kameez', 'Dhoti Kurta', 'Alungsta', 'Lehenga Choli', 'Dhoti Kurta', 'Images/dresses/dhoti.jpg'),
-(29, 'Dresses', 'Another name used in Gujarat for the lehenga choli', 'Ghagra Choli', 'Lehenga Choli', 'Chaniya Choli', 'Lehenga Voni', 'Chaniya Choli', 'Images/dresses/chaniya_choli.jpg'),
-(30, 'Dresses', 'What color is generally worn on Holi?', 'red', 'purple', 'white', 'orange', 'white', 'Images/dresses/white.jpg'),
-(31, 'Dresses', 'Which Indian state is this outfit from?', 'West Bengal', 'Bangladesh', 'Gujarat', 'Uttar Pradesh', 'Gujarat', 'Images/dresses/gujarat.jpg'),
-(32, 'Dresses', 'Which Indian state is this outfit from?', 'Haryana', 'Punjab', 'Assam', 'Madhya Pradesh', 'Assam', 'Images/dresses/assam.jpg'),
-(33, 'Dresses', 'Which Indian state is this outfit from?', 'Karnataka', 'Nagaland', 'Gujarat', 'Rajasthan', 'Nagaland', 'Images/dresses/nagaland.jpg'),
-(34, 'Dresses', 'Which Indian state is this outfit from?', 'Goa', 'Manipur', 'Uttar Pradesh', 'Tamil Nadu', 'Manipur', 'Images/dresses/manipur.jpg'),
-(35, 'Dresses', 'Which Indian state is this outfit from?', 'Bihar', 'Mizoram', 'Andhra Pradesh', 'Madhya Pradesh', 'Mizoram', 'Images/dresses/mizoram.jpg'),
-(36, 'Dresses', 'Which Indian state is this outfit from?', 'Meghalaya', 'Maharashtra', 'Tripura', 'Kerala', 'Maharashtra', 'Images/dresses/maharashtra.jpg'),
-(37, 'Dresses', 'A common outfit worn by women in Punjab is:', 'Dhoti', 'Phulkari Dupatta', 'Suit', 'Patiala Salwar', 'Patiala Salwar', 'Images/dresses/patiala_salwar.jpg'),
-(38, 'Dresses', 'A common type of headgear worn by men in Punjab is', 'Baseball Cap', 'Headband', 'Winter Hat', 'Dastar', 'Dastar', 'Images/dresses/dastar.jpg'),
-(39, 'Dresses', 'During which time period did saree become the trad', 'The Vedic Age', 'The Epic Age', 'The Gupta Era', 'The Chola Empire', 'The Vedic Age', 'Images/dresses/vedic.jpg'),
-(40, 'Dresses', 'What color does the bride generally wear in an Ind', 'Red', 'Orange', 'White', 'Yellow', 'Red', 'Images/dresses/red.jpg'),
+(21, 'dresses', 'What dress is this?', 'Saree', 'Lehenga Choli', 'Kurta Pajama', 'Salwar Kameez', 'Lehenga Choli', 'Images/dresses/lehenga_choli.jpg'),
+(22, 'dresses', 'What dress is this?', 'Kurta Pajama', 'Suit', 'Saree', 'Phiran', 'Saree', 'Images/dresses/saree.jpg'),
+(23, 'dresses', 'Which Indian state is this outfit from?', 'Goa', 'Bihar', 'Jharkhand', 'Meghalaya', 'Meghalaya', 'Images/dresses/meghalaya.jpg'),
+(24, 'dresses', 'What dress is this?', 'Suit', 'Saree', 'Dhoti', 'Kurta Pajama', 'Dhoti', 'Images/dresses/suit.jpg'),
+(25, 'dresses', 'What dress is this?', 'Jeans', 'Kurta Pajama', 'Dhoti', 'Saree', 'Kurta Pajama', 'Images/dresses/kurta_pajama.jpg'),
+(26, 'dresses', 'What dress is this?', 'Saree', 'Ghagra', 'Churidar Suit', 'Dhoti Kurta', 'Churidar Suit', 'Images/dresses/churidar_suit.jpg'),
+(27, 'dresses', 'A common outfit worn by women in Rajasthan is:', 'Ghagra Choli', 'Saree', 'Kurta', 'Lugda', 'Ghagra Choli', 'Images/dresses/ghagra_choli.jpg'),
+(28, 'dresses', 'A common outfit worn by men in Andhra Pradesh and ', 'Salwar Kameez', 'Dhoti Kurta', 'Alungsta', 'Lehenga Choli', 'Dhoti Kurta', 'Images/dresses/dhoti.jpg'),
+(29, 'dresses', 'Another name used in Gujarat for the lehenga choli', 'Ghagra Choli', 'Lehenga Choli', 'Chaniya Choli', 'Lehenga Voni', 'Chaniya Choli', 'Images/dresses/chaniya_choli.jpg'),
+(30, 'dresses', 'What color is generally worn on Holi?', 'red', 'purple', 'white', 'orange', 'white', 'Images/dresses/white.jpg'),
+(31, 'dresses', 'Which Indian state is this outfit from?', 'West Bengal', 'Bangladesh', 'Gujarat', 'Uttar Pradesh', 'Gujarat', 'Images/dresses/gujarat.jpg'),
+(32, 'dresses', 'Which Indian state is this outfit from?', 'Haryana', 'Punjab', 'Assam', 'Madhya Pradesh', 'Assam', 'Images/dresses/assam.jpg'),
+(33, 'dresses', 'Which Indian state is this outfit from?', 'Karnataka', 'Nagaland', 'Gujarat', 'Rajasthan', 'Nagaland', 'Images/dresses/nagaland.jpg'),
+(34, 'dresses', 'Which Indian state is this outfit from?', 'Goa', 'Manipur', 'Uttar Pradesh', 'Tamil Nadu', 'Manipur', 'Images/dresses/manipur.jpg'),
+(35, 'dresses', 'Which Indian state is this outfit from?', 'Bihar', 'Mizoram', 'Andhra Pradesh', 'Madhya Pradesh', 'Mizoram', 'Images/dresses/mizoram.jpg'),
+(36, 'dresses', 'Which Indian state is this outfit from?', 'Meghalaya', 'Maharashtra', 'Tripura', 'Kerala', 'Maharashtra', 'Images/dresses/maharashtra.jpg'),
+(37, 'dresses', 'A common outfit worn by women in Punjab is:', 'Dhoti', 'Phulkari Dupatta', 'Suit', 'Patiala Salwar', 'Patiala Salwar', 'Images/dresses/patiala_salwar.jpg'),
+(38, 'dresses', 'A common type of headgear worn by men in Punjab is', 'Baseball Cap', 'Headband', 'Winter Hat', 'Dastar', 'Dastar', 'Images/dresses/dastar.jpg'),
+(39, 'dresses', 'During which time period did saree become the trad', 'The Vedic Age', 'The Epic Age', 'The Gupta Era', 'The Chola Empire', 'The Vedic Age', 'Images/dresses/vedic.jpg'),
+(40, 'dresses', 'What color does the bride generally wear in an Ind', 'Red', 'Orange', 'White', 'Yellow', 'Red', 'Images/dresses/red.jpg'),
 (41, 'Embroidery', 'What is this art form on fabric called?', 'Painting', 'Embroidery', 'Block Print', 'Screen printing', 'Embroidery', 'images/Embroidery/Embroidery.jpg'),
 (42, 'Embroidery', 'This method of embroidery used in India is called ', 'Metal', 'Wool', 'Silk', 'Cotton', 'Metal', 'images/Embroidery/Zardozi.jpeg'),
 (43, 'Embroidery', 'This mirror work is traditional to which State in ', 'Gujarat', 'Mizoram', 'Kerala', 'Tamil Nadu', 'Gujarat', 'images/Embroidery/Mirrorwork.jpg'),
@@ -140,66 +136,66 @@ INSERT INTO `questions` (`id`, `topic`, `question`, `choice_1`, `choice_2`, `cho
 (68, 'Festivals', 'Which celebration is a Punjabi Folk Festival?', 'Lodhi', 'Lohri', 'Gurupurab', 'Onam', 'Lohri', 'images/Festivals/lohri.jpg'),
 (69, 'Festivals', 'Where is Maha Shivaratri celebrated?', 'Varanasi, Guwahati, Haridwar, Bengaluru, Munnar', 'Varanasi, Guwahati, Haridwar, Rishikesh, Srisailam', 'Kochi, Rishikesh, Munnar, Chennai, Kolkata', 'Manali, Jaisalmer, Udaipur, Guwahati, Rishikesh', 'Varanasi, Guwahati, Haridwar, Rishikesh, Srisailam', 'images/Festivals/mahashivaratri.jpg'),
 (70, 'Festivals', 'Which is the harvest festival of Assam?', 'Bihu', 'Lohri', 'Gurupurab', 'Onam', 'Bihu', 'images/Festivals/bihu.jpg'),
-(71, 'Foods', 'What is the most popular Indian food?', 'Butter Chicken', 'Dosa', 'Palak Paneer', 'Samosa', 'Butter Chicken', 'images/Foods/samosaa.jpg'),
-(72, 'Foods', 'Appam stew is from which Indian state?', 'Goa', 'Rajasthan', 'Maharashtra', 'Kerala', 'Goa', 'images/Foods/appamstew.jpg'),
-(73, 'Foods', 'Which of these is not a type of chaat?', 'Puri Bhaji', 'Sev Batata Puri', 'Pani Puri', 'Bhel Puri', 'Puri Bhaji', 'images/Foods/panipuri.jpg'),
-(74, 'Foods', 'What Indian sweet is a bright yellow spiral', 'Gulab Jamun', 'Ras Malai', 'Jalebi', 'Besan Barfi', 'Gulab Jamun', 'images/Foods/jalebi.jpeg'),
-(75, 'Foods', 'What spice is not commonly used in Indian dishes?', 'Turmeric', 'Coriander', 'Cumin', 'Sage', 'Turmeric', 'images/Foods/spice.jpeg'),
-(76, 'Foods', 'Which of these is usually served cold?', 'Yogurt rice', 'Samosa', 'Halwa', 'Pakora', 'Yogurt rice', 'images/Foods/ice.jpeg'),
-(77, 'Foods', 'Which of these is not made of yogurt?', 'Laasi', 'Kadhi', 'Rasam', 'Rasam', 'Laasi', 'images/Foods/lassi.jpeg'),
-(78, 'Foods', 'Aam is which fruit in English?', 'Apple', 'Mango', 'Grape', 'Peach', 'Apple', 'images/Foods/fruits.jpeg'),
-(79, 'Foods', 'Aaloo is which vegetable in English?', 'Carrot', 'Lettuce', 'Potato', 'Broccoli', 'Carrot', 'images/Foods/veggies.jpeg'),
-(80, 'Foods', 'Which of these foods is not made from wheat?', 'Chapati', 'Roti', 'Naan', 'Dosa', 'Chapati', 'images/Foods/samosaa.jpg'),
-(81, 'Foods', 'In which city did Indo-Chinese cuisine originate?', 'Mumbai', 'Chennai', 'Bengaluru', 'Kolkatta', 'Mumbai', 'images/Foods/indo.jpeg'),
-(82, 'Foods', 'What is a famous snack from Gujarat?', 'Aloo Paratha', 'Dosa', 'Dhokla', 'Dumplings', 'Aloo Paratha', 'images/Foods/gujurat.jpg'),
-(83, 'Foods', 'Which of these dishes is not from Mumbai', 'Vada Pav', 'Pav Bhaji', 'Bhel Puri', 'Kachori', 'Vada Pav', 'images/Foods/mumbai.jpg'),
-(84, 'Foods', 'Which of these is not a South Indian dish?', 'Sambar', 'Paratha', 'Idli', 'Avial', 'Sambar', 'images/Foods/south_india.jpg'),
-(85, 'Foods', 'Which is not a bean/lentil dish?', 'Chole', 'Rajma', 'Aloo Matar', 'Tadka Daal', 'Chole', 'images/Foods/bean.jpg'),
-(86, 'Foods', 'What is the Hindi word for Spinach?', 'Palak', 'Matar', 'Aloo', 'Tamatar', 'Palak', 'images/Foods/spinach.jpg'),
-(87, 'Foods', 'What is not an authentic Indian dessert?', 'Carrot Halwa', 'Gulab Jamun', 'Baklava', 'Ras Malai', 'Carrot Halwa', 'images/Foods/sweets.jpeg'),
-(88, 'Foods', 'What spice is commonly used in Indian desserts?', 'Clove', 'Cinnamon', 'Mustard', 'Cardamom', 'Clove', 'images/Foods/spice.jpeg'),
-(89, 'Foods', 'What type of food is this?', 'Chai', 'Dosa', 'Alu Gobi', 'Chapati and Curry', 'Chai', 'images/Foods/dosa.jpeg'),
-(90, 'Foods', 'What type of food is this?', 'Pani Puri', 'Pav Bhaji', 'Dhokla', 'Aloo Matar', 'Pani Puri', 'images/Foods/panipuri.jpg'),
-(91, 'Instruments', 'What is this instrument?', 'Sitar', 'Tabla', 'Veena', 'Santoor', 'Sitar', 'images/instruments/Question_1_Instruments.jpeg'),
-(92, 'Instruments', 'What is the most played instrument in India?', 'Sarangi', 'Flute', 'Sitar', 'Tabla', 'Sarangi', 'images/instruments/Question_2_Instruments.jpeg'),
-(93, 'Instruments', 'What instrument is Ustad Zakir Hussian known for p', 'Dolak', 'Damaru', 'Santoor', 'Tabla', 'Dolak', 'images/instruments/Question_3_Instruments.jpeg'),
-(94, 'Instruments', 'The indian instrument, the shehnai, has how many o', '2', '3', '4', '5', '2', 'images/instruments/Question_4_Instruments.jpeg'),
-(95, 'Instruments', 'Hindustani classical music is broken into groups o', 'Note Group', 'Taal', 'Taalam', 'Raaga', 'Note Group', 'images/instruments/Question_5_Instruments.jpeg'),
-(96, 'Instruments', 'What instrument is this?', 'Shehnai', 'Veena', 'Sarood', 'Sitar', 'Shehnai', 'images/instruments/Question_6_Instruments.jpeg'),
-(97, 'Instruments', 'How many beats are in Teen Tal? (Tabla)', '16', '12', '8', '4', '16', 'images/instruments/Question_7_Instruments.jpeg'),
-(98, 'Instruments', 'It is said that Tabla was invented accidentally du', 'Mridangam', 'Dolak', 'Bongos', 'Classic Western Drums', 'Mridangam', 'images/instruments/Question_8_Instruments.jpeg'),
-(99, 'Instruments', 'By popular belief, Tabla was invented in which pro', 'Bengal', 'Orrisa', 'Punjab', 'Delhi', 'Bengal', 'images/instruments/Question_9_Instruments.jpeg'),
-(100, 'Instruments', 'How many individual sounds does a tabla make?', '6', '8', '10', '12', '6', 'images/instruments/Question_10_Instruments.jpeg'),
-(101, 'Instruments', 'Which of the following is a wind instrument?', 'Sitar', 'Shehnai', 'Pakhawaj', 'Mridangam', 'Sitar', 'images/instruments/Question_11_Instruments.jpeg'),
-(102, 'Instruments', 'Which instrument has the most strings?', 'Guitar', 'Ukelele', 'Violin', 'Sitar', 'Guitar', 'images/instruments/Question_12_Instruments.jpeg'),
-(103, 'Instruments', 'Arvind Parikh is associated with which musical ins', 'Pakhawaj', 'Sitar', 'Tabla', 'Flute', 'Pakhawaj', 'images/instruments/Question_13_Instruments.jpeg'),
-(104, 'Instruments', 'Which instrument has 7 strings?', 'Veena', 'Ukelele', 'Guitar', 'Violin', 'Veena', 'images/instruments/Question_14_Instruments.jpeg'),
-(105, 'Instruments', 'How many octave keys does a harmonium have?', '1', '2', '3', '4', '1', 'images/instruments/Question_15_Instruments.jpeg'),
-(106, 'Instruments', 'What is an indian instrument similar to a piano?', 'Tabla', 'Tanpura', 'Harmonium', 'Flute', 'Tabla', 'images/instruments/Question_16_Instruments.jpeg'),
-(107, 'Instruments', 'What is the purpose of a mridangam in a musical pr', 'To keep the other musicians on beat', 'To overpower the other instruments', 'To be the main leading instrument', 'None of the above', 'To keep the other musicians on beat', 'images/instruments/Question_17_Instruments.jpeg'),
-(108, 'Instruments', 'What is a sarangi usally accompaning?', 'Sitar', 'Flute', 'Tabla', 'Vocals', 'Sitar', 'images/instruments/Question_18_Instruments.jpeg'),
-(109, 'Instruments', 'How many metal strings does a tanpura have?', '2-3', '4-5', '6-7', 'Only 1', '2-3', 'images/instruments/Question_19_Instruments.jpeg'),
-(110, 'Instruments', 'How many raagas are there in Indian classical musi', '19', '52', '83', '106', '19', 'images/instruments/Question_20_Instruments.jpeg'),
-(111, 'Leaders', 'Who is this person?', 'Jawaharlal Nehru', 'Sardar Patel', 'Mahatma Gandhi', 'Lal Bahadur Shastri', 'Jawaharlal Nehru', 'images/scientists/Nehru.jpg'),
-(112, 'Leaders', 'Who was the most recent Indian to win a Nobel Priz', 'Amartya Sen', 'Mother Teresa', 'Kailash Satyarti', 'C.V. Raman', 'Amartya Sen', 'images/scientists/question.jpg'),
-(113, 'Leaders', 'Who was is father of the Indian Space Program?', 'A.P.J. Abdul Kalam', 'Vikram Sarabai', 'Satish Dawan', 'K.Sivan', 'A.P.J. Abdul Kalam', 'images/scientists/question.jpg'),
-(114, 'Leaders', 'Which Indian is cretided for first using the numbe', 'BrahmaGupta', 'Aryabhata', 'K. Ramasubramaniam', 'Ramanujam', 'BrahmaGupta', 'images/scientists/question.jpg'),
-(115, 'Leaders', 'Who is considered one of the earliest surgeons fro', 'Charaka', 'Vagbhata', 'Jivaka', 'Jivaka', 'Charaka', 'images/scientists/question.jpg'),
-(116, 'Leaders', 'In which country did Mohandas Karamchand Gandhi ge', 'India', 'England', 'South Africa', 'Pakistan', 'India', 'images/scientists/gandhi.jpg'),
-(117, 'Leaders', 'Who was the first President of India?', 'Rajendra Prasad', 'C. Rajagopalachari', 'B.R. Ambedkar', 'Sarvepalli Radhakrishnan', 'Rajendra Prasad', 'images/scientists/question.jpg'),
-(118, 'Leaders', 'Who was the first female prime minister of India?', 'Pratibha Patil', 'Indira Gandhi', 'Vijaya Lakshmi Pandit', 'Sarojini Naidu', 'Pratibha Patil', 'images/scientists/question.jpg'),
-(119, 'Leaders', 'The White Revolution made India the largest produc', 'Verghese Kurien', 'H.M. Dalaya', 'M.S. Swaminathan', 'Narayana Murthy', 'Verghese Kurien', 'images/scientists/question.jpg'),
-(120, 'Leaders', 'Who is the Father of the Green Revolution in India', 'M.S. Swaminathan', 'Gurudev Singh Khush', 'William Gaud', 'Norman Barlaug', 'M.S. Swaminathan', 'images/scientists/question.jpg'),
-(121, 'Leaders', 'Who is the Prime Minister of India?', 'Rahul Gandhi', 'Narendra Modi', 'Mayawathi', 'Sharad Pawar', 'Rahul Gandhi', 'images/scientists/question.jpg'),
-(122, 'Leaders', 'Who was the first woman physician in India?', 'Kadambini Ganguly', 'Pandita Ramabai', 'Savitribai Phule', 'Anandibai Joshi', 'Anandibai Joshi', 'images/scientists/question.jpg'),
-(123, 'Leaders', 'Who is this freedom fighter?', 'Kasthurba Gandhi', 'Kamala Nehru', 'Rani Lakshmi Bai', 'Sarojini Naidu', 'Rani Lakshmi Bai', 'images/scientists/JhansiKiRani.jpg'),
-(124, 'Leaders', 'What is the Chandrashekar Number for which Dr. Sub', 'Can be used to construct radio receivers', 'Determines the fate of a dying star', 'Used in calculations performed by computers', 'Used to measure magnetic properties of elements', 'Determines the fate of a dying star', 'images/scientists/question.jpg'),
-(125, 'Leaders', 'Which is these statements is true?', 'Diamond mining was practiced in India for at least', 'India was the only country with diamond deposits t', 'Golconda was an important diamond trading center i', 'All the statements are true', 'All the statements are true', 'images/scientists/diamonds.jpg'),
-(126, 'Leaders', 'Dr. Jagadish Chandra Bose invented what form of co', 'Radio transmission', 'Television', 'Microwave transmission', 'Telephone', 'Microwave transmission', 'images/scientists/Bose.jpg'),
-(127, 'Leaders', 'What weapon was first developed by Tipu Sultan?', 'Armor piercing bullets', 'Iron rockets', 'Grenades', 'Metal spears', 'Iron rockets', 'images/scientists/TipuSultan.jpg'),
-(128, 'Leaders', 'Which of the following were invented in India?', 'Chess', 'Shampoo', 'Plough', 'All of the above', 'All of the above', 'images/scientists/question.jpg'),
-(129, 'Leaders', 'Who invented Oil-Eating-Bacteria in 1971?', 'Ananda Mohan Chakrabarty', 'M.V.R.K. Murty', 'Shanti Swarup Bhatnagar', 'Satyendra Nath Bose', 'Ananda Mohan Chakrabarty', 'images/scientists/question.jpg'),
-(130, 'Leaders', 'Which Noble Gas was discovered in India?', 'Radon', 'Helium', 'Xenon', 'Argon', 'Helium', 'images/scientists/question.jpg'),
+(71, 'foods', 'What is the most popular Indian food?', 'Butter Chicken', 'Dosa', 'Palak Paneer', 'Samosa', 'Butter Chicken', 'images/Foods/samosaa.jpg'),
+(72, 'foods', 'Appam stew is from which Indian state?', 'Goa', 'Rajasthan', 'Maharashtra', 'Kerala', 'Goa', 'images/Foods/appamstew.jpg'),
+(73, 'foods', 'Which of these is not a type of chaat?', 'Puri Bhaji', 'Sev Batata Puri', 'Pani Puri', 'Bhel Puri', 'Puri Bhaji', 'images/Foods/panipuri.jpg'),
+(74, 'foods', 'What Indian sweet is a bright yellow spiral', 'Gulab Jamun', 'Ras Malai', 'Jalebi', 'Besan Barfi', 'Gulab Jamun', 'images/Foods/jalebi.jpeg'),
+(75, 'foods', 'What spice is not commonly used in Indian dishes?', 'Turmeric', 'Coriander', 'Cumin', 'Sage', 'Turmeric', 'images/Foods/spice.jpeg'),
+(76, 'foods', 'Which of these is usually served cold?', 'Yogurt rice', 'Samosa', 'Halwa', 'Pakora', 'Yogurt rice', 'images/Foods/ice.jpeg'),
+(77, 'foods', 'Which of these is not made of yogurt?', 'Laasi', 'Kadhi', 'Rasam', 'Rasam', 'Laasi', 'images/Foods/lassi.jpeg'),
+(78, 'foods', 'Aam is which fruit in English?', 'Apple', 'Mango', 'Grape', 'Peach', 'Apple', 'images/Foods/fruits.jpeg'),
+(79, 'foods', 'Aaloo is which vegetable in English?', 'Carrot', 'Lettuce', 'Potato', 'Broccoli', 'Carrot', 'images/Foods/veggies.jpeg'),
+(80, 'foods', 'Which of these foods is not made from wheat?', 'Chapati', 'Roti', 'Naan', 'Dosa', 'Chapati', 'images/Foods/samosaa.jpg'),
+(81, 'foods', 'In which city did Indo-Chinese cuisine originate?', 'Mumbai', 'Chennai', 'Bengaluru', 'Kolkatta', 'Mumbai', 'images/Foods/indo.jpeg'),
+(82, 'foods', 'What is a famous snack from Gujarat?', 'Aloo Paratha', 'Dosa', 'Dhokla', 'Dumplings', 'Aloo Paratha', 'images/Foods/gujurat.jpg'),
+(83, 'foods', 'Which of these dishes is not from Mumbai', 'Vada Pav', 'Pav Bhaji', 'Bhel Puri', 'Kachori', 'Vada Pav', 'images/Foods/mumbai.jpg'),
+(84, 'foods', 'Which of these is not a South Indian dish?', 'Sambar', 'Paratha', 'Idli', 'Avial', 'Sambar', 'images/Foods/south_india.jpg'),
+(85, 'foods', 'Which is not a bean/lentil dish?', 'Chole', 'Rajma', 'Aloo Matar', 'Tadka Daal', 'Chole', 'images/Foods/bean.jpg'),
+(86, 'foods', 'What is the Hindi word for Spinach?', 'Palak', 'Matar', 'Aloo', 'Tamatar', 'Palak', 'images/Foods/spinach.jpg'),
+(87, 'foods', 'What is not an authentic Indian dessert?', 'Carrot Halwa', 'Gulab Jamun', 'Baklava', 'Ras Malai', 'Carrot Halwa', 'images/Foods/sweets.jpeg'),
+(88, 'foods', 'What spice is commonly used in Indian desserts?', 'Clove', 'Cinnamon', 'Mustard', 'Cardamom', 'Clove', 'images/Foods/spice.jpeg'),
+(89, 'foods', 'What type of food is this?', 'Chai', 'Dosa', 'Alu Gobi', 'Chapati and Curry', 'Chai', 'images/Foods/dosa.jpeg'),
+(90, 'foods', 'What type of food is this?', 'Pani Puri', 'Pav Bhaji', 'Dhokla', 'Aloo Matar', 'Pani Puri', 'images/Foods/panipuri.jpg'),
+(91, 'instruments', 'What is this instrument?', 'Sitar', 'Tabla', 'Veena', 'Santoor', 'Sitar', 'images/instruments/Question_1_Instruments.jpeg'),
+(92, 'instruments', 'What is the most played instrument in India?', 'Sarangi', 'Flute', 'Sitar', 'Tabla', 'Sarangi', 'images/instruments/Question_2_Instruments.jpeg'),
+(93, 'instruments', 'What instrument is Ustad Zakir Hussian known for p', 'Dolak', 'Damaru', 'Santoor', 'Tabla', 'Dolak', 'images/instruments/Question_3_Instruments.jpeg'),
+(94, 'instruments', 'The indian instrument, the shehnai, has how many o', '2', '3', '4', '5', '2', 'images/instruments/Question_4_Instruments.jpeg'),
+(95, 'instruments', 'Hindustani classical music is broken into groups o', 'Note Group', 'Taal', 'Taalam', 'Raaga', 'Note Group', 'images/instruments/Question_5_Instruments.jpeg'),
+(96, 'instruments', 'What instrument is this?', 'Shehnai', 'Veena', 'Sarood', 'Sitar', 'Shehnai', 'images/instruments/Question_6_Instruments.jpeg'),
+(97, 'instruments', 'How many beats are in Teen Tal? (Tabla)', '16', '12', '8', '4', '16', 'images/instruments/Question_7_Instruments.jpeg'),
+(98, 'instruments', 'It is said that Tabla was invented accidentally du', 'Mridangam', 'Dolak', 'Bongos', 'Classic Western Drums', 'Mridangam', 'images/instruments/Question_8_Instruments.jpeg'),
+(99, 'instruments', 'By popular belief, Tabla was invented in which pro', 'Bengal', 'Orrisa', 'Punjab', 'Delhi', 'Bengal', 'images/instruments/Question_9_Instruments.jpeg'),
+(100, 'instruments', 'How many individual sounds does a tabla make?', '6', '8', '10', '12', '6', 'images/instruments/Question_10_Instruments.jpeg'),
+(101, 'instruments', 'Which of the following is a wind instrument?', 'Sitar', 'Shehnai', 'Pakhawaj', 'Mridangam', 'Sitar', 'images/instruments/Question_11_Instruments.jpeg'),
+(102, 'instruments', 'Which instrument has the most strings?', 'Guitar', 'Ukelele', 'Violin', 'Sitar', 'Guitar', 'images/instruments/Question_12_Instruments.jpeg'),
+(103, 'instruments', 'Arvind Parikh is associated with which musical ins', 'Pakhawaj', 'Sitar', 'Tabla', 'Flute', 'Pakhawaj', 'images/instruments/Question_13_Instruments.jpeg'),
+(104, 'instruments', 'Which instrument has 7 strings?', 'Veena', 'Ukelele', 'Guitar', 'Violin', 'Veena', 'images/instruments/Question_14_Instruments.jpeg'),
+(105, 'instruments', 'How many octave keys does a harmonium have?', '1', '2', '3', '4', '1', 'images/instruments/Question_15_Instruments.jpeg'),
+(106, 'instruments', 'What is an indian instrument similar to a piano?', 'Tabla', 'Tanpura', 'Harmonium', 'Flute', 'Tabla', 'images/instruments/Question_16_Instruments.jpeg'),
+(107, 'instruments', 'What is the purpose of a mridangam in a musical pr', 'To keep the other musicians on beat', 'To overpower the other instruments', 'To be the main leading instrument', 'None of the above', 'To keep the other musicians on beat', 'images/instruments/Question_17_Instruments.jpeg'),
+(108, 'instruments', 'What is a sarangi usally accompaning?', 'Sitar', 'Flute', 'Tabla', 'Vocals', 'Sitar', 'images/instruments/Question_18_Instruments.jpeg'),
+(109, 'instruments', 'How many metal strings does a tanpura have?', '2-3', '4-5', '6-7', 'Only 1', '2-3', 'images/instruments/Question_19_Instruments.jpeg'),
+(110, 'instruments', 'How many raagas are there in Indian classical musi', '19', '52', '83', '106', '19', 'images/instruments/Question_20_Instruments.jpeg'),
+(111, 'leaders', 'Who is this person?', 'Jawaharlal Nehru', 'Sardar Patel', 'Mahatma Gandhi', 'Lal Bahadur Shastri', 'Jawaharlal Nehru', 'images/scientists/Nehru.jpg'),
+(112, 'leaders', 'Who was the most recent Indian to win a Nobel Priz', 'Amartya Sen', 'Mother Teresa', 'Kailash Satyarti', 'C.V. Raman', 'Amartya Sen', 'images/scientists/question.jpg'),
+(113, 'leaders', 'Who was is father of the Indian Space Program?', 'A.P.J. Abdul Kalam', 'Vikram Sarabai', 'Satish Dawan', 'K.Sivan', 'A.P.J. Abdul Kalam', 'images/scientists/question.jpg'),
+(114, 'leaders', 'Which Indian is cretided for first using the numbe', 'BrahmaGupta', 'Aryabhata', 'K. Ramasubramaniam', 'Ramanujam', 'BrahmaGupta', 'images/scientists/question.jpg'),
+(115, 'leaders', 'Who is considered one of the earliest surgeons fro', 'Charaka', 'Vagbhata', 'Jivaka', 'Jivaka', 'Charaka', 'images/scientists/question.jpg'),
+(116, 'leaders', 'In which country did Mohandas Karamchand Gandhi ge', 'India', 'England', 'South Africa', 'Pakistan', 'India', 'images/scientists/gandhi.jpg'),
+(117, 'leaders', 'Who was the first President of India?', 'Rajendra Prasad', 'C. Rajagopalachari', 'B.R. Ambedkar', 'Sarvepalli Radhakrishnan', 'Rajendra Prasad', 'images/scientists/question.jpg'),
+(118, 'leaders', 'Who was the first female prime minister of India?', 'Pratibha Patil', 'Indira Gandhi', 'Vijaya Lakshmi Pandit', 'Sarojini Naidu', 'Pratibha Patil', 'images/scientists/question.jpg'),
+(119, 'leaders', 'The White Revolution made India the largest produc', 'Verghese Kurien', 'H.M. Dalaya', 'M.S. Swaminathan', 'Narayana Murthy', 'Verghese Kurien', 'images/scientists/question.jpg'),
+(120, 'leaders', 'Who is the Father of the Green Revolution in India', 'M.S. Swaminathan', 'Gurudev Singh Khush', 'William Gaud', 'Norman Barlaug', 'M.S. Swaminathan', 'images/scientists/question.jpg'),
+(121, 'leaders', 'Who is the Prime Minister of India?', 'Rahul Gandhi', 'Narendra Modi', 'Mayawathi', 'Sharad Pawar', 'Rahul Gandhi', 'images/scientists/question.jpg'),
+(122, 'leaders', 'Who was the first woman physician in India?', 'Kadambini Ganguly', 'Pandita Ramabai', 'Savitribai Phule', 'Anandibai Joshi', 'Anandibai Joshi', 'images/scientists/question.jpg'),
+(123, 'leaders', 'Who is this freedom fighter?', 'Kasthurba Gandhi', 'Kamala Nehru', 'Rani Lakshmi Bai', 'Sarojini Naidu', 'Rani Lakshmi Bai', 'images/scientists/JhansiKiRani.jpg'),
+(124, 'leaders', 'What is the Chandrashekar Number for which Dr. Sub', 'Can be used to construct radio receivers', 'Determines the fate of a dying star', 'Used in calculations performed by computers', 'Used to measure magnetic properties of elements', 'Determines the fate of a dying star', 'images/scientists/question.jpg'),
+(125, 'leaders', 'Which is these statements is true?', 'Diamond mining was practiced in India for at least', 'India was the only country with diamond deposits t', 'Golconda was an important diamond trading center i', 'All the statements are true', 'All the statements are true', 'images/scientists/diamonds.jpg'),
+(126, 'leaders', 'Dr. Jagadish Chandra Bose invented what form of co', 'Radio transmission', 'Television', 'Microwave transmission', 'Telephone', 'Microwave transmission', 'images/scientists/Bose.jpg'),
+(127, 'leaders', 'What weapon was first developed by Tipu Sultan?', 'Armor piercing bullets', 'Iron rockets', 'Grenades', 'Metal spears', 'Iron rockets', 'images/scientists/TipuSultan.jpg'),
+(128, 'leaders', 'Which of the following were invented in India?', 'Chess', 'Shampoo', 'Plough', 'All of the above', 'All of the above', 'images/scientists/question.jpg'),
+(129, 'leaders', 'Who invented Oil-Eating-Bacteria in 1971?', 'Ananda Mohan Chakrabarty', 'M.V.R.K. Murty', 'Shanti Swarup Bhatnagar', 'Satyendra Nath Bose', 'Ananda Mohan Chakrabarty', 'images/scientists/question.jpg'),
+(130, 'leaders', 'Which Noble Gas was discovered in India?', 'Radon', 'Helium', 'Xenon', 'Argon', 'Helium', 'images/scientists/question.jpg'),
 (131, 'Monuments', 'What is a white monument that is located on the so', 'Taj Mahal', 'Ajanta caves', 'Gol Gumbaz', 'Qutab Shahi tombs', 'Taj Mahal', 'images/monuments/tajmahal.jpg'),
 (132, 'Monuments', 'This palace is one the principal tourist attractio', 'Buria Fort', 'Jind Fort', 'Amber Fort', 'Bahu Fort', 'Amber Fort', 'images/monuments/Amerfort.jpg'),
 (133, 'Monuments', 'What is the holiest Sikh Gurudwara and is located ', 'Omkareshwar', 'The Golden Temple', 'Laxminarayan temple', 'Yamunotri temple', 'The Golden Temple', 'images/monuments/goldentemple.jpg'),
@@ -220,25 +216,25 @@ INSERT INTO `questions` (`id`, `topic`, `question`, `choice_1`, `choice_2`, `cho
 (148, 'Monuments', 'This is a significant symbol for the Tamil people ', 'The Golden Temple', 'Ganesha Temple', 'Meenakshi Amman Temple', 'Laxminarayan Temple', 'Meenakshi Amman Temple', 'images/monuments/meenakshi.jpg'),
 (149, 'Monuments', 'What is the richest temple in India and is one of ', 'Konark Sun Temple', 'Samaleswari Temple', 'Chaturdasha Temple', 'Tirumala Venkateswara Temple', 'Tirumala Venkateswara Temple', 'images/monuments/Tirumala.jpg'),
 (150, 'Monuments', 'It is also called the Palace of Winds and is one o', 'Hawa Mahal', 'Taj Mahal', 'Agra Fort', 'Chand Minar', 'Hawa Mahal', 'images/monuments/hawamahal.jpg'),
-(151, 'Movies', 'What movie, based on a true story, called?', 'Agent Vinod', 'Raazi', 'Madras Cafe', 'Skyfall', 'Raazi', 'images/movies/raazi.jpg'),
-(152, 'Movies', 'What language was Baahubali originally made in?', 'Hindi', 'Tamil', 'Telegu', 'Gujarati', 'Telegu', 'images/movies/baahubali.jpg'),
-(153, 'Movies', 'Who is the actress in this movie, Padmavat?', 'Priyanka Chopra', 'Deepika Kakkar', 'Anushka Sharma', 'Deepika Padukone', 'Deepika Padukone', 'images/movies/padmaavat.jpg'),
-(154, 'Movies', 'Who is this famous actress that recently passed aw', 'Helen', 'Lata Mangeshkar', 'Sridevi', 'Jhanvi Kapoor', 'Sridevi', 'images/movies/sridevi.jpg'),
-(155, 'Movies', 'What movie is this scene from?', 'Raees', 'Main Hoon Na', 'Baazigar', 'Deewana', 'Main Hoon Na', 'images/movies/mainhoona.jpg'),
-(156, 'Movies', 'Who is this singer?', 'Asha Bhosle', 'Shreya Goshal', 'Lata Mangeshkar', 'Sonu Nigam', 'Lata Mangeshkar', 'images/movies/latamang.jpg'),
-(157, 'Movies', 'What movie is this scene from?', 'Om Shanti Om', 'Shanti', 'Yes Boss', 'Tilak', 'Om Shanti Om', 'images/movies/omshantiom.cms'),
-(158, 'Movies', 'Who is the actress in this recent movie?', 'Kareena Kapoor', 'Sara Ali Khan', 'Khushi Kapoor', 'Sejal Ali Khan', 'Sara Ali Khan', 'images/movies/simmba.jpg'),
-(159, 'Movies', 'What is this movie that is based off of the hollyw', 'Thugs of Bharat', 'Pirates of India', 'Thugs of Hindostan', 'Sea Fighters', 'Thugs of Hindostan', 'images/movies/thugs.jpg'),
-(160, 'Movies', 'Which movie of the Race sequels is this?', 'Race', ' Race 2', 'Race 3', 'Race 4', 'Race 3', 'images/movies/race.jpg'),
-(161, 'Movies', 'Who is this Bollywood producer and director', 'Rohit Shetty', 'Rohit Patel', 'Rohan shetty', 'Rohan Patel', 'Rohit Shetty', 'images/movies/rohit.jpg'),
-(162, 'Movies', 'What is this movie?', 'Bhagban', 'Dhadak', 'Dil', 'Dilwale', 'Dilwale', 'images/movies/dilwale.jpg'),
-(163, 'Movies', 'What movie, Based off of the Hollywood movie When ', 'When Harry met Sejal', 'Jab Harry met Sejal', 'Jab Harrinder met Sejal', 'When Harrinder met sally', 'Jab Harry met Sejal', 'images/movies/harrysejal.jpg'),
-(164, 'Movies', 'Who are the actors in these movies?', 'Alia Bhatt and SRK', 'Shraddha Kapoor and Varun Dhawan', 'Anushka Sharma and Salman Khan', 'Alia Bhatt and Varun Dhawan', 'Alia Bhatt and Varun Dhawan', 'images/movies/bandh.jpg'),
-(165, 'Movies', 'What was the name of the alien in Koi Mil Gaya?', 'Jadoo', 'Roy', 'E.T.', 'Baloo', 'Jadoo', 'images/movies/koimilgaya.jpg'),
-(166, 'Movies', 'What was Hrithik Roshan\'s first movie?', 'Khabhi Khushi Khabhi Gham', 'Kaho Naa Pyaar Hai', 'Krrish', 'Dhoom', 'Kaho Naa Pyaar Hai', 'images/movies/kaho.jpg'),
-(167, 'Movies', 'Who is this actress?', 'Anushka Sharma', 'Phulkari Dupatta', 'Aishwariya Rai Bachchan', 'Malika arora', 'Aishwariya Rai Bachchan', 'images/movies/aish.jpg'),
-(168, 'Movies', 'What is Tabu\'s real name?', 'Tabassum Fatima Hashmi', 'Taslim Khan', 'Tabakul', 'Tabiman Merchant', 'Tabassum Fatima Hashmi', 'images/movies/tabu.jpg'),
-(169, 'Movies', 'Who was the actor in Detective Byomkesh Bakshy?', 'Salman Khan', 'Sushant Singh Rajput', 'Neeraj Gopal', 'Aanand Singh', 'Sushant Singh Rajput', 'images/movies/bb.jpg'),
+(151, 'movies', 'What movie, based on a true story, called?', 'Agent Vinod', 'Raazi', 'Madras Cafe', 'Skyfall', 'Raazi', 'images/movies/raazi.jpg'),
+(152, 'movies', 'What language was Baahubali originally made in?', 'Hindi', 'Tamil', 'Telegu', 'Gujarati', 'Telegu', 'images/movies/baahubali.jpg'),
+(153, 'movies', 'Who is the actress in this movie, Padmavat?', 'Priyanka Chopra', 'Deepika Kakkar', 'Anushka Sharma', 'Deepika Padukone', 'Deepika Padukone', 'images/movies/padmaavat.jpg'),
+(154, 'movies', 'Who is this famous actress that recently passed aw', 'Helen', 'Lata Mangeshkar', 'Sridevi', 'Jhanvi Kapoor', 'Sridevi', 'images/movies/sridevi.jpg'),
+(155, 'movies', 'What movie is this scene from?', 'Raees', 'Main Hoon Na', 'Baazigar', 'Deewana', 'Main Hoon Na', 'images/movies/mainhoona.jpg'),
+(156, 'movies', 'Who is this singer?', 'Asha Bhosle', 'Shreya Goshal', 'Lata Mangeshkar', 'Sonu Nigam', 'Lata Mangeshkar', 'images/movies/latamang.jpg'),
+(157, 'movies', 'What movie is this scene from?', 'Om Shanti Om', 'Shanti', 'Yes Boss', 'Tilak', 'Om Shanti Om', 'images/movies/omshantiom.cms'),
+(158, 'movies', 'Who is the actress in this recent movie?', 'Kareena Kapoor', 'Sara Ali Khan', 'Khushi Kapoor', 'Sejal Ali Khan', 'Sara Ali Khan', 'images/movies/simmba.jpg'),
+(159, 'movies', 'What is this movie that is based off of the hollyw', 'Thugs of Bharat', 'Pirates of India', 'Thugs of Hindostan', 'Sea Fighters', 'Thugs of Hindostan', 'images/movies/thugs.jpg'),
+(160, 'movies', 'Which movie of the Race sequels is this?', 'Race', ' Race 2', 'Race 3', 'Race 4', 'Race 3', 'images/movies/race.jpg'),
+(161, 'movies', 'Who is this Bollywood producer and director', 'Rohit Shetty', 'Rohit Patel', 'Rohan shetty', 'Rohan Patel', 'Rohit Shetty', 'images/movies/rohit.jpg'),
+(162, 'movies', 'What is this movie?', 'Bhagban', 'Dhadak', 'Dil', 'Dilwale', 'Dilwale', 'images/movies/dilwale.jpg'),
+(163, 'movies', 'What movie, Based off of the Hollywood movie When ', 'When Harry met Sejal', 'Jab Harry met Sejal', 'Jab Harrinder met Sejal', 'When Harrinder met sally', 'Jab Harry met Sejal', 'images/movies/harrysejal.jpg'),
+(164, 'movies', 'Who are the actors in these movies?', 'Alia Bhatt and SRK', 'Shraddha Kapoor and Varun Dhawan', 'Anushka Sharma and Salman Khan', 'Alia Bhatt and Varun Dhawan', 'Alia Bhatt and Varun Dhawan', 'images/movies/bandh.jpg'),
+(165, 'movies', 'What was the name of the alien in Koi Mil Gaya?', 'Jadoo', 'Roy', 'E.T.', 'Baloo', 'Jadoo', 'images/movies/koimilgaya.jpg'),
+(166, 'movies', 'What was Hrithik Roshan\'s first movie?', 'Khabhi Khushi Khabhi Gham', 'Kaho Naa Pyaar Hai', 'Krrish', 'Dhoom', 'Kaho Naa Pyaar Hai', 'images/movies/kaho.jpg'),
+(167, 'movies', 'Who is this actress?', 'Anushka Sharma', 'Phulkari Dupatta', 'Aishwariya Rai Bachchan', 'Malika arora', 'Aishwariya Rai Bachchan', 'images/movies/aish.jpg'),
+(168, 'movies', 'What is Tabu\'s real name?', 'Tabassum Fatima Hashmi', 'Taslim Khan', 'Tabakul', 'Tabiman Merchant', 'Tabassum Fatima Hashmi', 'images/movies/tabu.jpg'),
+(169, 'movies', 'Who was the actor in Detective Byomkesh Bakshy?', 'Salman Khan', 'Sushant Singh Rajput', 'Neeraj Gopal', 'Aanand Singh', 'Sushant Singh Rajput', 'images/movies/bb.jpg'),
 (170, 'NRIs', 'Who are the lead actresses in Dil to Pagal Hai?', 'Madhuri Kapoor and Karishma Dixit', 'Mahima Rajput and Alia Sharma', 'Madhri Dixit and Karishma Kapoor', 'Karishma Sharma and Purvi', 'Madhri Dixit and Karishma Kapoor', 'images/nris/dtph.jpg'),
 (171, 'NRIs', 'What does the term NRI stand for?', 'Not a Real Indian', 'Non Residential Indian', 'Non Resident Indian', 'Never a Real Indian', 'Non Residential Indian', 'images/nris/imageq1.jpg'),
 (172, 'NRIs', 'How long does a person have to live outside of Ind', '200 days', '150 days', '182 days', '250 days', '182 days', 'images/nris/imageq2.jpg'),
@@ -279,8 +275,7 @@ INSERT INTO `questions` (`id`, `topic`, `question`, `choice_1`, `choice_2`, `cho
 (207, 'Sports', 'Who was the first woman to win gold in wrestling i', 'Vinesh Phogat', 'Saina Nehwal', 'Geeta Phogat', 'Heena Sidhu', 'Geeta Phogat', 'images/sports/Question17_sports.jpg'),
 (208, 'Sports', 'How many gold medals did India win at the 2010 com', '23', '45', '24', '38', '38', 'images/sports/Question18_sports.png'),
 (209, 'Sports', 'When was the first time India competed in the comm', '1934', '1946', '1988', '1892', '1934', 'images/sports/Question19_sports.jpg'),
-(210, 'Sports', 'What is Kho Kho?', 'It is a type of ice cream that includes chocolate ', 'It is a game similar to tag and a traditional game', 'It is a version of laser tag but better.', 'It is twister with an Indian twist involving 12 pl', 'It is a game similar to tag and a traditional game', 'images/sports/Question20_sports.jpg'),
-(211, 'new3', 'does this work?', 'or', 'is ', 'it', 'now', 'or', 'new.jpg');
+(210, 'Sports', 'What is Kho Kho?', 'It is a type of ice cream that includes chocolate ', 'It is a game similar to tag and a traditional game', 'It is a version of laser tag but better.', 'It is twister with an Indian twist involving 12 pl', 'It is a game similar to tag and a traditional game', 'images/sports/Question20_sports.jpg');
 
 -- --------------------------------------------------------
 
@@ -309,9 +304,7 @@ INSERT INTO `topics` (`topic`, `image_name`, `order`) VALUES
 ('Monuments', 'places_and_monuments.png', 8),
 ('Movies', 'movies.png', 9),
 ('NRIs', 'NRI_s.jpg', 10),
-('Sports', 'sports.png', 11),
-('Symbols', 'symbols_of_india.png', 12),
-('States', 'states.png', 13);
+('Sports', 'sports.png', 11);
 
 -- --------------------------------------------------------
 
@@ -378,7 +371,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=212;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=213;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

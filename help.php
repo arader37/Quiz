@@ -1,8 +1,10 @@
+
+<?php $page_title = 'Quiz Master > Help'; ?>
 <?php include('header.php'); ?>
 
 <html>
     <head>
-        <title>QuizMaster Home Page</title>
+        <title>QuizMaster > Help</title>
     </head>
     <style>
         #image {
@@ -36,11 +38,16 @@
         h5{
             text-align: center; 
         }
+        
+        #title {
+        text-align: center;
+        color: darkgoldenrod;
+        }
 
     </style>
     <body>
    
-<h2><strong>Welcome to the QuizMaster website!</strong></h2>
+<h2 id="title"><strong>Welcome to the QuizMaster Website!</strong></h2>
 <h5>Summer 2019.ICS325.Version 2.0</h5>
 <p>Each of the icons on the home page represents a topic. When you mouse over any of the icons, the name of the topic will be shown. Click on any of them to take a short quiz.</p>
 <p>Each topic has 5 or 10 questions, in&nbsp;a random order each time. After answering all questions on the quiz and hitting "submit", your score will shown! You can always click on the silc icon to go back to the main page.</p>

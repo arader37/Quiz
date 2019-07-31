@@ -1,7 +1,9 @@
 
 <?php $page_title = 'Modify Question'; ?>
+<?php $page_title = 'Quiz Master > Modify Questions'; ?>
 <?php include('header.php'); ?>
 <div class="container">
+<style>#title {text-align: center; color: darkgoldenrod;}</style>
 
 <?php
 include_once 'db_configuration.php';
@@ -43,9 +45,10 @@ if ($result->num_rows > 0) {
         }
       }
 
+      echo '<h2 id="title">Modify Question</h2><br>';
       echo '<form action="modifyTheQuestion.php" method="POST" enctype="multipart/form-data">
       <br>
-      <h3>Modify Question: '.$row["topic"].' - '.$row["question"].'? </h3> <br>
+      <h3>'.$row["topic"].' - '.$row["question"].'? </h3> <br>
       
       <div>
         <label for="id">Id</label>

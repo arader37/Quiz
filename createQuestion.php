@@ -1,10 +1,11 @@
-<?php $page_title = 'Create a Question'; ?>
+<?php $page_title = 'Quiz Master > Create Question'; ?>
 <?php include('header.php'); ?>
 <?php 
     $mysqli = NEW MySQLi('localhost','root','','quiz_master');
     $resultset = $mysqli->query("SELECT DISTINCT topic FROM topics ORDER BY topic ASC");   
 ?>
 <link href="css/form.css" rel="stylesheet">
+<style>#title {text-align: center; color: darkgoldenrod;}</style>
 <div class="container">
     <!--Check the CeremonyCreated and if Failed, display the error message-->
     <?php
@@ -32,42 +33,49 @@
     ?>
     <form action="createTheQuestion.php" method="POST" enctype="multipart/form-data">
         <br>
-        <h3 text-align="center">Create A Question</h3> <br>
+        <h3 id="title">Create A Question</h3> <br>
         
-        <div align="center" class="form-group col-md-8">
-            <label for="safe_link">Topic</label><br>
-            <select name="topic">
-            <?php 
-            while($rows = $resultset->fetch_assoc()){
-                $topic=$rows['topic']; 
-                echo"<option Value='$topic'>$topic</option>";}?>
-            </select>
-        </div>
+        <table>
+            <tr>
+                <td style="width:100px">Question:</td>
+                <td><select name="topic">
+                    <?php 
+                    while($rows = $resultset->fetch_assoc()){
+                        $topic=$rows['topic']; 
+                    echo"<option Value='$topic'>$topic</option>";}?>
+                    </select></td>
+            </tr>
+            <tr>
+                <td style="width:100px">Question:</td>
+                <td><input type="text"  name="question" maxlength="50" size="50" required title="Please enter a question."></td>
+            </tr>
+            <tr>
+                <td style="width:100px">Choice 1:</td>
+                <td><input type="text"  name="choice_1" maxlength="50" size="50" required title="Please enter answer 1."></td>
+            </tr>
+            <tr>
+                <td style="width:100px">Choice 2:</td>
+                <td><input type="text"  name="choice_2" maxlength="50" size="50" required title="Please enter answer 2."></td>
+            </tr>
+            <tr>
+                <td style="width:100px">Choice 3:</td>
+                <td><input type="text"  name="choice_3" maxlength="50" size="50" required title="Please enter answer 3."></td>
+            </tr>
+            <tr>
+                <td style="width:100px">Choice 4:</td>
+                <td><input type="text"  name="choice_4" maxlength="50" size="50" required title="Please enter answer 4."></td>
+            </tr>
+            <tr>
+                <td style="width:100px">Answer:</td>
+                <td><input type="text"  name="answer" maxlength="50" size="50" required title="Please enter the answer."></td>
+            </tr>
+            <tr>
+                <td style="width:100px">Image:</td>
+                <td><input type="file" name="fileToUpload" id="fileToUpload" maxlength="50" size="50" title="Please enter the Image Name."></td>
+            </tr>
+        </table>
 
-        
-                <label for="safe_link">Question</label>
-                <input type="text"  name="question" maxlength="50" size="50" required title="Please enter a question.">
-                <br>
-                <label for="safe_link">Choice 1</label>
-                <input type="text"  name="choice_1" maxlength="50" size="50" required title="Please enter answer 1.">
-                <br>
-                <label for="safe_link">Choice 2</label>
-                <input type="text"  name="choice_2" maxlength="50" size="50" required title="Please enter answer 2.">
-                <br>
-                <label for="safe_link">Choice 3</label>
-                <input type="text"  name="choice_3" maxlength="50" size="50" required title="Please enter answer 3.">
-                <br>
-                <label for="safe_link">Choice 4</label>
-                <input type="text"  name="choice_4" maxlength="50" size="50" required title="Please enter answer 4.">
-                <br>
-                <label for="safe_link">Answer</label>
-                <input type="text"  name="answer" maxlength="50" size="50" required title="Please enter the answer.">
-                <br>
-                <label for="safe_link">Image Path</label>
-                <input type="file" name="fileToUpload" id="fileToUpload" maxlength="50" size="50" title="Please enter the Image Name.">
-        
-
-        <br><br><br>
+        <br><br>
         <div align="center" class="text-left">
             <button type="submit" name="submit" class="btn btn-primary btn-md align-items-center">Create Question</button>
         </div>

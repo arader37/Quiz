@@ -12,9 +12,15 @@ $GLOBALS['topic'] = mysqli_query($db, $query);
 
 ?>
 
-<?php $page_title = 'Topics List'; ?>
+<?php $page_title = 'Quiz Master > Topics'; ?>
 <?php include('header.php'); ?>
+<style>
+    #title {
+        text-align: center;
+        color: darkgoldenrod;
+    }
 
+</style>
 <!-- Page Content -->
 <br><br>
 <div class="container-fluid">
@@ -44,14 +50,8 @@ $GLOBALS['topic'] = mysqli_query($db, $query);
             }
 
     ?>
-    <!-- Page Heading -->
-    <h1 class="my-4">
-        <?php
-        //Display Admin view if an admin is logged in.
-        //This gives full access to all CRUD functions
-        
-        ?>
-    </h1>
+    
+    <h2 id="title">Topic List</h2><br>
     
     <div id="customerTableView">
         <button><a class="btn btn-sm" href="createTopic.php">Create a Topic</a></button>
