@@ -106,6 +106,20 @@ function isAnswerRight($quiz_topic, $question_num, $user_answer){
     return false;
 }
 
+function areAllQuizQuestionsAnswered($quiz_topic, $num_questions_to_show){
+    for ($i = 1; $i <= $num_questions_to_show; $i++){
+        $question_ID = $quiz_topic . "Q" . $i;
+        if (isset($_SESSION[$question_ID]) == false
+                || (isset($_SESSION[$question_ID]) == true && $_SESSION[$question_ID] == '0') ){
+            if ($i == ($num_questions_to_show-1) )
+                return true; // all but last question is answered, allow submit button
+            return false;
+        }
+    }
+    // iterated through all questions and each one has an answer, thus return true
+    return true;
+}
+
 function checkQuiz($quiz_topic, $num_questions_to_show){
     // returns the number of questions the user got correct in this quiz
     $num_correct = 0;
@@ -241,8 +255,9 @@ function resetUserQuizAnswers($quiz_topic, $num_questions){
         $displayed_num_questions = $num_questions_to_show < $num_questions ? $num_questions_to_show : $num_questions;
 
         echo "<h2 style='display:inline;'>Quiz: $quiz_topic</h2>";
-        if (isset($_GET['quiz_finished']) == false)
-            echo "<pre style='display:inline;'>               </pre><button id='resetQuizBtn'>Reset Quiz</button><br>";
+        // removed as per professor's request
+        // if (isset($_GET['quiz_finished']) == false)
+        //     echo "<pre style='display:inline;'>               </pre><button id='resetQuizBtn'>Reset Quiz</button><br>";
         echo "<h6>Page: $current_page of $num_questions_to_show</h6>";
 
         if ($num_questions < $num_questions_to_show){
@@ -334,9 +349,9 @@ function resetUserQuizAnswers($quiz_topic, $num_questions){
         </form>";
     ?>
 
-    <button id='previousBtn'>Previous</button>
-    <button id='submitBtn'>Submit</button>
-    <button id='nextBtn'>Next</button>
+    <button id='previousBtn' title='Navigate to the previous question'>Previous</button>
+    <button id='submitBtn' title='This button is only enabled when all questions are answered'>Submit</button>
+    <button id='nextBtn' title='Navigate to the next question'>Next</button>
 
     <script>
     // assign event listeners to the three buttons so our functions are triggered when they are clicked
@@ -365,10 +380,14 @@ function resetUserQuizAnswers($quiz_topic, $num_questions){
     // this code will execute and disable these buttons in that case
     <?php
     if ($current_page == 1){
-        echo "document.getElementById('previousBtn').disabled = true;";
+        echo "document.getElementById('previousBtn').disabled = true;\n";
     }
     if ($current_page == $num_questions_to_show){
-        echo "document.getElementById('nextBtn').disabled = true;";
+        echo "document.getElementById('nextBtn').disabled = true;\n";
+    }
+    if (areAllQuizQuestionsAnswered($quiz_topic, $num_questions_to_show) == false){
+        // echo "disabled";
+        echo "document.getElementById('submitBtn').disabled = true;\n";
     }
     ?>
 
