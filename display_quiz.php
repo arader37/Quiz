@@ -111,8 +111,9 @@ function areAllQuizQuestionsAnswered($quiz_topic, $num_questions_to_show){
         $question_ID = $quiz_topic . "Q" . $i;
         if (isset($_SESSION[$question_ID]) == false
                 || (isset($_SESSION[$question_ID]) == true && $_SESSION[$question_ID] == '0') ){
-            if ($i == ($num_questions_to_show-1) )
-                return true; // all but last question is answered, allow submit button
+            if ($i == $num_questions_to_show){
+                return true; // all but last question is answered, allow submit button to show
+            }
             return false;
         }
     }
@@ -276,9 +277,8 @@ function resetUserQuizAnswers($quiz_topic, $num_questions){
         }
 
 
-        // check if we need to reset the user's session saved answers if they have just started this quiz
-        if ($current_page == 1 && 
-            (isset($_SESSION[$question_session_ID]) == false || $_SESSION[$question_session_ID] == '0')){
+        // reset the users previously saved answers if they come from the home page (not from a previous quiz page)
+        if ($current_page == 1 && isset($_GET["previous_page"]) == false){
             // it doesn't appear as though the user has already answered this question
             // this means they are likely starting the quiz for the first time
             // so we should reset all of their answers to the questions in this quiz to '0'
@@ -386,7 +386,6 @@ function resetUserQuizAnswers($quiz_topic, $num_questions){
         echo "document.getElementById('nextBtn').disabled = true;\n";
     }
     if (areAllQuizQuestionsAnswered($quiz_topic, $num_questions_to_show) == false){
-        // echo "disabled";
         echo "document.getElementById('submitBtn').disabled = true;\n";
     }
     ?>
