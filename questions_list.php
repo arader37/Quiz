@@ -28,6 +28,9 @@ $GLOBALS['image_name'] = mysqli_query($db, $query);
         text-align: center;
         color: darkgoldenrod;
     }
+    thead input {
+        width: 100%;
+    }
 
 </style>
 
@@ -65,7 +68,7 @@ $GLOBALS['image_name'] = mysqli_query($db, $query);
     
     <div id="customerTableView">
         <button><a class="btn btn-sm" href="createQuestion.php">Create a Question</a></button>
-        <table class="display" id="ceremoniesTable">
+        <table class="display" id="ceremoniesTable" style="width:100%">
             <div class="table responsive">
                 <thead>
                 <tr>
@@ -126,7 +129,7 @@ $GLOBALS['image_name'] = mysqli_query($db, $query);
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
 
 <!--Data Table-->
 <script type="text/javascript" charset="utf8"
@@ -157,14 +160,15 @@ $GLOBALS['image_name'] = mysqli_query($db, $query);
     $(document).ready( function () {
         
         $('#ceremoniesTable').DataTable( {
-            dom: 'lfrtipB',
+            dom: 'lfrtBip',
             buttons: [
                 'copy', 'excel', 'csv', 'pdf'
             ] }
             
+            
         );
 
-        /*$('#ceremoniesTable thead tr').clone(true).appendTo( '#ceremoniesTable thead' );
+        $('#ceremoniesTable thead tr').clone(true).appendTo( '#ceremoniesTable thead' );
         $('#ceremoniesTable thead tr:eq(1) th').each( function (i) {
             var title = $(this).text();
             $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
@@ -181,8 +185,9 @@ $GLOBALS['image_name'] = mysqli_query($db, $query);
     
         var table = $('#ceremoniesTable').DataTable( {
             orderCellsTop: true,
-            fixedHeader: true
-        } );*/
+            fixedHeader: true,
+            retrieve: true
+        } );
         
     } );
 
