@@ -1,5 +1,9 @@
 <?php $page_title = 'Create a Topic'; ?>
-<?php include('header.php'); ?>
+<?php include('header.php'); 
+    $page="questions_list.php";
+    verifyLogin($page);
+
+?>
 
 <div class="container">
     <!--Check the CeremonyCreated and if Failed, display the error message-->

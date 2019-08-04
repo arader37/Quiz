@@ -1,5 +1,9 @@
 <?php $page_title = 'Quiz Master > Create Question'; ?>
-<?php include('header.php'); ?>
+<?php include('header.php'); 
+    $page="questions_list.php";
+    verifyLogin($page);
+
+?>
 <?php 
     $mysqli = NEW MySQLi('localhost','root','','quiz_master');
     $resultset = $mysqli->query("SELECT DISTINCT topic FROM topics ORDER BY topic ASC");   

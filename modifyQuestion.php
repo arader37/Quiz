@@ -1,7 +1,11 @@
 
 <?php $page_title = 'Modify Question'; ?>
 <?php $page_title = 'Quiz Master > Modify Questions'; ?>
-<?php include('header.php'); ?>
+<?php include('header.php'); 
+    $page="questions_list.php";
+    verifyLogin($page);
+
+?>
 <div class="container">
 <style>#title {text-align: center; color: darkgoldenrod;}</style>
 

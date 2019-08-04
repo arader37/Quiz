@@ -3,6 +3,8 @@ require 'bin/functions.php';
 require 'db_configuration.php';
 $page_title = 'Quiz Master > Preferences';
 include('header.php'); 
+    $page="questions_list.php";
+    verifyLogin($page);
 
 $sql1 = "SELECT `value` FROM `preferences` WHERE `name`= 'NO_OF_TOPICS_PER_ROW'";
 $sql2 = "SELECT `value` FROM `preferences` WHERE `name`= 'NO_OF_QUESTIONS_TO_SHOW'";

@@ -3,7 +3,6 @@
 require 'bin/functions.php';
 require 'db_configuration.php';
 
-
 $query = "SELECT * FROM questions";
 
 $GLOBALS['id'] = mysqli_query($db, $query);
@@ -21,7 +20,11 @@ $GLOBALS['image_name'] = mysqli_query($db, $query);
 ?>
 
 <?php $page_title = 'Quiz Master > Questions'; ?>
-<?php include('header.php'); ?>
+<?php include('header.php'); 
+    $page="questions_list.php";
+    verifyLogin($page);
+
+?>
 
 <style>
     #title {
@@ -30,6 +33,15 @@ $GLOBALS['image_name'] = mysqli_query($db, $query);
     }
     thead input {
         width: 100%;
+    }
+    .thumbnailSize{
+        height: 100px;
+        width: 100px;
+        transition:transform 0.25s ease;
+    }
+    .thumbnailSize:hover {
+        -webkit-transform:scale(3.5);
+        transform:scale(3.5);
     }
 
 </style>
@@ -100,7 +112,7 @@ $GLOBALS['image_name'] = mysqli_query($db, $query);
                                     <td>'.$row["choice_3"].'</td>
                                     <td>'.$row["choice_4"].'</td>
                                     <td>'.$row["answer"].' </span> </td>
-                                    <td>'.$row["image_name"].'</td>
+                                    <td><img class="thumbnailSize" src="'.$row["image_name"].'" alt="'.$row["image_name"].'"</td>
                                     <td><a class="btn btn-warning btn-sm" href="modifyQuestion.php?id='.$row["id"].'">Modify</a></td>                                  
                                     <td><a class="btn btn-danger btn-sm" href="deleteQuestion.php?id='.$row["id"].'">Delete</a></td> 
                                 </tr>';

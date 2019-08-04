@@ -41,3 +41,14 @@ var divElement = document.getElementById(id);
 }//end addBookFields
 //**************************** end toggleview *******************************
 </script>
+<?php
+function verifyLogin($page){
+  if(isset($_SESSION['role'])) {
+         return;          
+  }
+  else{
+    header('Location: loginForm.php');
+    exit();
+  }
+}
+?>

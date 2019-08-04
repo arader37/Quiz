@@ -13,7 +13,11 @@ $GLOBALS['topic'] = mysqli_query($db, $query);
 ?>
 
 <?php $page_title = 'Quiz Master > Topics'; ?>
-<?php include('header.php'); ?>
+<?php include('header.php'); 
+    $page="questions_list.php";
+    verifyLogin($page);
+
+?>
 <style>
     #title {
         text-align: center;
