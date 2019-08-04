@@ -1,4 +1,5 @@
 <?php 
+$page_title = "Quiz Master > " . $_GET['topic'] . " Quiz";
 require 'bin/functions.php';
 require 'db_configuration.php';
 include('header.php');
@@ -190,7 +191,7 @@ function resetUserQuizAnswers($quiz_topic, $num_questions){
 
 <html>
     <head>
-        <title>QuizMaster Quiz</title>
+        <title>QuizMaster</title>
     </head>
     <style>
         .image {
@@ -283,12 +284,12 @@ function resetUserQuizAnswers($quiz_topic, $num_questions){
             // this means they are likely starting the quiz for the first time
             // so we should reset all of their answers to the questions in this quiz to '0'
             resetUserQuizAnswers($quiz_topic, $num_questions);
-            echo "**Reset the user's question answers**";
+            echo "**Reset the user's saved answers**";
         }
         else if (isset($_GET['reset_quiz'])){
             // user has pressed button to reset the quiz manually
             resetUserQuizAnswers($quiz_topic, $num_questions);
-            echo "**Reset the user's question answers by request**";
+            echo "**Reset the user's saved answers by request**";
         }
 
 
