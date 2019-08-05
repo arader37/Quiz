@@ -138,6 +138,78 @@ function checkQuiz($quiz_topic, $num_questions_to_show){
     return $num_correct;
 }
 
+function printoutQuizResults($quiz_topic, $num_questions_to_show){
+    global $db; // tell the function to use to global variable $db
+    for ($i = 1; $i <= $num_questions_to_show; $i++){
+        $question_ID = getQuestionID($quiz_topic, $i);
+        $question_session_ID = $quiz_topic . "Q" . $i;
+        $user_answerABCD = $_SESSION[$question_session_ID];
+        $user_correct = isAnswerRight($quiz_topic, $i, $user_answerABCD);
+        if (isset($_SESSION[$question_ID])){
+            $user_answer = $_SESSION[$question_ID];
+        }
+        $sql = "select question, choice_1, choice_2, choice_3, choice_4, answer, image_name from "
+            . "questions where topic = '$quiz_topic' and id = '$question_ID'";
+        $results = mysqli_query($db,$sql);
+        $rows = null;
+        if(mysqli_num_rows($results) > 0){
+            while($row = mysqli_fetch_assoc($results)){
+                $rows[] = $row;
+            }
+        }
+        if ($rows == null){
+            return; // an unexpected error occurred
+        }
+        $correct_answer = $rows[0]['answer'];
+        $user_answer_ID = getIdFromQuizABCD($user_answerABCD);
+        $correct_answer_ID = 5;
+        if ($rows[0]['answer'] == $rows[0]['choice_1']){
+            $correct_answer_ID = 1;
+        }
+        else if ($rows[0]['answer'] == $rows[0]['choice_2']){
+            $correct_answer_ID = 2;
+        }
+        else if ($rows[0]['answer'] == $rows[0]['choice_3']){
+            $correct_answer_ID = 3;
+        }
+        else if ($rows[0]['answer'] == $rows[0]['choice_4']){
+            $correct_answer_ID = 4;
+        }
+
+        $user_answer = "N/A";
+        if ($user_answer_ID == 1){
+            $user_answer = $rows[0]['choice_1'];
+        }
+        else if ($user_answer_ID == 2){
+            $user_answer = $rows[0]['choice_2'];
+        }
+        else if ($user_answer_ID == 3){
+            $user_answer = $rows[0]['choice_3'];
+        }
+        else if ($user_answer_ID == 4){
+            $user_answer = $rows[0]['choice_4'];
+        }
+
+        $question = $rows[0]['question'];
+        $image_address = $rows[0]['image_name'];
+
+        if ($user_answer == $correct_answer){
+            // user got correct answer, display user answer in green
+            echo "<img src='$image_address' style='max-height:250px;width:auto;'><br>";
+            echo "<h4>Q$i: $question</h4>";
+            echo "<div class='correct_answer'>Your answer: $user_answer</div>";
+            echo "<div class='answer'>Correct answer: $correct_answer</div><br>";
+        }
+        else if ($user_answer != $correct_answer){
+            // user got incorrect answer, display user answer in red
+            echo "<img src='$image_address' style='max-height:250px;width:auto;'><br>";
+            echo "<h4>Q$i: $question</h4>";
+            echo "<div class='incorrect_answer'>Your answer: $user_answer</div>";
+            echo "<div class='answer'>Correct answer: $correct_answer</div><br>";
+        }
+    }
+}
+
 function getIdFromQuizABCD($abcd_string){
     if ($abcd_string == "A")
         return 1;
@@ -230,6 +302,21 @@ function resetUserQuizAnswers($quiz_topic, $num_questions){
         a:visited, a:link, a:active {
             text-decoration: none;
         }
+        .question{
+            font-weight: bold;
+        }
+        .correct_answer{
+            color: green;
+            font-weight: normal;
+        }
+        .incorrect_answer{
+            color: red;
+            font-weight: normal;
+        }
+        .answer{
+            color: green;
+            font-weight: bold;
+        }
     </style>
     <body>
     <div id="quiz_content">
@@ -248,7 +335,7 @@ function resetUserQuizAnswers($quiz_topic, $num_questions){
         $num_questions = getNumQuestionsForThisQuiz($quiz_topic);
         $num_questions_to_show = getNumQuestionsToShow();
         if ($num_questions_to_show > $num_questions){
-            echo "<h4 style='color:red'>Error: Quiz has $num_questions questions which is under the minimum of $num_questions_to_show!</h4>";
+            echo "<h4 style='color:red'>Error: Quiz has $num_questions question(s) which is under the minimum of $num_questions_to_show!</h4>";
             exit();
         }
         $question_session_ID = $quiz_topic . "Q" . $current_page;
@@ -302,6 +389,9 @@ function resetUserQuizAnswers($quiz_topic, $num_questions){
             echo "<h4>You got $num_correct out of $num_questions_to_show questions correct!</h4>";
             echo "<img id='congratsi' style='width:200px; height:200px;' src='Images/about_images/thumbsup.jpg'><br><br>";
             echo "<a href='./display_quiz.php?topic=$quiz_topic&page=1&reset_quiz=true'>Reset Quiz</a></div>";
+            
+            // printout the entire quiz questions and answers
+            printoutQuizResults($quiz_topic, $num_questions_to_show);
             exit();
         }
 
@@ -333,7 +423,7 @@ function resetUserQuizAnswers($quiz_topic, $num_questions){
         $d_checked = ($_SESSION[$question_session_ID]=='D') ? 'checked' : '';
         echo "
         <p><img id='q_image' src='$image_address' style='max-height:250px;width:auto;'></p>
-        <p id='question'>Q$current_page. $question</p>
+        <p class='question'>Q$current_page. $question</p>
         <form>
         <input type ='radio' name='choices' id='choice_1' value='A' $a_checked>
         <label for='choice_1' id='choice_1_label'>$answers[0]</label>
