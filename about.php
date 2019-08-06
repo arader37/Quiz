@@ -92,14 +92,14 @@ var s1 = new Student(
       "https://www.linkedin.com/in/david-jaqua-98b9a0156/",
       "David Jaqua",
       "Images/about_images/david.png",
-      "David is currently a senoir at MetroState University completing his last course to gradudate with a BS in Computer Science. He's working full-time at Target Headquarters as a software Engineer. He lives in Forest Lake MN with his mother and sister."
+      "David is currently a senior at Metro State University completing his last course to graduate with a BS in Computer Science. He's working full-time at Target Headquarters as a software Engineer. He lives in Forest Lake MN with his mother and sister."
       );
 
       var s3 = new Student(
       "https://www.linkedin.com/in/sip-xayaxang-746430179/",
       "Sip Xayaxang",
       "Images/about_images/sip.png",
-      "Sip is a senoir at Metrostate University. He has one more semester to complete BS degree in Computer Information Technology. He is working fulltime at District 916 schools as a Database Administrator. He lives in Saint Paul with his wife and three kids."
+      "Sip is a senior at Metro State University. He has one more semester to complete BS degree in Computer Information Technology. He is working fulltime at District 916 schools as a Database Administrator. He lives in Saint Paul with his wife and three kids."
       );
 
       var s4 = new Student(

@@ -23,6 +23,19 @@ $GLOBALS['topic'] = mysqli_query($db, $query);
         text-align: center;
         color: darkgoldenrod;
     }
+    thead input {
+        width: 100%;
+    }
+    .thumbnailSize{
+        height: 100px;
+        width: 100px;
+        transition:transform 0.25s ease;
+    }
+    .thumbnailSize:hover {
+        -webkit-transform:scale(3.5);
+        transform:scale(3.5);
+    }
+
 
 </style>
 <!-- Page Content -->
@@ -126,7 +139,7 @@ $GLOBALS['topic'] = mysqli_query($db, $query);
         src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
 
 
-<script type="text/javascript" language="javascript">
+        <script type="text/javascript" language="javascript">
     $(document).ready( function () {
         
         $('#ceremoniesTable').DataTable( {
@@ -134,8 +147,33 @@ $GLOBALS['topic'] = mysqli_query($db, $query);
             buttons: [
                 'copy', 'excel', 'csv', 'pdf'
             ] }
+            
+            
         );
+
+        $('#ceremoniesTable thead tr').clone(true).appendTo( '#ceremoniesTable thead' );
+        $('#ceremoniesTable thead tr:eq(1) th').each( function (i) {
+            var title = $(this).text();
+            $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+    
+            $( 'input', this ).on( 'keyup change', function () {
+                if ( table.column(i).search() !== this.value ) {
+                    table
+                        .column(i)
+                        .search( this.value )
+                        .draw();
+                }
+            } );
+        } );
+    
+        var table = $('#ceremoniesTable').DataTable( {
+            orderCellsTop: true,
+            fixedHeader: true,
+            retrieve: true
+        } );
+        
     } );
+
 </script>
 </body>
 </html>

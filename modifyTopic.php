@@ -1,6 +1,9 @@
 
 <?php $page_title = 'Quiz Master > Modify Topic'; ?>
-<?php include('header.php'); 
+<?php 
+    require 'bin/functions.php';
+    require 'db_configuration.php';
+    include('header.php'); 
     $page="questions_list.php";
     verifyLogin($page);
 
