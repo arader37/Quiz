@@ -47,7 +47,7 @@ function verifyLogin($page){
     return;          
   } else{
     echo '<script>window.location.href = "loginForm.php";</script>';
-    // header('Location: loginForm.php'); // old version, does not work since headers already set
+    // header('Location: loginForm.php'); // old version does not work since headers already set
     exit();
   }
 }
