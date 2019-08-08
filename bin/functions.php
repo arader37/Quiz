@@ -44,10 +44,10 @@ var divElement = document.getElementById(id);
 <?php
 function verifyLogin($page){
   if(isset($_SESSION['role'])) {
-         return;          
-  }
-  else{
-    header('Location: loginForm.php');
+    return;          
+  } else{
+    echo '<script>window.location.href = "loginForm.php";</script>';
+    // header('Location: loginForm.php'); // old version, does not work since headers already set
     exit();
   }
 }

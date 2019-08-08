@@ -11,5 +11,5 @@ In .\sql\ folder:
 - users.sql
 
 Default ADMIN:
-- user:admin@ics.com
+- user:admin@test.com
 - pass: 12345

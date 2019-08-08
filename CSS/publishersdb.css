@@ -16,7 +16,6 @@
   max-width: 100%;
 }
 
-
 body {
   padding-top: 54px;
 }
@@ -60,10 +59,11 @@ body {
 }
 
 img{
-        height: 100px;
-	width: 100px;
-    	transition:transform 0.25s ease;
+  /* height: 100px;
+  width: 100px; */
+  transition:transform 0.25s ease;
 }
+
 .thumbnailSize:hover {
 	-webkit-transform:scale(3.5);
         transform:scale(3.5);
