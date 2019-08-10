@@ -78,7 +78,7 @@ $GLOBALS['image_name'] = mysqli_query($db, $query);
                     while($row = $topic->fetch_assoc()) {
 
                         echo    '<tr>
-                                    <td>'.$row["id"].' </td>            
+                                    <td>'.$row["order"].' </td>            
                                     <td>'.$row["topic"].' </span> </td>
                                     <td>'.$row["image_name"].'</td>
                                     <td><a class="btn btn-warning btn-sm" href="modifyTopic.php?topic='.$row["topic"].'">Modify</a></td>                                  

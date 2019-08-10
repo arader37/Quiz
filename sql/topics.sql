@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 31, 2019 at 08:10 PM
--- Server version: 10.1.39-MariaDB
--- PHP Version: 7.1.29
+-- Generation Time: Aug 10, 2019 at 02:32 AM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.3.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -29,27 +29,31 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `topics` (
+  `order` int(50) NOT NULL,
   `topic` varchar(50) NOT NULL,
-  `image_name` varchar(50) NOT NULL,
-  `order` int(50) NOT NULL
+  `image_name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `topics`
 --
 
-INSERT INTO `topics` (`topic`, `image_name`, `order`) VALUES
-('Dances', 'dances.jpg', 1),
-('Dresses', 'dresses_and_costumes.png', 2),
-('Embroidery', 'embroidery.png', 3),
-('Festivals', 'festivals.png', 4),
-('Foods', 'foods.png', 5),
-('Instruments', 'musical_instruments.png', 6),
-('Leaders', 'leaders_and_scientists.png', 7),
-('Monuments', 'places_and_monuments.png', 8),
-('Movies', 'movies.png', 9),
-('NRIs', 'NRI_s.jpg', 10),
-('Sports', 'sports.png', 11);
+INSERT INTO `topics` (`order`, `topic`, `image_name`) VALUES
+(0, 'PHP-Arrays', 'phparray1.png'),
+(1, 'Dances', 'dances.jpg'),
+(2, 'Dresses', 'dresses_and_costumes.png'),
+(3, 'Embroidery', 'embroidery.png'),
+(4, 'Festivals', 'festivals.png'),
+(5, 'Foods', 'foods.png'),
+(6, 'Intruments', 'musical_instruments.png'),
+(7, 'Leaders', 'leaders_and_scientists.png'),
+(8, 'Monuments', 'places_and_monuments.png'),
+(9, 'Movies', 'movies.png'),
+(10, 'NRIs', 'NRI_s.jpg'),
+(11, 'Sports', 'sports.png'),
+(12, 'Movies', 'movies.png'),
+(13, 'NRIs', 'NRI_s.jpg'),
+(14, 'Sports', 'sports.png');
 
 --
 -- Indexes for dumped tables

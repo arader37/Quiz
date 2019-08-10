@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 31, 2019 at 08:10 PM
--- Server version: 10.1.39-MariaDB
--- PHP Version: 7.1.29
+-- Generation Time: Aug 10, 2019 at 02:34 AM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.3.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -31,7 +31,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `questions` (
   `id` int(11) NOT NULL,
   `topic` varchar(50) NOT NULL,
-  `question` varchar(50) NOT NULL,
+  `question` varchar(100) NOT NULL,
   `choice_1` varchar(50) NOT NULL,
   `choice_2` varchar(50) NOT NULL,
   `choice_3` varchar(50) NOT NULL,
@@ -254,7 +254,13 @@ INSERT INTO `questions` (`id`, `topic`, `question`, `choice_1`, `choice_2`, `cho
 (207, 'Sports', 'Who was the first woman to win gold in wrestling i', 'Vinesh Phogat', 'Saina Nehwal', 'Geeta Phogat', 'Heena Sidhu', 'Geeta Phogat', 'images/sports/Question17_sports.jpg'),
 (208, 'Sports', 'How many gold medals did India win at the 2010 com', '23', '45', '24', '38', '38', 'images/sports/Question18_sports.png'),
 (209, 'Sports', 'When was the first time India competed in the comm', '1934', '1946', '1988', '1892', '1934', 'images/sports/Question19_sports.jpg'),
-(210, 'Sports', 'What is Kho Kho?', 'It is a type of ice cream that includes chocolate ', 'It is a game similar to tag and a traditional game', 'It is a version of laser tag but better.', 'It is twister with an Indian twist involving 12 pl', 'It is a game similar to tag and a traditional game', 'images/sports/Question20_sports.jpg');
+(210, 'Sports', 'What is Kho Kho?', 'It is a type of ice cream that includes chocolate ', 'It is a game similar to tag and a traditional game', 'It is a version of laser tag but better.', 'It is twister with an Indian twist involving 12 pl', 'It is a game similar to tag and a traditional game', 'images/sports/Question20_sports.jpg'),
+(212, 'Dances', 'does this work?', 'Yes', 'No', 'Maybe ', 'All of the about', 'Yes', 'Images/Dances/assam.JPG'),
+(213, 'PHP-Arrays', 'How would display an entire array ($a) in a human readable form?', 'echo \"$a\";', 'print_r ($a);', 'echo $a;', 'None of the above', 'print_r ($a);', 'Images/PHP-Arrays/phparray4.png'),
+(214, 'PHP-Arrays', 'Which of the following will add an element to an array?', 'array_push();', 'array_shift();', 'array_reverse();', 'array_pop();', 'array_push();', 'Images/PHP-Arrays/phparray3.png'),
+(215, 'PHP-Arrays', 'Which of the following is a type of a PHP array?', 'Index Array', 'Associative Array', 'Multidimesional Arrays', 'All of the above', 'All of the above', 'Images/PHP-Arrays/phparray2.png'),
+(216, 'PHP-Arrays', 'PHP\'s numerically indexed array begins with position __.', '2', '0', '1', '-1', '0', 'Images/PHP-Arrays/phparray6.png'),
+(217, 'PHP-Arrays', 'Which function will return true if a variable is an array or false if it is not?', 'this_array();', 'do_array();', 'in_array();', 'is_array();', 'is_array();', 'Images/PHP-Arrays/phparray5.png');
 
 --
 -- Indexes for dumped tables
@@ -275,7 +281,7 @@ ALTER TABLE `questions`
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=213;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=218;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
