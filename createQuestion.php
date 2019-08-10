@@ -54,7 +54,7 @@
             </tr>
             <tr>
                 <td style="width:100px">Question:</td>
-                <td><input type="text"  name="question" maxlength="50" size="50" required title="Please enter a question."></td>
+                <td><input type="text"  name="question" maxlength="100" size="50" required title="Please enter a question."></td>
             </tr>
             <tr>
                 <td style="width:100px">Choice 1:</td>
