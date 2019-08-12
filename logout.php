@@ -1,5 +1,5 @@
 <?php
-include('header.php');
+session_start();
 /* Log out process, unsets and destroys session variables */
 // echo "session_status(): " . session_status();
 $was_logged_in = false;
