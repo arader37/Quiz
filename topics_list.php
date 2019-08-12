@@ -95,11 +95,7 @@ $GLOBALS['image_name'] = mysqli_query($db, $query);
     <p>Created for ICS 325 Summer Project "Team Alligators"</p>
 </footer>
 
-<!-- Bootstrap core JavaScript -->
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-<!--jQuery-->
+<!--JQuery-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <!--Data Table-->

@@ -14,16 +14,12 @@ $GLOBALS['choice_3'] = mysqli_query($db, $query);
 $GLOBALS['choice_4'] = mysqli_query($db, $query);
 $GLOBALS['answer'] = mysqli_query($db, $query);
 $GLOBALS['image_name'] = mysqli_query($db, $query);
-
-
-
 ?>
 
 <?php $page_title = 'Quiz Master > Questions'; ?>
 <?php include('header.php'); 
     $page="questions_list.php";
     verifyLogin($page);
-
 ?>
 
 <style>
@@ -43,37 +39,35 @@ $GLOBALS['image_name'] = mysqli_query($db, $query);
         -webkit-transform:scale(3.5);
         transform:scale(3.5);
     }
-
 </style>
 
 <!-- Page Content -->
 <br><br>
 <div class="container-fluid">
     <?php
-            if(isset($_GET['createQuestion'])){
-                if($_GET["createQuestion"] == "Success"){
-                    echo '<br><h3>Success! Your question has been added!</h3>';
-                }
+        if(isset($_GET['createQuestion'])){
+            if($_GET["createQuestion"] == "Success"){
+                echo '<br><h3>Success! Your question has been added!</h3>';
             }
+        }
 
-            if(isset($_GET['questionUpdated'])){
-                if($_GET["questionUpdated"] == "Success"){
-                    echo '<br><h3>Success! Your question has been modified!</h3>';
-                }
+        if(isset($_GET['questionUpdated'])){
+            if($_GET["questionUpdated"] == "Success"){
+                echo '<br><h3>Success! Your question has been modified!</h3>';
             }
+        }
 
-            if(isset($_GET['questionDeleted'])){
-                if($_GET["questionDeleted"] == "Success"){
-                    echo '<br><h3>Success! Your question has been deleted!</h3>';
-                }
+        if(isset($_GET['questionDeleted'])){
+            if($_GET["questionDeleted"] == "Success"){
+                echo '<br><h3>Success! Your question has been deleted!</h3>';
             }
+        }
 
-            if(isset($_GET['createTopic'])){
-                if($_GET["createTopic"] == "Success"){
-                    echo '<br><h3>Success! Your topic has been added!</h3>';
-                }
+        if(isset($_GET['createTopic'])){
+            if($_GET["createTopic"] == "Success"){
+                echo '<br><h3>Success! Your topic has been added!</h3>';
             }
-
+        }
     ?>
    
     <h2 id="title">Question List</h2><br>
@@ -123,7 +117,6 @@ $GLOBALS['image_name'] = mysqli_query($db, $query);
                 }//end else
                 ?>
                 </tbody>
-                
             </div>
         </table>
     </div>
@@ -131,16 +124,11 @@ $GLOBALS['image_name'] = mysqli_query($db, $query);
 
 <!-- /.container -->
 <!-- Footer -->
-    <footer class="page-footer text-center">
-        <p>Created for ICS 325 Summer Project "Team Alligators"</p>
-    </footer>
+<footer class="page-footer text-center">
+    <p>Created for ICS 325 Summer Project "Team Alligators"</p>
+</footer>
 
-
-<!-- Bootstrap core JavaScript -->
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-
+<!--JQuery-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
 
 <!--Data Table-->
@@ -167,7 +155,6 @@ $GLOBALS['image_name'] = mysqli_query($db, $query);
 <script type="text/javascript" charset="utf8"
         src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
 
-
 <script type="text/javascript" language="javascript">
     $(document).ready( function () {
         
@@ -176,8 +163,6 @@ $GLOBALS['image_name'] = mysqli_query($db, $query);
             buttons: [
                 'copy', 'excel', 'csv', 'pdf'
             ] }
-            
-            
         );
 
         $('#ceremoniesTable thead tr').clone(true).appendTo( '#ceremoniesTable thead' );
