@@ -3,15 +3,11 @@
 require 'bin/functions.php';
 require 'db_configuration.php';
 
-
 $query = "SELECT * FROM topics";
 
 $GLOBALS['id'] = mysqli_query($db, $query);
 $GLOBALS['topic'] = mysqli_query($db, $query);
 $GLOBALS['image_name'] = mysqli_query($db, $query);
-
-
-
 ?>
 
 <?php $page_title = 'Topic List'; ?>
@@ -21,37 +17,35 @@ $GLOBALS['image_name'] = mysqli_query($db, $query);
 <br><br>
 <div class="container-fluid">
     <?php
-            if(isset($_GET['createQuestion'])){
-                if($_GET["createQuestion"] == "Success"){
-                    echo '<br><h3>Success! Your question has been added!</h3>';
-                }
+        if(isset($_GET['createQuestion'])){
+            if($_GET["createQuestion"] == "Success"){
+                echo '<br><h3>Success! Your question has been added!</h3>';
             }
+        }
 
-            if(isset($_GET['questionUpdated'])){
-                if($_GET["questionUpdated"] == "Success"){
-                    echo '<br><h3>Success! Your question has been modified!</h3>';
-                }
+        if(isset($_GET['questionUpdated'])){
+            if($_GET["questionUpdated"] == "Success"){
+                echo '<br><h3>Success! Your question has been modified!</h3>';
             }
+        }
 
-            if(isset($_GET['questionDeleted'])){
-                if($_GET["questionDeleted"] == "Success"){
-                    echo '<br><h3>Success! Your question has been deleted!</h3>';
-                }
+        if(isset($_GET['questionDeleted'])){
+            if($_GET["questionDeleted"] == "Success"){
+                echo '<br><h3>Success! Your question has been deleted!</h3>';
             }
+        }
 
-            if(isset($_GET['createTopic'])){
-                if($_GET["createTopic"] == "Success"){
-                    echo '<br><h3>Success! Your topic has been added!</h3>';
-                }
+        if(isset($_GET['createTopic'])){
+            if($_GET["createTopic"] == "Success"){
+                echo '<br><h3>Success! Your topic has been added!</h3>';
             }
-
+        }
     ?>
     <!-- Page Heading -->
     <h1 class="my-4">
         <?php
         //Display Admin view if an admin is logged in.
         //This gives full access to all CRUD functions
-        
         ?>
     </h1>
     
@@ -76,14 +70,13 @@ $GLOBALS['image_name'] = mysqli_query($db, $query);
                 if ($topic->num_rows > 0) {
                     // output data of each row
                     while($row = $topic->fetch_assoc()) {
-
-                        echo    '<tr>
-                                    <td>'.$row["order"].' </td>            
-                                    <td>'.$row["topic"].' </span> </td>
-                                    <td>'.$row["image_name"].'</td>
-                                    <td><a class="btn btn-warning btn-sm" href="modifyTopic.php?topic='.$row["topic"].'">Modify</a></td>                                  
-                                    <td><a class="btn btn-danger btn-sm" href="deleteTopic.php?topic='.$row["topic"].'">Delete</a></td> 
-                                </tr>';
+                        echo '<tr>
+                                <td>'.$row["order"].' </td>            
+                                <td>'.$row["topic"].' </span> </td>
+                                <td>'.$row["image_name"].'</td>
+                                <td><a class="btn btn-warning btn-sm" href="modifyTopic.php?topic='.$row["topic"].'">Modify</a></td>                                  
+                                <td><a class="btn btn-danger btn-sm" href="deleteTopic.php?topic='.$row["topic"].'">Delete</a></td> 
+                            </tr>';
                     }//end while
                 }//end if
                 else {
@@ -98,10 +91,9 @@ $GLOBALS['image_name'] = mysqli_query($db, $query);
 
 <!-- /.container -->
 <!-- Footer -->
-    <footer class="page-footer text-center">
-        <p>Created for ICS 325 Summer Project "Team Alligators"</p>
-    </footer>
-
+<footer class="page-footer text-center">
+    <p>Created for ICS 325 Summer Project "Team Alligators"</p>
+</footer>
 
 <!-- Bootstrap core JavaScript -->
 <script src="vendor/jquery/jquery.min.js"></script>

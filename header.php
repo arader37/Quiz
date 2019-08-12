@@ -23,16 +23,15 @@ if(!isset($page_title)) { $page_title = 'Quiz Master'; }
 </head>
 <body onload="displayAdminFields('admin1')">
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg ">
+<nav class="navbar navbar-expand-lg">
     
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            
             <a href="index.php" title="SILC Quiz Master"><img id="silc" src="Images/index_images/silc_home.jpg"></a> 
-                                    
+            
             <!-- Login / Logout Nav menu item
                Checks if there is a valid session and if so displays "logout"
                If there isn's a valid session display login. -->
@@ -45,38 +44,38 @@ if(!isset($page_title)) { $page_title = 'Quiz Master'; }
         </form>-->
         <ul class="navbar-nav mr-right">
         <li class="nav-item">
-                <?php
-                    if (isset($_SESSION['role'])){
-                        include('header_admin.php'); }
-                    /*
-                    echo '<li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      List
-                    </a>
-  
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="nav-link" id="header" href="topics_list.php">Topics<span class="sr-only">(current)</span></a>
-                      <a class="nav-link" id="header" href="questions_list.php">Questions<span class="sr-only">(current)</span></a>
+            <?php
+                if (isset($_SESSION['role'])){
+                    include('header_admin.php'); }
+                /*
+                echo '<li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    List
+                </a>
 
-                  </li>';
-                  
-                    //echo '<li class="nav-item active"><a class="nav-link" id="header" href="topics_list.php">Topics<span class="sr-only">(current)</span></a></li>';
-                    //echo '<li class="nav-item active"><a class="nav-link" id="header" href="questions_list.php">Questions<span class="sr-only">(current)</span></a></li>';
-                    echo '<li class="nav-item active"><a class="nav-link" id="header" href="preferences.php">Preferences<span class="sr-only">(current)</span></a></li>';
-                    echo '<li class="nav-item active"><a class="nav-link" id="header" href="about.php">About<span class="sr-only">(current)</span></a></li>';
-                    echo '<li class="nav-item active"><a class="nav-link" id="header" href="help.php">Help<span class="sr-only">(current)</span></a></li>';
-                    echo '<li class="nav-item active"><a class="nav-link" id="header" href="logout.php">Logout<span class="sr-only">(current)</span></a></li>';
-                }//end if 
-                */
-                else{
-                    include('header_user.php'); }
-                    /*
-                    echo '<li class="nav-item active"><a class="nav-link" id="header" href="about.php">About<span class="sr-only">(current)</span></a></li>';
-                    echo '<li class="nav-item active"><a class="nav-link" id="header" href="help.php">Help<span class="sr-only">(current)</span></a></li>';
-                    echo '<li class="nav-item active"><a class="nav-link" id="header" href="loginForm.php">Login<span class="sr-only">(current)</span></a></li>';
-                }//end else
-                */    
-                ?>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="nav-link" id="header" href="topics_list.php">Topics<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" id="header" href="questions_list.php">Questions<span class="sr-only">(current)</span></a>
+
+                </li>';
+                
+                //echo '<li class="nav-item active"><a class="nav-link" id="header" href="topics_list.php">Topics<span class="sr-only">(current)</span></a></li>';
+                //echo '<li class="nav-item active"><a class="nav-link" id="header" href="questions_list.php">Questions<span class="sr-only">(current)</span></a></li>';
+                echo '<li class="nav-item active"><a class="nav-link" id="header" href="preferences.php">Preferences<span class="sr-only">(current)</span></a></li>';
+                echo '<li class="nav-item active"><a class="nav-link" id="header" href="about.php">About<span class="sr-only">(current)</span></a></li>';
+                echo '<li class="nav-item active"><a class="nav-link" id="header" href="help.php">Help<span class="sr-only">(current)</span></a></li>';
+                echo '<li class="nav-item active"><a class="nav-link" id="header" href="logout.php">Logout<span class="sr-only">(current)</span></a></li>';
+            }//end if 
+            */
+            else{
+                include('header_user.php'); }
+                /*
+                echo '<li class="nav-item active"><a class="nav-link" id="header" href="about.php">About<span class="sr-only">(current)</span></a></li>';
+                echo '<li class="nav-item active"><a class="nav-link" id="header" href="help.php">Help<span class="sr-only">(current)</span></a></li>';
+                echo '<li class="nav-item active"><a class="nav-link" id="header" href="loginForm.php">Login<span class="sr-only">(current)</span></a></li>';
+            }//end else
+            */
+            ?>
         </li>
         </ul>
     </div>
