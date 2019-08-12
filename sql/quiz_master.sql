@@ -28,6 +28,8 @@ SET time_zone = "+00:00";
 -- Table structure for table `preferences`
 --
 
+DROP TABLE `preferences`;
+
 CREATE TABLE `preferences` (
   `id` int(11) NOT NULL,
   `name` varchar(60) NOT NULL,
@@ -41,13 +43,15 @@ CREATE TABLE `preferences` (
 
 INSERT INTO `preferences` (`id`, `name`, `value`, `comments`) VALUES
 (1, 'NO_OF_TOPICS_PER_ROW', 5, 'This is the number of topics, per row, on home page'),
-(2, 'NO_OF_QUESTIONS_TO_SHOW', 35, 'The number of Question per quiz');
+(2, 'NO_OF_QUESTIONS_TO_SHOW', 20, 'The number of Question per quiz');
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `questions`
 --
+
+DROP TABLE `questions`;
 
 CREATE TABLE `questions` (
   `id` int(11) NOT NULL,
@@ -235,14 +239,14 @@ INSERT INTO `questions` (`id`, `topic`, `question`, `choice_1`, `choice_2`, `cho
 (167, 'movies', 'Who is this actress?', 'Anushka Sharma', 'Phulkari Dupatta', 'Aishwariya Rai Bachchan', 'Malika arora', 'Aishwariya Rai Bachchan', 'images/movies/aish.jpg'),
 (168, 'movies', 'What is Tabu\'s real name?', 'Tabassum Fatima Hashmi', 'Taslim Khan', 'Tabakul', 'Tabiman Merchant', 'Tabassum Fatima Hashmi', 'images/movies/tabu.jpg'),
 (169, 'movies', 'Who was the actor in Detective Byomkesh Bakshy?', 'Salman Khan', 'Sushant Singh Rajput', 'Neeraj Gopal', 'Aanand Singh', 'Sushant Singh Rajput', 'images/movies/bb.jpg'),
-(170, 'NRIs', 'Who are the lead actresses in Dil to Pagal Hai?', 'Madhuri Kapoor and Karishma Dixit', 'Mahima Rajput and Alia Sharma', 'Madhri Dixit and Karishma Kapoor', 'Karishma Sharma and Purvi', 'Madhri Dixit and Karishma Kapoor', 'images/nris/dtph.jpg'),
-(171, 'NRIs', 'What does the term NRI stand for?', 'Not a Real Indian', 'Non Residential Indian', 'Non Resident Indian', 'Never a Real Indian', 'Non Residential Indian', 'images/nris/imageq1.jpg'),
-(172, 'NRIs', 'How long does a person have to live outside of Ind', '200 days', '150 days', '182 days', '250 days', '182 days', 'images/nris/imageq2.jpg'),
-(173, 'NRIs', 'Which one of these four is an NRI?', 'Amitab Bachan', 'Sundar Pichai', 'Sachin Tendulkar', 'Virat Kholi', 'Sundar Pichai', 'images/nris/imageq3.jpg'),
-(174, 'NRIs', 'About how much money is sent by NRI\'s to India eac', '$40 billion', '$120 billion', '$70 billion', '$10 billion', '$70 billion', 'images/nris/imageq4.jpg'),
-(175, 'NRIs', 'Which of the following countries has the highest N', 'Canada', 'United States', 'Australia', 'South Africa', 'United States', 'images/nris/imageq5.jpg'),
-(176, 'NRIs', 'What percent of India\'s GDP to NRI\'s make up for?', '40%%', '33%', '21%', '13%', '33%', 'images/nris/imageq6.jpg'),
-(177, 'NRIs', 'Who was the first female astronaut of Indian origi', 'Rakesh Sharma', 'Kalpana Chawla', 'Sunita Williams', 'Ravish Malhotra', 'Kalpana Chawla', 'images/nris/imageq7.jpg'),
+(170, 'NRIs', 'Who are the lead actresses in Dil to Pagal Hai?', 'Madhuri Kapoor and Karishma Dixit', 'Mahima Rajput and Alia Sharma', 'Madhri Dixit and Karishma Kapoor', 'Karishma Sharma and Purvi', 'Madhri Dixit and Karishma Kapoor', 'images/nris/imageq1.jpg'),
+(171, 'NRIs', 'What does the term NRI stand for?', 'Not a Real Indian', 'Non Residential Indian', 'Non Resident Indian', 'Never a Real Indian', 'Non Residential Indian', 'images/nris/imageq2.jpg'),
+(172, 'NRIs', 'How long does a person have to live outside of Ind', '200 days', '150 days', '182 days', '250 days', '182 days', 'images/nris/imageq3.jpg'),
+(173, 'NRIs', 'Which one of these four is an NRI?', 'Amitab Bachan', 'Sundar Pichai', 'Sachin Tendulkar', 'Virat Kholi', 'Sundar Pichai', 'images/nris/imageq4.jpg'),
+(174, 'NRIs', 'About how much money is sent by NRI\'s to India eac', '$40 billion', '$120 billion', '$70 billion', '$10 billion', '$70 billion', 'images/nris/imageq5.jpg'),
+(175, 'NRIs', 'Which of the following countries has the highest N', 'Canada', 'United States', 'Australia', 'South Africa', 'United States', 'images/nris/imageq6.jpg'),
+(176, 'NRIs', 'What percent of India\'s GDP to NRI\'s make up for?', '40%%', '33%', '21%', '13%', '33%', 'images/nris/imageq7.jpg'),
+(177, 'NRIs', 'Who was the first female astronaut of Indian origi', 'Rakesh Sharma', 'Kalpana Chawla', 'Sunita Williams', 'Ravish Malhotra', 'Kalpana Chawla', 'images/nris/imageq8.jpg'),
 (178, 'NRIs', 'Which NRI was named under the 400 richest people i', 'Vinod Khosla', 'Amartya Sen', 'Rohinton Mistry', 'Pan Nalin', 'Vinod Khosla', 'images/nris/imageq9.jpg'),
 (179, 'NRIs', 'Who was the first NRI to win a Nobel Prize in Chem', 'Pan Nalin', 'Amartya Sen', 'Venkatraman Ramakrishnan', 'Mira Nair', 'Venkatraman Ramakrishnan', 'images/nris/imageq10.jpg'),
 (180, 'NRIs', 'Which NRI is the CEO of Google?', 'Mukesh Ambani', 'Sundar Pichai', 'Natrajan Chandrashekar', 'Anil Kumar Jah', 'Sundar Pichai', 'images/nris/imageq123.jpg'),
@@ -283,6 +287,8 @@ INSERT INTO `questions` (`id`, `topic`, `question`, `choice_1`, `choice_2`, `cho
 -- Table structure for table `topics`
 --
 
+DROP TABLE `topics`;
+
 CREATE TABLE `topics` (
   `topic` varchar(50) NOT NULL,
   `image_name` varchar(50) NOT NULL,
@@ -311,6 +317,8 @@ INSERT INTO `topics` (`topic`, `image_name`, `order`) VALUES
 --
 -- Table structure for table `users`
 --
+
+DROP TABLE `users`;
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
