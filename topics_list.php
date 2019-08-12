@@ -13,6 +13,25 @@ $GLOBALS['image_name'] = mysqli_query($db, $query);
 <?php $page_title = 'Topic List'; ?>
 <?php include('header.php'); ?>
 
+<style>
+    #title {
+        text-align: center;
+        color: darkgoldenrod;
+    }
+    thead input {
+        width: 100%;
+    }
+    .thumbnailSize{
+        height: 100px;
+        width: 100px;
+        transition:transform 0.25s ease;
+    }
+    .thumbnailSize:hover {
+        -webkit-transform:scale(3.5);
+        transform:scale(3.5);
+    }
+</style>
+
 <!-- Page Content -->
 <br><br>
 <div class="container-fluid">
@@ -73,7 +92,7 @@ $GLOBALS['image_name'] = mysqli_query($db, $query);
                         echo '<tr>
                                 <td>'.$row["order"].' </td>            
                                 <td>'.$row["topic"].' </span> </td>
-                                <td>'.$row["image_name"].'</td>
+                                <td><img class="thumbnailSize" src="'.'Images/index_images/'.$row["image_name"].'" alt="'.$row["image_name"].'"></td>
                                 <td><a class="btn btn-warning btn-sm" href="modifyTopic.php?topic='.$row["topic"].'">Modify</a></td>                                  
                                 <td><a class="btn btn-danger btn-sm" href="deleteTopic.php?topic='.$row["topic"].'">Delete</a></td> 
                             </tr>';

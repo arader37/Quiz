@@ -96,20 +96,19 @@ $GLOBALS['image_name'] = mysqli_query($db, $query);
                 if ($id->num_rows > 0) {
                     // output data of each row
                     while($row = $id->fetch_assoc()) {
-
-                        echo    '<tr>
-                                    <td>'.$row["id"].'</td>
-                                    <td>'.$row["topic"].' </span> </td>
-                                    <td>'.$row["question"].'</td>
-                                    <td>'.$row["choice_1"].'</td>
-                                    <td>'.$row["choice_2"].' </span> </td>
-                                    <td>'.$row["choice_3"].'</td>
-                                    <td>'.$row["choice_4"].'</td>
-                                    <td>'.$row["answer"].' </span> </td>
-                                    <td><img class="thumbnailSize" src="'.$row["image_name"].'" alt="'.$row["image_name"].'"</td>
-                                    <td><a class="btn btn-warning btn-sm" href="modifyQuestion.php?id='.$row["id"].'">Modify</a></td>                                  
-                                    <td><a class="btn btn-danger btn-sm" href="deleteQuestion.php?id='.$row["id"].'">Delete</a></td> 
-                                </tr>';
+                        echo '<tr>
+                                <td>'.$row["id"].'</td>
+                                <td>'.$row["topic"].' </span> </td>
+                                <td>'.$row["question"].'</td>
+                                <td>'.$row["choice_1"].'</td>
+                                <td>'.$row["choice_2"].' </span> </td>
+                                <td>'.$row["choice_3"].'</td>
+                                <td>'.$row["choice_4"].'</td>
+                                <td>'.$row["answer"].' </span> </td>
+                                <td><img class="thumbnailSize" src="' .$row["image_name"]. '" alt="'.$row["image_name"].'"></td>
+                                <td><a class="btn btn-warning btn-sm" href="modifyQuestion.php?id='.$row["id"].'">Modify</a></td>
+                                <td><a class="btn btn-danger btn-sm" href="deleteQuestion.php?id='.$row["id"].'">Delete</a></td>
+                            </tr>';
                     }//end while
                 }//end if
                 else {
