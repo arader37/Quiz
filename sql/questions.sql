@@ -256,11 +256,16 @@ INSERT INTO `questions` (`id`, `topic`, `question`, `choice_1`, `choice_2`, `cho
 (209, 'Sports', 'When was the first time India competed in the comm', '1934', '1946', '1988', '1892', '1934', 'images/sports/Question19_sports.jpg'),
 (210, 'Sports', 'What is Kho Kho?', 'It is a type of ice cream that includes chocolate ', 'It is a game similar to tag and a traditional game', 'It is a version of laser tag but better.', 'It is twister with an Indian twist involving 12 pl', 'It is a game similar to tag and a traditional game', 'images/sports/Question20_sports.jpg'),
 (212, 'Dances', 'does this work?', 'Yes', 'No', 'Maybe ', 'All of the about', 'Yes', 'Images/Dances/assam.JPG'),
-(213, 'PHP-Arrays', 'How would display an entire array ($a) in a human readable form?', 'echo \"$a\";', 'print_r ($a);', 'echo $a;', 'None of the above', 'print_r ($a);', 'Images/PHP-Arrays/phparray4.png'),
-(214, 'PHP-Arrays', 'Which of the following will add an element to an array?', 'array_push();', 'array_shift();', 'array_reverse();', 'array_pop();', 'array_push();', 'Images/PHP-Arrays/phparray3.png'),
-(215, 'PHP-Arrays', 'Which of the following is a type of a PHP array?', 'Index Array', 'Associative Array', 'Multidimesional Arrays', 'All of the above', 'All of the above', 'Images/PHP-Arrays/phparray2.png'),
-(216, 'PHP-Arrays', 'PHP\'s numerically indexed array begins with position __.', '2', '0', '1', '-1', '0', 'Images/PHP-Arrays/phparray6.png'),
-(217, 'PHP-Arrays', 'Which function will return true if a variable is an array or false if it is not?', 'this_array();', 'do_array();', 'in_array();', 'is_array();', 'is_array();', 'Images/PHP-Arrays/phparray5.png');
+(213, 'PHP', 'How would display an entire array ($a) in a human readable form?', 'echo \"$a\";', 'print_r ($a);', 'echo $a;', 'None of the above', 'print_r ($a);', 'Images/PHP/phparray4.png'),
+(214, 'PHP', 'Which of the following will add an element to an array?', 'array_push();', 'array_shift();', 'array_reverse();', 'array_pop();', 'array_push();', 'Images/PHP/phparray3.png'),
+(215, 'PHP', 'Which of the following is a type of a PHP array?', 'Index Array', 'Associative Array', 'Multidimesional Arrays', 'All of the above', 'All of the above', 'Images/PHP/phparray2.png'),
+(216, 'PHP', 'PHP''s numerically indexed array begins with position __.', '2', '0', '1', '-1', '0', 'Images/PHP/phparray6.png'),
+(217, 'PHP', 'Which function will return true if a variable is an array or false if it is not?', 'this_array();', 'do_array();', 'in_array();', 'is_array();', 'is_array();', 'Images/PHP/phparray5.png');
+(218, 'PHP', 'When a developer wishes to fetch the a get parameter value, which call do they use?', 'GET(''parameter'')', '$-GET[''parameter'']', '$_GET[''parameter'']', 'GET_PARAM[''parameter'']', '$_GET[''parameter'']', 'Images/PHP/phpsession1.png');
+(219, 'PHP', 'What is an HTTP Cookie?', 'A database stored on the users computer', 'A small piece of user specific data stored on the server', 'A small piece user specific stored on the users computer', 'A tasty treat from grandmas oven!', 'A small piece user specific stored on the users computer', 'Images/PHP/phpsession2.png');
+(220, 'PHP', 'Which of the following is true about cookies?', 'There is only one type of HTTP cookies', 'Cookies only last until the users browser is closed', 'Cookies are long term storage on the users computer', 'Cookies are temporary storage that eventually expire', 'Cookies are temporary storage that eventually expire', 'Images/PHP/phpsession3.png');
+(221, 'PHP', 'Which of the following is true about Sessions?', 'Sessions are stored on the server', 'Session ids are stored with cookies', 'Sessions have no size or data limits', 'All of the above', 'All of the above', 'Images/PHP/phpsession4.png');
+(222, 'PHP', 'What method is used to test whether a session value is set for a user?', 'is_set($_SESSION(''parameter''))', 'test(SESSION[''parameter''])', 'isset($_SESSION[''parameter''])', '$_SESSION[''parameter'']', 'isset($_SESSION[''parameter''])', 'Images/PHP/phpsession5.png');
 
 --
 -- Indexes for dumped tables
