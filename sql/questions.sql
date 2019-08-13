@@ -32,12 +32,12 @@ CREATE TABLE `questions` (
   `id` int(11) NOT NULL,
   `topic` varchar(50) NOT NULL,
   `question` varchar(100) NOT NULL,
-  `choice_1` varchar(50) NOT NULL,
-  `choice_2` varchar(50) NOT NULL,
-  `choice_3` varchar(50) NOT NULL,
-  `choice_4` varchar(50) NOT NULL,
-  `answer` varchar(50) NOT NULL,
-  `image_name` varchar(50) NOT NULL
+  `choice_1` varchar(75) NOT NULL,
+  `choice_2` varchar(75) NOT NULL,
+  `choice_3` varchar(75) NOT NULL,
+  `choice_4` varchar(75) NOT NULL,
+  `answer` varchar(75) NOT NULL,
+  `image_name` varchar(75) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -260,11 +260,11 @@ INSERT INTO `questions` (`id`, `topic`, `question`, `choice_1`, `choice_2`, `cho
 (214, 'PHP', 'Which of the following will add an element to an array?', 'array_push();', 'array_shift();', 'array_reverse();', 'array_pop();', 'array_push();', 'Images/PHP/phparray3.png'),
 (215, 'PHP', 'Which of the following is a type of a PHP array?', 'Index Array', 'Associative Array', 'Multidimesional Arrays', 'All of the above', 'All of the above', 'Images/PHP/phparray2.png'),
 (216, 'PHP', 'PHP''s numerically indexed array begins with position __.', '2', '0', '1', '-1', '0', 'Images/PHP/phparray6.png'),
-(217, 'PHP', 'Which function will return true if a variable is an array or false if it is not?', 'this_array();', 'do_array();', 'in_array();', 'is_array();', 'is_array();', 'Images/PHP/phparray5.png');
-(218, 'PHP', 'When a developer wishes to fetch the a get parameter value, which call do they use?', 'GET(''parameter'')', '$-GET[''parameter'']', '$_GET[''parameter'']', 'GET_PARAM[''parameter'']', '$_GET[''parameter'']', 'Images/PHP/phpsession1.png');
-(219, 'PHP', 'What is an HTTP Cookie?', 'A database stored on the users computer', 'A small piece of user specific data stored on the server', 'A small piece user specific stored on the users computer', 'A tasty treat from grandmas oven!', 'A small piece user specific stored on the users computer', 'Images/PHP/phpsession2.png');
-(220, 'PHP', 'Which of the following is true about cookies?', 'There is only one type of HTTP cookies', 'Cookies only last until the users browser is closed', 'Cookies are long term storage on the users computer', 'Cookies are temporary storage that eventually expire', 'Cookies are temporary storage that eventually expire', 'Images/PHP/phpsession3.png');
-(221, 'PHP', 'Which of the following is true about Sessions?', 'Sessions are stored on the server', 'Session ids are stored with cookies', 'Sessions have no size or data limits', 'All of the above', 'All of the above', 'Images/PHP/phpsession4.png');
+(217, 'PHP', 'Which function will return true if a variable is an array or false if it is not?', 'this_array();', 'do_array();', 'in_array();', 'is_array();', 'is_array();', 'Images/PHP/phparray5.png'),
+(218, 'PHP', 'When a developer wishes to fetch the a get parameter value, which call do they use?', 'GET(''parameter'')', '$-GET[''parameter'']', '$_GET[''parameter'']', 'GET_PARAM[''parameter'']', '$_GET[''parameter'']', 'Images/PHP/phpsession1.png'),
+(219, 'PHP', 'What is an HTTP Cookie?', 'A database stored on the users computer', 'A small piece of user specific data stored on the server', 'A small piece user specific stored on the users computer', 'A tasty treat from grandmas oven!', 'A small piece user specific stored on the users computer', 'Images/PHP/phpsession2.png'),
+(220, 'PHP', 'Which of the following is true about cookies?', 'There is only one type of HTTP cookies', 'Cookies only last until the users browser is closed', 'Cookies are long term storage on the users computer', 'Cookies are temporary storage that eventually expire', 'Cookies are temporary storage that eventually expire', 'Images/PHP/phpsession3.png'),
+(221, 'PHP', 'Which of the following is true about Sessions?', 'Sessions are stored on the server', 'Session ids are stored with cookies', 'Sessions have no size or data limits', 'All of the above', 'All of the above', 'Images/PHP/phpsession4.png'),
 (222, 'PHP', 'What method is used to test whether a session value is set for a user?', 'is_set($_SESSION(''parameter''))', 'test(SESSION[''parameter''])', 'isset($_SESSION[''parameter''])', '$_SESSION[''parameter'']', 'isset($_SESSION[''parameter''])', 'Images/PHP/phpsession5.png');
 
 --
