@@ -1,6 +1,6 @@
 <?php               
   echo '<li class="nav-item dropdown">
-  <a class="nav-link dropdown-toggle" href="topics_list.php" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <a class="nav-link dropdown-toggle" href="topics_list.php" id="header" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     List
   </a>
 

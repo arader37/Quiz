@@ -39,7 +39,7 @@ CREATE TABLE `topics` (
 --
 
 INSERT INTO `topics` (`order`, `topic`, `image_name`) VALUES
-(0, 'PHP-Arrays', 'phparray1.png'),
+(0, 'PHP', 'phparray1.png'),
 (1, 'Dances', 'dances.jpg'),
 (2, 'Dresses', 'dresses_and_costumes.png'),
 (3, 'Embroidery', 'embroidery.png'),
