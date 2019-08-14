@@ -27,7 +27,7 @@ if ($result->num_rows > 0) {
       
       <div>
         <label for="id">Id</label>
-        <input type="text" class="form-control" name="id" value="'.$row["id"].'"  maxlength="5" style=width:400px readonly><br>
+        <input type="text" class="form-control" name="id" value="'.$row["order"].'"  maxlength="5" style=width:400px readonly><br>
       </div>
       
       <div>
