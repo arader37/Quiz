@@ -50,10 +50,7 @@ INSERT INTO `topics` (`order`, `topic`, `image_name`) VALUES
 (8, 'Monuments', 'places_and_monuments.png'),
 (9, 'Movies', 'movies.png'),
 (10, 'NRIs', 'NRI_s.jpg'),
-(11, 'Sports', 'sports.png'),
-(12, 'Movies', 'movies.png'),
-(13, 'NRIs', 'NRI_s.jpg'),
-(14, 'Sports', 'sports.png');
+(11, 'Sports', 'sports.png');
 
 --
 -- Indexes for dumped tables

@@ -279,7 +279,23 @@ INSERT INTO `questions` (`id`, `topic`, `question`, `choice_1`, `choice_2`, `cho
 (207, 'Sports', 'Who was the first woman to win gold in wrestling i', 'Vinesh Phogat', 'Saina Nehwal', 'Geeta Phogat', 'Heena Sidhu', 'Geeta Phogat', 'images/sports/Question17_sports.jpg'),
 (208, 'Sports', 'How many gold medals did India win at the 2010 com', '23', '45', '24', '38', '38', 'images/sports/Question18_sports.png'),
 (209, 'Sports', 'When was the first time India competed in the comm', '1934', '1946', '1988', '1892', '1934', 'images/sports/Question19_sports.jpg'),
-(210, 'Sports', 'What is Kho Kho?', 'It is a type of ice cream that includes chocolate ', 'It is a game similar to tag and a traditional game', 'It is a version of laser tag but better.', 'It is twister with an Indian twist involving 12 pl', 'It is a game similar to tag and a traditional game', 'images/sports/Question20_sports.jpg');
+(210, 'Sports', 'What is Kho Kho?', 'It is a type of ice cream that includes chocolate ', 'It is a game similar to tag and a traditional game', 'It is a version of laser tag but better.', 'It is twister with an Indian twist involving 12 pl', 'It is a game similar to tag and a traditional game', 'images/sports/Question20_sports.jpg'),
+(212, 'Dances', 'does this work?', 'Yes', 'No', 'Maybe ', 'All of the about', 'Yes', 'Images/Dances/assam.JPG'),
+(213, 'PHP', 'How would display an entire array ($a) in a human readable form?', 'echo \"$a\";', 'print_r ($a);', 'echo $a;', 'None of the above', 'print_r ($a);', 'Images/PHP/phparray4.png'),
+(214, 'PHP', 'Which of the following will add an element to an array?', 'array_push();', 'array_shift();', 'array_reverse();', 'array_pop();', 'array_push();', 'Images/PHP/phparray3.png'),
+(215, 'PHP', 'Which of the following is a type of a PHP array?', 'Index Array', 'Associative Array', 'Multidimesional Arrays', 'All of the above', 'All of the above', 'Images/PHP/phparray2.png'),
+(216, 'PHP', 'PHP''s numerically indexed array begins with position __.', '2', '0', '1', '-1', '0', 'Images/PHP/phparray6.png'),
+(217, 'PHP', 'Which function will return true if a variable is an array or false if it is not?', 'this_array();', 'do_array();', 'in_array();', 'is_array();', 'is_array();', 'Images/PHP/phparray5.png'),
+(218, 'PHP', 'When a developer wishes to fetch the a get parameter value, which call do they use?', 'GET(''parameter'')', '$-GET[''parameter'']', '$_GET[''parameter'']', 'GET_PARAM[''parameter'']', '$_GET[''parameter'']', 'Images/PHP/phpsession1.png'),
+(219, 'PHP', 'What is an HTTP Cookie?', 'A database stored on the users computer', 'A small piece of user specific data stored on the server', 'A small piece user specific stored on the users computer', 'A tasty treat from grandmas oven!', 'A small piece user specific stored on the users computer', 'Images/PHP/phpsession2.png'),
+(220, 'PHP', 'Which of the following is true about cookies?', 'There is only one type of HTTP cookies', 'Cookies only last until the users browser is closed', 'Cookies are long term storage on the users computer', 'Cookies are temporary storage that eventually expire', 'Cookies are temporary storage that eventually expire', 'Images/PHP/phpsession3.png'),
+(221, 'PHP', 'Which of the following is true about Sessions?', 'Sessions are stored on the server', 'Session ids are stored with cookies', 'Sessions have no size or data limits', 'All of the above', 'All of the above', 'Images/PHP/phpsession4.png'),
+(222, 'PHP', 'What method is used to test whether a session value is set for a user?', 'is_set($_SESSION(''parameter''))', 'test(SESSION[''parameter''])', 'isset($_SESSION[''parameter''])', '$_SESSION[''parameter'']', 'isset($_SESSION[''parameter''])', 'Images/PHP/phpsession5.png'),
+(223, 'PHP', 'Which one is open and close PHP server scripts?', '<&>...</&>', '<script>...</script>', '<?php>...</?>', '<?php…?>', '<?php…?>', 'Images/PHP/phparray1.png'),
+(224, 'PHP', 'PHP variable start with which symbol?', '$', '&', '!', '#', '$', 'Images/PHP/phparray1.png'),
+(225, 'PHP', 'What is correct way to open file "data.ext" as readable?', 'open("time.txt");', 'open("time.txt","read");', 'fopen("time.txt","r");', 'fopen("time.txt","r+");', 'fopen("time.txt","r+");', 'Images/PHP/phparray1.png'),
+(226, 'PHP', 'What is the superglobal variable holds information about headers, paths, and script locations?', '$_SESSION', '$_GLOBALS', '$_SERVER', '$_GET', '$_SERVER', 'Images/PHP/phparray1.png'),
+(227, 'PHP', 'when you want to check if two values are equal and of same data type. Which operator to use?', '!=', '=', '===', '==', '===', 'Images/PHP/phparray1.png');
 
 -- --------------------------------------------------------
 
@@ -299,18 +315,19 @@ CREATE TABLE `topics` (
 -- Dumping data for table `topics`
 --
 
-INSERT INTO `topics` (`topic`, `image_name`, `order`) VALUES
-('Dances', 'dances.jpg', 1),
-('Dresses', 'dresses_and_costumes.png', 2),
-('Embroidery', 'embroidery.png', 3),
-('Festivals', 'festivals.png', 4),
-('Foods', 'foods.png', 5),
-('Instruments', 'musical_instruments.png', 6),
-('Leaders', 'leaders_and_scientists.png', 7),
-('Monuments', 'places_and_monuments.png', 8),
-('Movies', 'movies.png', 9),
-('NRIs', 'NRI_s.jpg', 10),
-('Sports', 'sports.png', 11);
+INSERT INTO `topics` (`order`, `topic`, `image_name`) VALUES
+(0, 'PHP', 'phparray1.png'),
+(1, 'Dances', 'dances.jpg'),
+(2, 'Dresses', 'dresses_and_costumes.png'),
+(3, 'Embroidery', 'embroidery.png'),
+(4, 'Festivals', 'festivals.png'),
+(5, 'Foods', 'foods.png'),
+(6, 'Intruments', 'musical_instruments.png'),
+(7, 'Leaders', 'leaders_and_scientists.png'),
+(8, 'Monuments', 'places_and_monuments.png'),
+(9, 'Movies', 'movies.png'),
+(10, 'NRIs', 'NRI_s.jpg'),
+(11, 'Sports', 'sports.png');
 
 -- --------------------------------------------------------
 
