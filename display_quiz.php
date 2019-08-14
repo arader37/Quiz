@@ -39,7 +39,7 @@ function getNumQuestionsToShow(){
 
 function getQuestion($quiz_topic, $question_num){
     global $db; // tell the function to use to global variable $db
-    $sql = "select id, question from questions where topic = '$quiz_topic' order by id ASC";
+    $sql = "select id, question from questions where topic = '$quiz_topic' ";
     $results = mysqli_query($db,$sql);
 
     $question = "Error";
@@ -224,7 +224,7 @@ function getIdFromQuizABCD($abcd_string){
 
 function getQuestionID($quiz_topic, $current_page){
     global $db; // tell the function to use to global variable $db
-    $sql = "select id from questions where topic = '$quiz_topic'";
+    $sql = "select id from questions where topic = '$quiz_topic' order by rand()";
     $results = mysqli_query($db,$sql);
 
     if ($current_page < 1)
