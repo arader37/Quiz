@@ -265,7 +265,12 @@ INSERT INTO `questions` (`id`, `topic`, `question`, `choice_1`, `choice_2`, `cho
 (219, 'PHP', 'What is an HTTP Cookie?', 'A database stored on the users computer', 'A small piece of user specific data stored on the server', 'A small piece user specific stored on the users computer', 'A tasty treat from grandmas oven!', 'A small piece user specific stored on the users computer', 'Images/PHP/phpsession2.png'),
 (220, 'PHP', 'Which of the following is true about cookies?', 'There is only one type of HTTP cookies', 'Cookies only last until the users browser is closed', 'Cookies are long term storage on the users computer', 'Cookies are temporary storage that eventually expire', 'Cookies are temporary storage that eventually expire', 'Images/PHP/phpsession3.png'),
 (221, 'PHP', 'Which of the following is true about Sessions?', 'Sessions are stored on the server', 'Session ids are stored with cookies', 'Sessions have no size or data limits', 'All of the above', 'All of the above', 'Images/PHP/phpsession4.png'),
-(222, 'PHP', 'What method is used to test whether a session value is set for a user?', 'is_set($_SESSION(''parameter''))', 'test(SESSION[''parameter''])', 'isset($_SESSION[''parameter''])', '$_SESSION[''parameter'']', 'isset($_SESSION[''parameter''])', 'Images/PHP/phpsession5.png');
+(222, 'PHP', 'What method is used to test whether a session value is set for a user?', 'is_set($_SESSION(''parameter''))', 'test(SESSION[''parameter''])', 'isset($_SESSION[''parameter''])', '$_SESSION[''parameter'']', 'isset($_SESSION[''parameter''])', 'Images/PHP/phpsession5.png'),
+(223, 'PHP', 'Which one is open and close PHP server scripts?', '<&>...</&>', '<script>...</script>', '<?php>...</?>', '<?php…?>', '<?php…?>', 'Images/PHP/phparray1.png'),
+(224, 'PHP', 'PHP variable start with which symbol?', '$', '&', '!', '#', '$', 'Images/PHP/phparray1.png'),
+(225, 'PHP', 'What is correct way to open file "data.ext" as readable?', 'open("time.txt");', 'open("time.txt","read");', 'fopen("time.txt","r");', 'fopen("time.txt","r+");', 'fopen("time.txt","r+");', 'Images/PHP/phparray1.png'),
+(226, 'PHP', 'What is the superglobal variable holds information about headers, paths, and script locations?', '$_SESSION', '$_GLOBALS', '$_SERVER', '$_GET', '$_SERVER', 'Images/PHP/phparray1.png'),
+(227, 'PHP', 'when you want to check if two values are equal and of same data type. Which operator to use?', '!=', '=', '===', '==', '===', 'Images/PHP/phparray1.png');
 
 --
 -- Indexes for dumped tables
