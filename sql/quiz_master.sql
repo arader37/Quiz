@@ -55,14 +55,14 @@ DROP TABLE `questions`;
 
 CREATE TABLE `questions` (
   `id` int(11) NOT NULL,
-  `topic` varchar(50) NOT NULL,
-  `question` varchar(50) NOT NULL,
-  `choice_1` varchar(50) NOT NULL,
-  `choice_2` varchar(50) NOT NULL,
-  `choice_3` varchar(50) NOT NULL,
-  `choice_4` varchar(50) NOT NULL,
-  `answer` varchar(50) NOT NULL,
-  `image_name` varchar(50) NOT NULL
+  `topic` varchar(75) NOT NULL,
+  `question` varchar(100) NOT NULL,
+  `choice_1` varchar(75) NOT NULL,
+  `choice_2` varchar(75) NOT NULL,
+  `choice_3` varchar(75) NOT NULL,
+  `choice_4` varchar(75) NOT NULL,
+  `answer` varchar(75) NOT NULL,
+  `image_name` varchar(75) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
