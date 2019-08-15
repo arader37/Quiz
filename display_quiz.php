@@ -224,7 +224,7 @@ function getIdFromQuizABCD($abcd_string){
 
 function getQuestionID($quiz_topic, $current_page){
     global $db; // tell the function to use to global variable $db
-    $sql = "select id from questions where topic = '$quiz_topic' order by rand()";
+    $sql = "select id from questions where topic = '$quiz_topic' order by id ASC";
     $results = mysqli_query($db,$sql);
 
     if ($current_page < 1)
